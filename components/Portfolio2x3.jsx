@@ -381,7 +381,7 @@ const Portfolio2x3 = () => {
           </Button>
 
           <a
-            href="/Skripsi Mbak Nabila.pdf"
+            href="/cvdungu.pdf"
             download
             className="bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 border border-gray-300 inline-flex items-center justify-center"
           >
