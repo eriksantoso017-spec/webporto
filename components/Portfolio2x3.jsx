@@ -798,15 +798,15 @@ const Portfolio2x3 = () => {
             className={
               expandedSection === "blog"
                 ? "close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
-                : "close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 h-auto px-2 py-1.5 text-sm animate-pulse-slow hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
+                : "close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
             }
           >
             {expandedSection === "blog" ? (
               <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
             ) : (
               <>
-                <X className="w-4 h-4 mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
-                Close
+                <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
+                <span className="hidden md:inline">Close</span>
               </>
             )}
           </Button>
@@ -814,10 +814,10 @@ const Portfolio2x3 = () => {
             expandedSection === "contact") && (
             <Button
               onClick={() => setExpandedSection("home")}
-              className="back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 h-auto px-3 py-1.5 text-sm animate-pulse-slow hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group"
+              className="back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group"
             >
-              <ArrowLeft className="w-4 h-4 mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
-              Back to Home
+              <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
+              <span className="hidden md:inline">Back to Home</span>
             </Button>
           )}
           {renderContent()}
