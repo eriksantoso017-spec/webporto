@@ -671,9 +671,9 @@ const Portfolio2x3 = () => {
           </div>
           <Button
             onClick={scrollToTop}
-            className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-16 md:h-16 p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+            className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-14 md:h-14 p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
           >
-            <ArrowUp className="w-5 h-5 md:w-7 md:h-7 animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
+            <ArrowUp className="w-5 h-5 md:w-6 md:h-6 animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
           </Button>
         </div>
       );
@@ -731,9 +731,9 @@ const Portfolio2x3 = () => {
         </div>
         <Button
           onClick={scrollToTop}
-          className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-16 md:h-16 p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+          className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-14 md:h-14 p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
         >
-          <ArrowUp className="w-5 h-5 md:w-7 md:h-7 animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
+          <ArrowUp className="w-5 h-5 md:w-6 md:h-6 animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
         </Button>
       </div>
     );
