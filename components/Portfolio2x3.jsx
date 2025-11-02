@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   Mail,
   Github,
@@ -106,48 +107,17 @@ const ImageProjectCard = ({ project }) => {
 };
 
 const Portfolio2x3 = () => {
+  const router = useRouter();
   const [expandedSection, setExpandedSection] = useState(null);
   const [activeTab, setActiveTab] = useState("images");
-  const [expandedPost, setExpandedPost] = useState(null);
-  const [expandedPostData, setExpandedPostData] = useState(null);
-  const [blogPosts, setBlogPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Fetch blog posts from API
+  // Redirect to blog page when blog section is clicked
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch("/api/blog");
-        const data = await response.json();
-        setBlogPosts(data);
-      } catch (error) {
-        console.error("Error fetching blog posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
-  // Fetch single post when expanded
-  useEffect(() => {
-    if (expandedPost) {
-      const fetchPost = async () => {
-        try {
-          const response = await fetch(`/api/blog?id=${expandedPost}`);
-          const data = await response.json();
-          setExpandedPostData(data);
-        } catch (error) {
-          console.error("Error fetching post:", error);
-        }
-      };
-
-      fetchPost();
-    } else {
-      setExpandedPostData(null);
+    if (expandedSection === "blog") {
+      router.push("/blog");
+      setExpandedSection(null); // Reset to prevent re-render
     }
-  }, [expandedPost]);
+  }, [expandedSection, router]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -623,122 +593,6 @@ const Portfolio2x3 = () => {
     </div>
   );
 
-  const renderBlogContent = () => {
-    if (expandedPost) {
-      if (!expandedPostData) {
-        return (
-          <div className="min-h-screen p-8 bg-black blog-background">
-            <div className="max-w-5xl mx-auto blog-content">
-              <div className="text-center text-white">Loading post...</div>
-            </div>
-          </div>
-        );
-      }
-
-      const post = expandedPostData;
-
-      return (
-        <div className="min-h-screen p-8 bg-black blog-background">
-          <div className="max-w-5xl mx-auto blog-content">
-            <Button
-              onClick={() => setExpandedPost(null)}
-              className="back-to-blog-btn fixed top-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-pink-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300 group"
-            >
-              <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
-              <span className="hidden md:inline">To Blog</span>
-            </Button>
-
-            <article className="bg-gray-900 border-2 border-pink-500 rounded-xl p-8 space-y-6">
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <span>{post.date}</span>
-                <span>•</span>
-                <span>{post.readTime}</span>
-              </div>
-
-              <h1 className="text-4xl md:text-5xl font-bold text-white">
-                {post.title}
-              </h1>
-
-              <div className="border-t border-gray-700 pt-6">
-                <p className="text-xl text-gray-300 leading-relaxed mb-6">
-                  {post.excerpt}
-                </p>
-                <div className="text-gray-300 leading-relaxed space-y-4 prose prose-invert prose-p:text-gray-300 prose-headings:text-white prose-a:text-purple-400 prose-strong:text-white prose-code:text-pink-400 prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 max-w-none">
-                  <ReactMarkdown>{post.content}</ReactMarkdown>
-                </div>
-              </div>
-            </article>
-          </div>
-          <Button
-            onClick={scrollToTop}
-            className="back-to-top-btn fixed bottom-4 right-4 md:right-[26px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[55px] md:h-[55px] p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
-          >
-            <ArrowUp className="w-5 h-5 md:w-[23px] md:h-[23px] animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
-          </Button>
-        </div>
-      );
-    }
-
-    if (loading) {
-      return (
-        <div className="min-h-screen p-8 bg-black blog-background">
-          <div className="max-w-5xl mx-auto blog-content">
-            <div className="text-center text-white">Loading posts...</div>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="min-h-screen p-8 bg-black blog-background">
-        <div className="max-w-5xl mx-auto blog-content">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-            Blog Posts
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {blogPosts.length === 0 ? (
-              <div className="text-center text-gray-400 col-span-2">
-                No blog posts available.
-              </div>
-            ) : (
-              blogPosts.map((post) => (
-                <div key={post.id} className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-600 rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-                  <div className="relative bg-black rounded-lg p-6 space-y-4 border border-gray-800">
-                    <div className="flex items-center gap-2 text-sm text-gray-400">
-                      <span>{post.date}</span>
-                      <span>•</span>
-                      <span>{post.readTime}</span>
-                    </div>
-
-                    <h3 className="text-2xl font-bold text-white group-hover:text-pink-400 transition-colors">
-                      {post.title}
-                    </h3>
-
-                    <p className="text-gray-300 line-clamp-3">{post.excerpt}</p>
-
-                    <Button
-                      onClick={() => setExpandedPost(post.id)}
-                      className="w-full bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:from-pink-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300"
-                    >
-                      Read More →
-                    </Button>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-        <Button
-          onClick={scrollToTop}
-          className="back-to-top-btn fixed bottom-4 right-4 md:right-[26px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[55px] md:h-[55px] p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
-        >
-          <ArrowUp className="w-5 h-5 md:w-[23px] md:h-[23px] animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
-        </Button>
-      </div>
-    );
-  };
-
   const renderContent = () => {
     switch (expandedSection) {
       case "home":
@@ -752,7 +606,8 @@ const Portfolio2x3 = () => {
       case "contact":
         return renderContactContent();
       case "blog":
-        return renderBlogContent();
+        // Blog is handled by useEffect redirect, return null here
+        return null;
       default:
         return null;
     }
