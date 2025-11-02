@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Components";
-import { ArrowLeft, ArrowUp } from "lucide-react";
+import { ArrowLeft, ArrowUp, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
 export default function BlogPostClient({ post }) {
+  const router = useRouter();
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -16,14 +19,20 @@ export default function BlogPostClient({ post }) {
 
   return (
     <div className="min-h-screen p-8 bg-black blog-background">
+      <Button
+        onClick={() => router.push("/")}
+        className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
+      >
+        <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
+        <span className="hidden md:inline">Close</span>
+      </Button>
+      <Link href="/blog">
+        <Button className="back-to-blog-btn fixed top-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-pink-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300 group">
+          <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="hidden md:inline">To Blog</span>
+        </Button>
+      </Link>
       <div className="max-w-5xl mx-auto blog-content">
-        <Link href="/blog">
-          <Button className="back-to-blog-btn fixed top-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-pink-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300 group mb-6">
-            <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
-            <span className="hidden md:inline">Back to Blog</span>
-          </Button>
-        </Link>
-
         <article className="bg-gray-900 border-2 border-pink-500 rounded-xl p-8 space-y-6">
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{post.date}</span>

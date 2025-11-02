@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Components";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, X } from "lucide-react";
 
 export default function BlogListClient({ blogPosts }) {
+  const router = useRouter();
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -15,6 +18,13 @@ export default function BlogListClient({ blogPosts }) {
   return (
     <>
       <div className="min-h-screen p-8 bg-black blog-background">
+        <Button
+          onClick={() => router.push("/")}
+          className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
+        >
+          <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
+          <span className="hidden md:inline">Close</span>
+        </Button>
         <div className="max-w-5xl mx-auto blog-content">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
             Blog Posts
