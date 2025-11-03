@@ -1,13 +1,20 @@
 export const imageProjects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Feeds Tugas Etika Mahasiswa",
     description:
-      "A full-featured online shopping platform with cart and payment integration",
+      "Berisikan tentang apa saja etika standar yang harus diketahui dan diterapkan oleh seorang mahasiswa",
     images: [
-      "https://placehold.co/600x400/6366f1/ffffff?text=E-Commerce+1",
-      "https://placehold.co/600x400/6366f1/ffffff?text=Product+Page+2",
-      "https://placehold.co/600x400/6366f1/ffffff?text=Cart+View+3",
+      "/images/porto/feeds-etika/hal-1.png",
+      "/images/porto/feeds-etika/hal-2.png",
+      "/images/porto/feeds-etika/hal-3.png",
+      "/images/porto/feeds-etika/hal-4.png",
+      "/images/porto/feeds-etika/hal-5.png",
+      "/images/porto/feeds-etika/hal-6.png",
+      "/images/porto/feeds-etika/hal-7.png",
+      "/images/porto/feeds-etika/hal-8.png",
+      "/images/porto/feeds-etika/hal-9.png",
+      "/images/porto/feeds-etika/hal-10.png",
     ],
   },
   {
@@ -34,11 +41,8 @@ export const imageProjects = [
   {
     id: 4,
     title: "Social Media App",
-    description:
-      "Connect with friends, share posts, and engage with community",
-    images: [
-      "https://placehold.co/600x400/06b6d4/ffffff?text=Social+Media+1",
-    ],
+    description: "Connect with friends, share posts, and engage with community",
+    images: ["https://placehold.co/600x400/06b6d4/ffffff?text=Social+Media+1"],
   },
 ];
 
@@ -49,4 +53,3 @@ export const imageProjects = [
 //   description: string,            // Deskripsi singkat project
 //   images: [string, ...],         // Array URL gambar (bisa banyak)
 // }
-
