@@ -5,16 +5,12 @@ export const imageProjects = [
     description:
       "Berisikan tentang apa saja etika standar yang harus diketahui dan diterapkan oleh seorang mahasiswa",
     images: [
-      "/images/porto/feeds-etika/hal-1.png",
-      "/images/porto/feeds-etika/hal-2.png",
-      "/images/porto/feeds-etika/hal-3.png",
-      "/images/porto/feeds-etika/hal-4.png",
-      "/images/porto/feeds-etika/hal-5.png",
-      "/images/porto/feeds-etika/hal-6.png",
-      "/images/porto/feeds-etika/hal-7.png",
-      "/images/porto/feeds-etika/hal-8.png",
-      "/images/porto/feeds-etika/hal-9.png",
-      "/images/porto/feeds-etika/hal-10.png",
+      "/images/porto/feeds-etika-mahasiswa/hal-1.png",
+      "/images/porto/feeds-etika-mahasiswa/hal-2.png",
+      "/images/porto/feeds-etika-mahasiswa/hal-3.png",
+      "/images/porto/feeds-etika-mahasiswa/hal-4.png",
+      "/images/porto/feeds-etika-mahasiswa/hal-5.png",
+      "/images/porto/feeds-etika-mahasiswa/hal-6.png",
     ],
   },
   {
