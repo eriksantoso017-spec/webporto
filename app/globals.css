@@ -347,6 +347,14 @@
   animation: swipe-glow 1.5s ease-in-out infinite;
 }
 
+/* Ensure icons in lightbox navigation buttons are always visible */
+.swipe-btn-left svg,
+.swipe-btn-right svg {
+  opacity: 1 !important;
+  color: white !important;
+  stroke: white !important;
+}
+
 /* Close button animations */
 @keyframes close-glow {
   0%,

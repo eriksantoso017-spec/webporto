@@ -266,15 +266,31 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
         <>
           <Button
             onClick={handlePrev}
-            className="swipe-btn-left absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-[10000] !bg-purple-600 !text-white hover:!bg-purple-800 border-0 w-8 h-8 p-0 flex items-center justify-center rounded-lg hover:scale-105 transition-all duration-300 group animate-pulse-slow shadow-lg hover:shadow-purple-500/70 hover:shadow-2xl"
+            variant="ghost"
+            className="swipe-btn-left absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-[10000] !bg-purple-600 hover:!bg-purple-800 !text-white border-0 w-8 h-8 p-0 flex items-center justify-center rounded-lg hover:scale-105 transition-all duration-300 group animate-pulse-slow shadow-lg hover:shadow-purple-500/70 hover:shadow-2xl"
+            style={{ color: "white" }}
           >
-            <ArrowLeft className="w-4 h-4 !text-white opacity-100 group-hover:scale-125 transition-transform duration-300" />
+            <ArrowLeft
+              className="w-4 h-4 group-hover:scale-125 transition-transform duration-300"
+              stroke="white"
+              strokeWidth={2.5}
+              fill="none"
+              style={{ opacity: 1, color: "white" }}
+            />
           </Button>
           <Button
             onClick={handleNext}
-            className="swipe-btn-right absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-[10000] !bg-purple-600 !text-white hover:!bg-purple-800 border-0 w-8 h-8 p-0 flex items-center justify-center rounded-lg hover:scale-105 transition-all duration-300 group animate-pulse-slow shadow-lg hover:shadow-purple-500/70 hover:shadow-2xl"
+            variant="ghost"
+            className="swipe-btn-right absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-[10000] !bg-purple-600 hover:!bg-purple-800 !text-white border-0 w-8 h-8 p-0 flex items-center justify-center rounded-lg hover:scale-105 transition-all duration-300 group animate-pulse-slow shadow-lg hover:shadow-purple-500/70 hover:shadow-2xl"
+            style={{ color: "white" }}
           >
-            <ArrowRight className="w-4 h-4 !text-white opacity-100 group-hover:scale-125 transition-transform duration-300" />
+            <ArrowRight
+              className="w-4 h-4 group-hover:scale-125 transition-transform duration-300"
+              stroke="white"
+              strokeWidth={2.5}
+              fill="none"
+              style={{ opacity: 1, color: "white" }}
+            />
           </Button>
         </>
       )}
