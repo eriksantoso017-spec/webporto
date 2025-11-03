@@ -271,11 +271,16 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
             style={{ color: "white" }}
           >
             <ArrowLeft
-              className="w-4 h-4 group-hover:scale-125 transition-transform duration-300"
-              stroke="white"
+              size={20}
+              className="group-hover:scale-125 transition-transform duration-300"
+              color="white"
               strokeWidth={2.5}
-              fill="none"
-              style={{ opacity: 1, color: "white" }}
+              style={{
+                opacity: 1,
+                color: "white",
+                stroke: "white",
+                fill: "none",
+              }}
             />
           </Button>
           <Button
@@ -285,11 +290,16 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
             style={{ color: "white" }}
           >
             <ArrowRight
-              className="w-4 h-4 group-hover:scale-125 transition-transform duration-300"
-              stroke="white"
+              size={20}
+              className="group-hover:scale-125 transition-transform duration-300"
+              color="white"
               strokeWidth={2.5}
-              fill="none"
-              style={{ opacity: 1, color: "white" }}
+              style={{
+                opacity: 1,
+                color: "white",
+                stroke: "white",
+                fill: "none",
+              }}
             />
           </Button>
         </>

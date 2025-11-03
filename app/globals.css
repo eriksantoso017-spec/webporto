@@ -353,6 +353,9 @@
   opacity: 1 !important;
   color: white !important;
   stroke: white !important;
+  fill: none !important;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 /* Close button animations */
