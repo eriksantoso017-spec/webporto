@@ -261,50 +261,6 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
         <span className="hidden md:inline">Close</span>
       </Button>
 
-      {/* Navigation Buttons */}
-      {images.length > 1 && (
-        <>
-          <Button
-            onClick={handlePrev}
-            variant="ghost"
-            className="swipe-btn-left absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-[10000] !bg-purple-600 hover:!bg-purple-800 !text-white border-0 w-8 h-8 p-0 flex items-center justify-center rounded-lg hover:scale-105 transition-all duration-300 group animate-pulse-slow shadow-lg hover:shadow-purple-500/70 hover:shadow-2xl"
-            style={{ color: "white" }}
-          >
-            <ArrowLeft
-              size={20}
-              className="group-hover:scale-125 transition-transform duration-300"
-              color="white"
-              strokeWidth={2.5}
-              style={{
-                opacity: 1,
-                color: "white",
-                stroke: "white",
-                fill: "none",
-              }}
-            />
-          </Button>
-          <Button
-            onClick={handleNext}
-            variant="ghost"
-            className="swipe-btn-right absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-[10000] !bg-purple-600 hover:!bg-purple-800 !text-white border-0 w-8 h-8 p-0 flex items-center justify-center rounded-lg hover:scale-105 transition-all duration-300 group animate-pulse-slow shadow-lg hover:shadow-purple-500/70 hover:shadow-2xl"
-            style={{ color: "white" }}
-          >
-            <ArrowRight
-              size={20}
-              className="group-hover:scale-125 transition-transform duration-300"
-              color="white"
-              strokeWidth={2.5}
-              style={{
-                opacity: 1,
-                color: "white",
-                stroke: "white",
-                fill: "none",
-              }}
-            />
-          </Button>
-        </>
-      )}
-
       {/* Image Container */}
       <div
         className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
@@ -336,6 +292,36 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
           draggable={false}
         />
       </div>
+
+      {/* Swipe Buttons */}
+      {images.length > 1 && (
+        <div className="absolute top-1/2 left-2 right-2 md:left-12 md:right-12 flex justify-between transform -translate-y-1/2 z-[10001] pointer-events-none">
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePrev();
+            }}
+            disabled={currentIndex === 0}
+            className="lightbox-swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+          </Button>
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNext();
+            }}
+            disabled={currentIndex === images.length - 1}
+            className="lightbox-swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+          >
+            <ArrowRight className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+          </Button>
+        </div>
+      )}
 
       {/* Image Counter */}
       {images.length > 1 && (

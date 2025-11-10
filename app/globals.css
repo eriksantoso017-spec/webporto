@@ -358,6 +358,19 @@
   height: 20px !important;
 }
 
+/* Ensure lightbox swipe buttons have black background with purple border */
+.swipe-btn-left,
+.swipe-btn-right {
+  background-color: #000000 !important;
+  border: 2px solid rgb(168, 85, 247) !important;
+}
+
+.swipe-btn-left:hover,
+.swipe-btn-right:hover {
+  background-color: #000000 !important;
+  border-color: rgb(168, 85, 247) !important;
+}
+
 /* Close button animations */
 @keyframes close-glow {
   0%,
