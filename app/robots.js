@@ -1,6 +1,6 @@
 export default function robots() {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app/";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
 
   return {
     rules: [

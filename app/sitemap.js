@@ -1,11 +1,12 @@
 import { getAllPosts } from "@/lib/markdown";
 
 export default function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.vercel.app";
-  
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
+
   // Get all blog posts
   const posts = getAllPosts();
-  
+
   // Create sitemap entries
   const blogPosts = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
@@ -30,4 +31,3 @@ export default function sitemap() {
     ...blogPosts,
   ];
 }
-

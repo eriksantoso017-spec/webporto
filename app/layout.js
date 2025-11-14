@@ -1,7 +1,7 @@
 import "./globals.css";
 
 const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
@@ -70,7 +70,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
 
   const structuredData = {
     "@context": "https://schema.org",
