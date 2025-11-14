@@ -63,9 +63,9 @@ export const metadata = {
     shortcut: "/portoweb.ico",
     apple: "/logo192.png",
   },
-  // Verification menggunakan HTML file method
-  // File verifikasi sudah dibuat di public/google9b405433d20d9d72.html
-  // Tidak perlu verification di metadata untuk HTML file method
+  verification: {
+    google: "voTjcKXM8nz1boHa-HVwu1lMaxixB8BrFYYxYPKotEo", // Kode verifikasi dari Google Search Console
+  },
 };
 
 export default function RootLayout({ children }) {
