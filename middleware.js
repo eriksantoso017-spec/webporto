@@ -22,7 +22,8 @@ export function middleware(request) {
     "style-src 'self' 'unsafe-inline'", // 'unsafe-inline' needed for Tailwind CSS
     "img-src 'self' data: https:",
     "font-src 'self' data:",
-    "connect-src 'self'",
+    "connect-src 'self' https://www.youtube.com https://youtube.com",
+    "frame-src 'self' https://www.youtube.com https://youtube.com", // Allow YouTube embeds
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
