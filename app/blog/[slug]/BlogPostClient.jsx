@@ -27,7 +27,7 @@ export default function BlogPostClient({ post }) {
         <span className="hidden md:inline">Close</span>
       </Button>
       <Link href="/blog">
-        <Button className="back-to-blog-btn fixed top-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-pink-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300 group">
+        <Button className="back-to-blog-btn fixed top-4 right-4 md:right-[19px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-pink-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300 group">
           <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
           <span className="hidden md:inline">To Blog</span>
         </Button>
