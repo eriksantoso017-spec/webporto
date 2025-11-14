@@ -11,6 +11,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const post = getPostById(params.slug);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.vercel.app";
 
   if (!post) {
     return {
@@ -19,13 +20,34 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${post.title} - Erik Santoso Blog`,
+    title: post.title,
     description: post.excerpt || post.title,
+    keywords: post.tags || [],
+    authors: [{ name: "Erik Santoso" }],
     openGraph: {
       title: post.title,
       description: post.excerpt || post.title,
       type: "article",
       publishedTime: post.date,
+      url: `${baseUrl}/blog/${params.slug}`,
+      siteName: "Erik Santoso Portfolio",
+      images: [
+        {
+          url: `${baseUrl}/logo512.png`,
+          width: 512,
+          height: 512,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt || post.title,
+      images: [`${baseUrl}/logo512.png`],
+    },
+    alternates: {
+      canonical: `${baseUrl}/blog/${params.slug}`,
     },
   };
 }
