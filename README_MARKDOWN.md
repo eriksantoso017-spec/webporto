@@ -39,6 +39,7 @@ title: "Judul Blog Post Anda"
 excerpt: "Ringkasan singkat tentang artikel ini (akan muncul di preview card)"
 date: "March 15, 2024"
 readTime: "5 min read"
+thumbnail: "/images/blog/thumbnail-image.jpg" # Optional: Path ke gambar thumbnail
 ---
 
 Isi konten blog post Anda di sini...
@@ -60,6 +61,7 @@ title: "Cara Belajar Next.js untuk Pemula"
 excerpt: "Panduan lengkap untuk memulai belajar Next.js dari dasar hingga mahir."
 date: "April 1, 2024"
 readTime: "10 min read"
+thumbnail: "/images/blog/nextjs-thumbnail.jpg" # Optional: Thumbnail untuk preview
 ---
 
 # Pengenalan Next.js
@@ -96,7 +98,7 @@ Anda bisa menggunakan semua syntax Markdown standar:
 - **Links**: `[text](url)`
 - **Images**: `![alt](url)` - Lihat panduan di bawah
 - **Lists**: `- item` atau `1. item`
-- **Blockquotes**: `> quote`
+- **Blockquotes**: `> quote` - Lihat panduan di bawah
 
 ## 🖼️ Cara Menambahkan Gambar di Markdown
 
@@ -161,6 +163,153 @@ Anda juga bisa menggunakan URL gambar eksternal:
 
 **Catatan:** Untuk production, lebih baik simpan gambar di `public/` folder untuk performance yang lebih baik.
 
+## 🖼️ Thumbnail untuk Blog Post
+
+### 1. Menambahkan Thumbnail di Frontmatter
+
+Tambahkan field `thumbnail` di frontmatter untuk menampilkan gambar di:
+
+- **Blog list page** (preview card)
+- **Blog post page** (di bawah title, di atas excerpt)
+
+**Format:**
+
+```markdown
+---
+title: "Judul Blog Post"
+excerpt: "Deskripsi singkat"
+date: "March 15, 2024"
+readTime: "5 min read"
+thumbnail: "/images/blog/thumbnail-image.jpg" # Path ke gambar thumbnail
+---
+```
+
+### 2. Lokasi Thumbnail
+
+Simpan thumbnail di folder `public/images/thumbnail/`:
+
+```
+public/
+└── images/
+    └── thumbnail/
+        ├── thumbnail-1.jpg
+        ├── thumbnail-2.png
+        └── ...
+```
+
+### 3. Tips untuk Thumbnail
+
+- ✅ **Ukuran disarankan**: 1200x630px (rasio 1.91:1) untuk optimal di social media
+- ✅ **Format**: `.jpg`, `.png`, atau `.webp`
+- ✅ **Ukuran file**: Usahakan < 200KB untuk performa
+- ✅ **Naming**: Gunakan nama deskriptif (misalnya: `nextjs-tutorial-thumbnail.jpg`)
+- ✅ **Optional**: Jika tidak ada thumbnail, blog post tetap akan tampil normal
+
+### 4. Contoh Lengkap dengan Thumbnail
+
+```markdown
+---
+title: "Getting Started with Next.js"
+excerpt: "Panduan lengkap untuk memulai dengan Next.js"
+date: "April 1, 2024"
+readTime: "10 min read"
+thumbnail: "/images/blog/nextjs-thumbnail.jpg"
+---
+
+# Pengenalan Next.js
+
+Next.js adalah framework React yang powerful...
+```
+
+### 5. Gambar di Atas Paragraf Pertama
+
+Untuk menambahkan gambar di atas paragraf pertama (di bawah title), ada 2 cara:
+
+#### **Cara 1: Menggunakan Thumbnail (Recommended)**
+
+Gunakan field `thumbnail` di frontmatter. Gambar akan otomatis muncul di bawah title.
+
+#### **Cara 2: Menggunakan Markdown Image di Awal Konten**
+
+Tambahkan gambar di awal konten markdown:
+
+```markdown
+---
+title: "Judul Blog"
+excerpt: "Deskripsi"
+date: "March 15, 2024"
+readTime: "5 min read"
+---
+
+![Gambar Hero](/images/blog/hero-image.jpg)
+
+_Penjelasan singkat tentang gambar_
+
+Ini adalah paragraf pertama setelah gambar...
+```
+
+**Catatan:** Jika menggunakan kedua cara, thumbnail akan muncul di bawah title, dan gambar markdown akan muncul di konten.
+
+## 5 Cara Menggunakan Blockquote dengan Vertical Lines
+
+Blockquote di blog Anda akan otomatis memiliki **vertical line di kiri** dengan styling yang menarik.
+
+### 1. Syntax Dasar
+
+Gunakan `>` di awal baris untuk membuat blockquote:
+
+```markdown
+> Ini adalah contoh blockquote dengan vertical line di kiri.
+```
+
+### 2. Multi-line Blockquote
+
+Untuk blockquote yang lebih panjang:
+
+```markdown
+> Ini adalah blockquote dengan beberapa baris.
+> Setiap baris dimulai dengan tanda `>`.
+> Blockquote akan tetap memiliki vertical line di kiri.
+```
+
+### 3. Blockquote dengan Formatting
+
+Anda bisa menggunakan formatting di dalam blockquote:
+
+```markdown
+> **Bold text** dan _italic text_ juga bisa digunakan.
+>
+> Bahkan bisa menggunakan `code` di dalam blockquote.
+```
+
+### 4. Contoh Lengkap
+
+```markdown
+## Pengenalan React Hooks
+
+React Hooks adalah fitur baru di React yang memungkinkan kita menggunakan state dan fitur React lainnya tanpa menulis class.
+
+> "Hooks memungkinkan kita untuk menggunakan state dan lifecycle methods di functional components."
+
+Ini adalah penjelasan lanjutan tentang React Hooks...
+```
+
+### 5. Fitur Blockquote
+
+Blockquote di blog Anda akan memiliki:
+
+- ✅ **Vertical line purple** di kiri (4px border)
+- ✅ **Background abu-abu gelap** semi-transparan
+- ✅ **Indentasi yang jelas** dengan padding
+- ✅ **Teks miring (italic)** untuk emphasis
+- ✅ **Border radius** di kanan untuk tampilan yang lebih halus
+
+### 6. Tips
+
+- Gunakan blockquote untuk **quote penting**, **kutipan**, atau **highlight konten**
+- Jangan terlalu banyak menggunakan blockquote (maksimal 2-3 per artikel)
+- Pastikan konten di blockquote relevan dan menarik
+
 ## 📝 Tips
 
 1. **Gunakan slug yang deskriptif** untuk nama file (mudah dibaca dan SEO-friendly)
@@ -195,5 +344,3 @@ Setelah menambah atau mengubah file markdown:
 - [Markdown Guide](https://www.markdownguide.org/)
 - [gray-matter Documentation](https://github.com/jonschlinkert/gray-matter)
 - [React Markdown](https://github.com/remarkjs/react-markdown)
-
-Happy writing! ✨

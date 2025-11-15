@@ -3,6 +3,7 @@ title: "Kadang Rugi Kadang Buntung"
 excerpt: "Keserakahan yang datang, hilang tanpa ucapan dan kembali di saat senang."
 date: "November 01, 2025"
 readTime: "5 min read"
+thumbnail: "/images/thumbnail/thumbnailkadang.png"
 ---
 
 Semua bermula saat mulai masuk kuliah, setelah menjalani masa SMA yang suram karena terus hidup dalam kungkungan kemiskinan dan makan menumpang rumah orang, akhirnya aku bisa bebas merasakan kehidupan.

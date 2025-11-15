@@ -13,8 +13,22 @@ export const metadata = {
   },
 };
 
-export default function BlogPage() {
-  const blogPosts = getAllPosts();
+export default function BlogPage({ searchParams }) {
+  const allPosts = getAllPosts();
+  const page = parseInt(searchParams?.page || "1", 10);
+  const postsPerPage = 5;
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  const startIndex = (page - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const blogPosts = allPosts.slice(startIndex, endIndex);
 
-  return <BlogListClient blogPosts={blogPosts} />;
+  return (
+    <BlogListClient
+      blogPosts={blogPosts}
+      allPosts={allPosts}
+      currentPage={page}
+      totalPages={totalPages}
+      totalPosts={allPosts.length}
+    />
+  );
 }

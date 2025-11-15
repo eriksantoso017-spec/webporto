@@ -33,9 +33,9 @@ export async function generateMetadata({ params }) {
       siteName: "Erik Santoso Portfolio",
       images: [
         {
-          url: `${baseUrl}/logo512.png`,
-          width: 512,
-          height: 512,
+          url: post.thumbnail ? `${baseUrl}${post.thumbnail}` : `${baseUrl}/logo512.png`,
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || post.title,
-      images: [`${baseUrl}/logo512.png`],
+      images: [post.thumbnail ? `${baseUrl}${post.thumbnail}` : `${baseUrl}/logo512.png`],
     },
     alternates: {
       canonical: `${baseUrl}/blog/${params.slug}`,

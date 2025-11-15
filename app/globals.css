@@ -46,6 +46,31 @@
   animation: icon-bounce 2s ease-in-out infinite;
 }
 
+/* Parallax card reveal animation */
+.parallax-card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: transform, opacity;
+}
+
+.parallax-card.parallax-revealed {
+  opacity: 1;
+  transform: translateY(var(--parallax-offset, 0));
+  transition: opacity 0.8s ease-out, transform 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+  .parallax-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .parallax-card.parallax-revealed {
+    transform: none;
+  }
+}
+
 /* Hover effect untuk back to top button */
 .back-to-top-btn:hover {
   animation: pulse-glow 1.5s ease-in-out infinite;
@@ -416,4 +441,42 @@
 
 .back-to-blog-btn:hover {
   animation: back-to-blog-glow 1.5s ease-in-out infinite;
+}
+
+/* Blockquote styling with vertical lines */
+.prose blockquote {
+  border-left: 4px solid rgb(168, 85, 247) !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1rem !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  background-color: rgba(31, 41, 55, 0.5) !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  font-style: italic !important;
+  color: rgb(229, 231, 235) !important;
+}
+
+.prose blockquote p {
+  margin: 0 !important;
+  color: inherit !important;
+}
+
+.prose blockquote p:not(:last-child) {
+  margin-bottom: 0.75rem !important;
+}
+
+/* Lightweight animation for Read More button click */
+.read-more-link {
+  transition: transform 0.2s ease-out;
+}
+
+.read-more-link:active {
+  transform: scale(0.98);
+}
+
+.read-more-link:active .parallax-card {
+  opacity: 0.95;
+  transition: opacity 0.15s ease-out;
 }
