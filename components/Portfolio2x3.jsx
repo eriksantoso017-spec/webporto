@@ -31,7 +31,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/Components";
 
-import { imageProjects } from "@/data/portfolioData";
+import { imageProjects, videoProjects } from "@/data/portfolioData";
 
 // --- Komponen Lightbox ---
 const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
@@ -505,30 +505,6 @@ const Portfolio2x3 = () => {
     { name: "Leadership", icon: Target },
     { name: "Time Management", icon: Clock },
     { name: "Creativity", icon: Zap },
-  ];
-
-  const videoProjects = [
-    {
-      id: 1,
-      title: "Talkshow Dasar Broadcasting",
-      description:
-        "Sebuah video yang berisikan talkshow dengan tema parenting untuk memenuhi tugas mata kuliah dasar broadcasting.",
-      youtubeId: "HMtgzU1EkbQ",
-    },
-    {
-      id: 2,
-      title: "Dokumenter Pendidikan",
-      description:
-        "Pada saat semester 1, saya diberikan tugas untuk membuat sebuah video dokumenter terhadap bagaimana kondisi pendidikan di Indonesia, dan inilah hasilnya.",
-      youtubeId: "jIrPHhzGXac",
-    },
-    {
-      id: 3,
-      title: "After Movie MCR",
-      description:
-        "Sebuah video yang berisikan tentang bagaimana perjalanan saya beserta teman-teman saat menjalin partnership dengan partai Golkar Kota Malang.",
-      youtubeId: "-A4oyI8pO4g",
-    },
   ];
 
   const education = [

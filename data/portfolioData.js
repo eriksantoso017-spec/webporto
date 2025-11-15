@@ -49,3 +49,35 @@ export const imageProjects = [
 //   description: string,            // Deskripsi singkat project
 //   images: [string, ...],         // Array URL gambar (bisa banyak)
 // }
+
+export const videoProjects = [
+  {
+    id: 1,
+    title: "Talkshow Dasar Broadcasting",
+    description:
+      "Sebuah video yang berisikan talkshow dengan tema parenting untuk memenuhi tugas mata kuliah dasar broadcasting.",
+    youtubeId: "HMtgzU1EkbQ",
+  },
+  {
+    id: 2,
+    title: "Dokumenter Pendidikan",
+    description:
+      "Pada saat semester 1, saya diberikan tugas untuk membuat sebuah video dokumenter terhadap bagaimana kondisi pendidikan di Indonesia, dan inilah hasilnya.",
+    youtubeId: "jIrPHhzGXac",
+  },
+  {
+    id: 3,
+    title: "After Movie MCR",
+    description:
+      "Sebuah video yang berisikan tentang bagaimana perjalanan saya beserta teman-teman saat menjalin partnership dengan partai Golkar Kota Malang.",
+    youtubeId: "-A4oyI8pO4g",
+  },
+];
+
+// Format untuk setiap video project:
+// {
+//   id: number,                    // Unique ID untuk project
+//   title: string,                 // Judul video
+//   description: string,            // Deskripsi singkat video
+//   youtubeId: string,             // YouTube video ID (dari URL: https://www.youtube.com/watch?v=YOUTUBE_ID)
+// }
