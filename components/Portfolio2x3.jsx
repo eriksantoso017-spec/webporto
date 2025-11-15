@@ -13,6 +13,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUp,
+  ArrowDown,
   MessageSquare,
   Users,
   Clock,
@@ -364,7 +365,7 @@ const ImageProjectCard = ({ project }) => {
   return (
     <>
       {/* [MODIFIKASI] Menggunakan struktur "glowing border" */}
-      <div className="relative group">
+      <div className="relative group self-start">
         {/* RGB Border Effect */}
         <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
 
@@ -435,6 +436,22 @@ const Portfolio2x3 = () => {
   const router = useRouter();
   const [expandedSection, setExpandedSection] = useState(null);
   const [activeTab, setActiveTab] = useState("images");
+  const [currentImagePage, setCurrentImagePage] = useState(1);
+  const [currentVideoPage, setCurrentVideoPage] = useState(1);
+  const [imageLoadMoreCount, setImageLoadMoreCount] = useState(0);
+  const [videoLoadMoreCount, setVideoLoadMoreCount] = useState(0);
+
+  const itemsPerPage = 12;
+  const initialItems = 12;
+  const maxLoadMore = 2; // Load more maksimal 2 kali (24 card total)
+
+  // Reset page and load more count when switching tabs
+  useEffect(() => {
+    setCurrentImagePage(1);
+    setCurrentVideoPage(1);
+    setImageLoadMoreCount(0);
+    setVideoLoadMoreCount(0);
+  }, [activeTab]);
 
   // Redirect to blog page when blog section is clicked
   useEffect(() => {
@@ -449,6 +466,62 @@ const Portfolio2x3 = () => {
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  // Load More and Pagination logic for images
+  const totalImageItems = imageProjects.length;
+  const imageItemsToShow = initialItems + imageLoadMoreCount * itemsPerPage;
+  const shouldShowImageLoadMore =
+    imageLoadMoreCount < maxLoadMore && imageItemsToShow < totalImageItems;
+  const shouldShowImagePagination =
+    imageLoadMoreCount >= maxLoadMore || imageItemsToShow >= 24;
+
+  const displayedImageProjects = shouldShowImagePagination
+    ? (() => {
+        const totalImagePages = Math.ceil(totalImageItems / itemsPerPage);
+        const startImageIndex = (currentImagePage - 1) * itemsPerPage;
+        const endImageIndex = startImageIndex + itemsPerPage;
+        return imageProjects.slice(startImageIndex, endImageIndex);
+      })()
+    : imageProjects.slice(0, imageItemsToShow);
+
+  const totalImagePages = Math.ceil(totalImageItems / itemsPerPage);
+
+  // Load More and Pagination logic for videos
+  const totalVideoItems = videoProjects.length;
+  const videoItemsToShow = initialItems + videoLoadMoreCount * itemsPerPage;
+  const shouldShowVideoLoadMore =
+    videoLoadMoreCount < maxLoadMore && videoItemsToShow < totalVideoItems;
+  const shouldShowVideoPagination =
+    videoLoadMoreCount >= maxLoadMore || videoItemsToShow >= 24;
+
+  const displayedVideoProjects = shouldShowVideoPagination
+    ? (() => {
+        const totalVideoPages = Math.ceil(totalVideoItems / itemsPerPage);
+        const startVideoIndex = (currentVideoPage - 1) * itemsPerPage;
+        const endVideoIndex = startVideoIndex + itemsPerPage;
+        return videoProjects.slice(startVideoIndex, endVideoIndex);
+      })()
+    : videoProjects.slice(0, videoItemsToShow);
+
+  const totalVideoPages = Math.ceil(totalVideoItems / itemsPerPage);
+
+  const handleImageLoadMore = () => {
+    setImageLoadMoreCount((prev) => prev + 1);
+  };
+
+  const handleVideoLoadMore = () => {
+    setVideoLoadMoreCount((prev) => prev + 1);
+  };
+
+  const handleImagePageChange = (newPage) => {
+    setCurrentImagePage(newPage);
+    scrollToTop();
+  };
+
+  const handleVideoPageChange = (newPage) => {
+    setCurrentVideoPage(newPage);
+    scrollToTop();
   };
 
   const cubeData = [
@@ -742,16 +815,52 @@ const Portfolio2x3 = () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="images" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {imageProjects.map((project) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+              {displayedImageProjects.map((project) => (
                 <ImageProjectCard key={project.id} project={project} />
               ))}
             </div>
+            {/* Load More Button for Images */}
+            {shouldShowImageLoadMore && !shouldShowImagePagination && (
+              <div className="mt-8 flex justify-center">
+                <Button
+                  onClick={handleImageLoadMore}
+                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-300"
+                >
+                  <span>Load More</span>
+                  <ArrowDown className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
+            {/* Pagination Controls for Images */}
+            {shouldShowImagePagination && totalImagePages > 1 && (
+              <div className="mt-8 flex items-center justify-center gap-4">
+                <Button
+                  onClick={() => handleImagePageChange(currentImagePage - 1)}
+                  disabled={currentImagePage === 1}
+                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Previous</span>
+                </Button>
+                <div className="text-gray-400 text-sm">
+                  Page {currentImagePage} of {totalImagePages}
+                </div>
+                <Button
+                  onClick={() => handleImagePageChange(currentImagePage + 1)}
+                  disabled={currentImagePage === totalImagePages}
+                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+                >
+                  <span>Next</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
           </TabsContent>
           <TabsContent value="videos" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {videoProjects.map((project) => (
-                <div key={project.id} className="relative group">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+              {displayedVideoProjects.map((project) => (
+                <div key={project.id} className="relative group self-start">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
                   <div className="relative bg-black rounded-xl p-6 space-y-4 border border-gray-800">
                     <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
@@ -773,6 +882,42 @@ const Portfolio2x3 = () => {
                 </div>
               ))}
             </div>
+            {/* Load More Button for Videos */}
+            {shouldShowVideoLoadMore && !shouldShowVideoPagination && (
+              <div className="mt-8 flex justify-center">
+                <Button
+                  onClick={handleVideoLoadMore}
+                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-300"
+                >
+                  <span>Load More</span>
+                  <ArrowDown className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
+            {/* Pagination Controls for Videos */}
+            {shouldShowVideoPagination && totalVideoPages > 1 && (
+              <div className="mt-8 flex items-center justify-center gap-4">
+                <Button
+                  onClick={() => handleVideoPageChange(currentVideoPage - 1)}
+                  disabled={currentVideoPage === 1}
+                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Previous</span>
+                </Button>
+                <div className="text-gray-400 text-sm">
+                  Page {currentVideoPage} of {totalVideoPages}
+                </div>
+                <Button
+                  onClick={() => handleVideoPageChange(currentVideoPage + 1)}
+                  disabled={currentVideoPage === totalVideoPages}
+                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+                >
+                  <span>Next</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>

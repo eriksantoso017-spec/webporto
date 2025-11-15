@@ -241,8 +241,8 @@ export default function BlogListClient({
             </div>
           )}
 
-          {/* Pagination Controls */}
-          {!searchQuery && totalPages > 1 && (
+          {/* Pagination Controls - Only show if total posts > 12 */}
+          {!searchQuery && totalPosts > 12 && totalPages > 1 && (
             <div className="mt-12 flex items-center justify-center gap-4">
               <Button
                 onClick={() => handlePageChange(currentPage - 1)}

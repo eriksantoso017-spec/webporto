@@ -16,7 +16,7 @@ export const metadata = {
 export default function BlogPage({ searchParams }) {
   const allPosts = getAllPosts();
   const page = parseInt(searchParams?.page || "1", 10);
-  const postsPerPage = 5;
+  const postsPerPage = 12; // 12 cards per page (3 rows with 4 columns)
   const totalPages = Math.ceil(allPosts.length / postsPerPage);
   const startIndex = (page - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
