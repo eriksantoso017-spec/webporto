@@ -32,8 +32,8 @@ export default function BlogPostClient({ post }) {
           <span className="hidden md:inline">To Blog</span>
         </Button>
       </Link>
-      <div className="max-w-5xl mx-auto blog-content">
-        <article className="bg-gray-900 border-2 border-pink-500 rounded-xl p-8 space-y-6">
+      <div className="mx-4 md:mx-[331px] blog-content">
+        <article className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{post.date}</span>
             <span>•</span>
@@ -55,7 +55,7 @@ export default function BlogPostClient({ post }) {
             </div>
           )}
 
-          <div className="border-t border-gray-700 pt-6">
+          <div className="pt-6">
             <p className="text-xl text-gray-300 leading-relaxed mb-6 font-pt-sans">
               {post.excerpt}
             </p>

@@ -16,6 +16,7 @@ export default function BlogListClient({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchExpanded, setIsSearchExpanded] = useState(true);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -120,6 +121,26 @@ export default function BlogListClient({
     };
   }, [filteredPosts]);
 
+  // Handle search bar minimize on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Minimize search bar when scrolled more than 100px
+      if (scrollY > 100) {
+        setIsSearchExpanded(false);
+      } else {
+        setIsSearchExpanded(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <div className="min-h-screen p-8 bg-black blog-background font-open-sans">
@@ -131,117 +152,120 @@ export default function BlogListClient({
           <span className="hidden md:inline">Close</span>
         </Button>
         <div className="max-w-7xl mx-auto blog-content">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-            Blog Posts
-          </h1>
-          <div className="flex gap-4 relative">
-            {/* Main Content - Vertical Layout */}
-            <div className="flex-1 max-w-[531px] mx-auto md:mx-0 md:ml-[60px]">
-              <div className="space-y-6">
-                {filteredPosts.length === 0 ? (
-                  <div className="text-center text-gray-400 py-12">
-                    {searchQuery
-                      ? "No blog posts found matching your search."
-                      : "No blog posts available."}
-                  </div>
-                ) : (
-                  filteredPosts.map((post, index) => (
-                    <div
-                      key={post.id}
-                      ref={(el) => (cardRefs.current[index] = el)}
-                      className="relative group w-full parallax-card"
-                    >
-                      {/* Glow effect - positioned relative to card wrapper, follows card height */}
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-600 rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-500 pointer-events-none"></div>
-                      <div className="relative bg-black rounded-lg overflow-hidden border border-gray-800 flex flex-col">
-                        {/* Thumbnail Image */}
-                        {post.thumbnail && (
-                          <div className="w-full h-64 overflow-hidden">
-                            <img
-                              src={post.thumbnail}
-                              alt={post.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                          </div>
-                        )}
-                        <div className="p-6 space-y-4 flex-1 flex flex-col">
-                          <div className="flex items-center gap-2 text-sm text-gray-400">
-                            <span>{post.date}</span>
-                            <span>•</span>
-                            <span>{post.readTime}</span>
-                          </div>
-
-                          <h2 className="text-2xl font-bold text-white group-hover:text-pink-400 transition-colors font-merriweather">
-                            {post.title}
-                          </h2>
-
-                          <p className="text-gray-300 line-clamp-3 flex-1 font-pt-sans">
-                            {post.excerpt}
-                          </p>
-
-                          <Link
-                            href={`/blog/${post.id}`}
-                            className="mt-auto read-more-link"
-                          >
-                            <Button className="w-full bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:from-pink-700 hover:to-purple-700 transform hover:scale-105 active:scale-95 transition-all duration-200 ease-out">
-                              Read More →
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                )}
+          {/* Header with Title and Search Bar */}
+          <div className="relative mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
+              Blog Posts
+            </h1>
+            {/* Search Bar - Fixed Position to the Right with Minimize Animation */}
+            <div className="hidden lg:block fixed top-8 right-8 z-10">
+              <div className="flex items-center gap-2">
+                {/* Search Input - Minimizes on scroll */}
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    isSearchExpanded ? "w-72 opacity-100" : "w-0 opacity-0"
+                  }`}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-4 pr-4 py-3 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300"
+                  />
+                </div>
+                {/* Search Icon Button - Always visible, clickable to expand */}
+                <button
+                  onClick={() => setIsSearchExpanded(!isSearchExpanded)}
+                  className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 hover:scale-110 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
+                  aria-label="Search"
+                >
+                  <Search className="w-5 h-5 text-white" />
+                </button>
               </div>
-
-              {/* Pagination Controls */}
-              {!searchQuery && totalPages > 1 && (
-                <div className="mt-12 flex items-center justify-center gap-4">
-                  <Button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                    <span>Previous</span>
-                  </Button>
-                  <div className="text-gray-400 text-sm">
-                    Page {currentPage} of {totalPages}
-                  </div>
-                  <Button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
-                  >
-                    <span>Next</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </Button>
+              {/* Search Results - Only show when expanded and has query */}
+              {isSearchExpanded && searchQuery && (
+                <div className="mt-3 text-sm text-gray-400 text-center w-72">
+                  {filteredPosts.length} result
+                  {filteredPosts.length !== 1 ? "s" : ""}
                 </div>
               )}
             </div>
           </div>
+
+          {/* Grid Layout - 4 Cards per Row */}
+          {filteredPosts.length === 0 ? (
+            <div className="text-center text-gray-400 py-12">
+              {searchQuery
+                ? "No blog posts found matching your search."
+                : "No blog posts available."}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredPosts.map((post, index) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.id}`}
+                  ref={(el) => (cardRefs.current[index] = el)}
+                  className="group cursor-pointer parallax-card"
+                >
+                  {/* Thumbnail - 289x289px */}
+                  <div className="w-[289px] h-[289px] mx-auto mb-4 overflow-hidden rounded-lg">
+                    {post.thumbnail ? (
+                      <img
+                        src={post.thumbnail}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                        <span className="text-gray-500 text-sm">No Image</span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Title and Date Container - Centered for mobile */}
+                  <div className="w-[289px] mx-auto sm:w-auto">
+                    {/* Title */}
+                    <h2 className="text-lg font-bold text-white mb-2 font-merriweather line-clamp-2 group-hover:text-purple-400 transition-colors text-center sm:text-left">
+                      {post.title}
+                    </h2>
+                    
+                    {/* Date */}
+                    <p className="text-sm text-gray-400 font-pt-sans text-center sm:text-left">
+                      {post.date}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* Pagination Controls */}
+          {!searchQuery && totalPages > 1 && (
+            <div className="mt-12 flex items-center justify-center gap-4">
+              <Button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Previous</span>
+              </Button>
+              <div className="text-gray-400 text-sm">
+                Page {currentPage} of {totalPages}
+              </div>
+              <Button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
         </div>
-      </div>
-      {/* Minimalistic Search Bar - Fixed Position */}
-      <div className="hidden lg:block fixed top-36 left-[calc((100vw-min(1280px,100vw))/2+60px+531px+16px+90px)] w-72 z-10">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-4 pr-12 py-3 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300"
-          />
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center pointer-events-none">
-            <Search className="w-4 h-4 text-white" />
-          </div>
-        </div>
-        {searchQuery && (
-          <div className="mt-3 text-sm text-gray-400 text-center">
-            {filteredPosts.length} result
-            {filteredPosts.length !== 1 ? "s" : ""}
-          </div>
-        )}
       </div>
       <Button
         onClick={scrollToTop}
