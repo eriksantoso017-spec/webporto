@@ -56,7 +56,7 @@ export default function BlogPostClient({ post }) {
           )}
 
           <div className="border-t border-gray-700 pt-6">
-            <p className="text-xl text-gray-300 leading-relaxed mb-6">
+            <p className="text-xl text-gray-300 leading-relaxed mb-6 font-pt-sans">
               {post.excerpt}
             </p>
             <div className="text-gray-300 leading-relaxed space-y-4 prose prose-invert prose-p:text-gray-300 prose-headings:text-white prose-a:text-purple-400 prose-strong:text-white prose-code:text-pink-400 prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-4 prose-blockquote:my-6 prose-blockquote:bg-gray-800/50 prose-blockquote:rounded-r-lg prose-blockquote:text-gray-200 prose-blockquote:italic max-w-none">

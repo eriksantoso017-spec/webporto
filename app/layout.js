@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Open_Sans, Merriweather } from "next/font/google";
+import { Open_Sans, Merriweather, PT_Sans } from "next/font/google";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -12,6 +12,14 @@ const merriweather = Merriweather({
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
   variable: "--font-merriweather",
+  display: "swap",
+});
+
+const ptSans = PT_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-pt-sans",
   display: "swap",
 });
 
@@ -101,7 +109,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${openSans.variable} ${merriweather.variable}`}>
+    <html lang="en" className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable}`}>
       <head>
         <script
           type="application/ld+json"

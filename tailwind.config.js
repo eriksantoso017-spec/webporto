@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         "open-sans": ["var(--font-open-sans)", "sans-serif"],
         merriweather: ["var(--font-merriweather)", "serif"],
+        "pt-sans": ["var(--font-pt-sans)", "sans-serif"],
       },
     },
   },

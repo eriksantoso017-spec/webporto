@@ -175,7 +175,7 @@ export default function BlogListClient({
                             {post.title}
                           </h2>
 
-                          <p className="text-gray-300 line-clamp-3 flex-1">
+                          <p className="text-gray-300 line-clamp-3 flex-1 font-pt-sans">
                             {post.excerpt}
                           </p>
 
