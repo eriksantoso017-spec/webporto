@@ -1,6 +1,6 @@
 ---
 title: "Beradab atau Berilmu?"
-excerpt: "Orang beradab ada, orang berilmu ada, orang beradab tapi tidak berilmu ada? Orang berilmu tapi tidak beradab ada? Orang beradab dan berilmu ada, orang tidak beradab dan tidak berilmu mungkin ada."
+excerpt: "Orang beradab ada, orang berilmu ada, orang beradab tapi tidak berilmu ada? Orang berilmu tapi tidak beradab ada? Orang beradab dan berilmu ada, orang tidak beradab dan tidak berilmu mungkin ada (saya contohnya)."
 date: "November 15, 2025"
 readTime: "3 min read"
 thumbnail: "/images/thumbnail/beradab.png"
@@ -10,7 +10,7 @@ thumbnail: "/images/thumbnail/beradab.png"
 
 Sebenarnya saya ingin menulis keresahan ini sejak lama, tapi karena bingung mau nulis dimana, dan sebenarnya bukan ingin dilihat tapi cuma ingin menuturkan keluh kesah, jadinya saya harus menunggu beberapa tahun agar bisa saya _publish_ di _website_ saya sendiri.
 
-Cukup, dengan basa-basi tidak pentingnya, intinya ini, ada salah satu dosen di jurusan saya, yang hampir selalu, atau mungkin selalu mengucapkan hal yang sama di setiap awal perkuliahan. Kata-kata secara *verbatim*nya saya tidak ingat, tapi kurang lebih isinya bahwa beliau lebih menghargai mahasiswa yang beradab, atau agak disempitkan maknanya menjadi sopan, dibanding mahasiswa yang "pintar" tapi kurang sopan.
+Cukup, dengan basa-basi tidak pentingnya, intinya ini, ada salah satu dosen di jurusan saya, yang hampir selalu, atau mungkin selalu mengucapkan hal yang sama di setiap awal perkuliahan. Kata-kata secara _verbatim_ nya saya tidak ingat, tapi kurang lebih isinya bahwa beliau lebih menghargai mahasiswa yang beradab, atau agak disempitkan maknanya menjadi sopan, dibanding mahasiswa yang "pintar" tapi kurang sopan.
 
 Hal ini tentunya bukan menjadi masalah karena namanya juga preferensi, sah-sah saja beliau mengatakan hal demikian. Kalau begitu apa tujuan dari tulisan ini dibuat?
 
