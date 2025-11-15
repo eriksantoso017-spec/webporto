@@ -2,7 +2,7 @@
 title: "Kadang Rugi Kadang Buntung"
 excerpt: "Keserakahan yang datang, hilang tanpa ucapan dan kembali di saat senang."
 date: "November 01, 2025"
-readTime: "5 min read"
+readTime: "3 min read"
 thumbnail: "/images/thumbnail/thumbnailkadang.png"
 ---
 
