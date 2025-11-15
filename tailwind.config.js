@@ -6,7 +6,12 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "open-sans": ["var(--font-open-sans)", "sans-serif"],
+        merriweather: ["var(--font-merriweather)", "serif"],
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };

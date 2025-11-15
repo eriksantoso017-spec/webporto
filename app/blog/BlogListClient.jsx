@@ -122,7 +122,7 @@ export default function BlogListClient({
 
   return (
     <>
-      <div className="min-h-screen p-8 bg-black blog-background">
+      <div className="min-h-screen p-8 bg-black blog-background font-open-sans">
         <Button
           onClick={() => router.push("/")}
           className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
@@ -171,7 +171,7 @@ export default function BlogListClient({
                             <span>{post.readTime}</span>
                           </div>
 
-                          <h2 className="text-2xl font-bold text-white group-hover:text-pink-400 transition-colors">
+                          <h2 className="text-2xl font-bold text-white group-hover:text-pink-400 transition-colors font-merriweather">
                             {post.title}
                           </h2>
 

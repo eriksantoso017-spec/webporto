@@ -1,4 +1,19 @@
 import "./globals.css";
+import { Open_Sans, Merriweather } from "next/font/google";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-open-sans",
+  display: "swap",
+});
+
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  variable: "--font-merriweather",
+  display: "swap",
+});
 
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
@@ -86,7 +101,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${openSans.variable} ${merriweather.variable}`}>
       <head>
         <script
           type="application/ld+json"
