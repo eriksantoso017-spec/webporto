@@ -728,58 +728,58 @@ const Portfolio2x3 = () => {
   const experiences = [
     {
       id: 1,
-      title: "Content Creator",
-      company: "Freelance",
-      year: "2023-Now",
+      title: "Designer",
+      company: "Brawijaya English Tournament 2023",
+      year: "2023",
       description:
-        "Membuat konten kreatif untuk berbagai platform media sosial",
+        "Mengubah tema website BET 2023 dan mendesain beberapa konten instagram",
       gradientClass: "from-purple-600 to-pink-600",
     },
-    {
-      id: 2,
-      title: "Video Editor",
-      company: "Independent Project",
-      year: "2022-Now",
-      description:
-        "Mengedit video untuk berbagai kebutuhan proyek dan dokumentasi",
-      gradientClass: "from-blue-600 to-cyan-600",
-    },
-    {
-      id: 3,
-      title: "Social Media Manager",
-      company: "Digital Agency",
-      year: "2023-Now",
-      description:
-        "Mengelola dan mengoptimalkan strategi media sosial untuk berbagai brand",
-      gradientClass: "from-green-600 to-emerald-600",
-    },
-    {
-      id: 4,
-      title: "Web Developer",
-      company: "Freelance Project",
-      year: "2022-Now",
-      description:
-        "Membangun website responsif dan modern dengan teknologi terdepan",
-      gradientClass: "from-orange-600 to-red-600",
-    },
-    {
-      id: 5,
-      title: "Graphic Designer",
-      company: "Creative Studio",
-      year: "2023-Now",
-      description:
-        "Mendesain visual branding dan materi promosi untuk berbagai klien",
-      gradientClass: "from-indigo-600 to-blue-600",
-    },
-    {
-      id: 6,
-      title: "Photography",
-      company: "Independent Work",
-      year: "2021-Now",
-      description:
-        "Melakukan sesi foto profesional untuk event, portrait, dan dokumentasi",
-      gradientClass: "from-yellow-600 to-orange-600",
-    },
+    // {
+    //   id: 2,
+    //   title: "Video Editor",
+    //   company: "Independent Project",
+    //   year: "2022-Now",
+    //   description:
+    //     "Mengedit video untuk berbagai kebutuhan proyek dan dokumentasi",
+    //   gradientClass: "from-blue-600 to-cyan-600",
+    // },
+    // {
+    //   id: 3,
+    //   title: "Social Media Manager",
+    //   company: "Digital Agency",
+    //   year: "2023-Now",
+    //   description:
+    //     "Mengelola dan mengoptimalkan strategi media sosial untuk berbagai brand",
+    //   gradientClass: "from-green-600 to-emerald-600",
+    // },
+    // {
+    //   id: 4,
+    //   title: "Web Developer",
+    //   company: "Freelance Project",
+    //   year: "2022-Now",
+    //   description:
+    //     "Membangun website responsif dan modern dengan teknologi terdepan",
+    //   gradientClass: "from-orange-600 to-red-600",
+    // },
+    // {
+    //   id: 5,
+    //   title: "Graphic Designer",
+    //   company: "Creative Studio",
+    //   year: "2023-Now",
+    //   description:
+    //     "Mendesain visual branding dan materi promosi untuk berbagai klien",
+    //   gradientClass: "from-indigo-600 to-blue-600",
+    // },
+    // {
+    //   id: 6,
+    //   title: "Photography",
+    //   company: "Independent Work",
+    //   year: "2021-Now",
+    //   description:
+    //     "Melakukan sesi foto profesional untuk event, portrait, dan dokumentasi",
+    //   gradientClass: "from-yellow-600 to-orange-600",
+    // },
   ];
 
   const contacts = [
