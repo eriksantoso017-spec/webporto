@@ -33,16 +33,18 @@ export const metadata = {
     template: "%s | Erik Santoso",
   },
   description:
-    "Portfolio website of Erik Santoso - Undergraduate Communication Student. Showcasing projects, skills, and blog posts about web development and technology.",
+    "Hello, I'm Erik Santoso. Undergraduate Communication Student. Part time designer and video editor. Full time Unemployer. Enjoy learning new things. Passionate about technology, editing, design, cyber security, OSINT and finance.",
   keywords: [
     "Erik Santoso",
     "Portfolio",
-    "Web Developer",
     "Communication Student",
-    "React",
-    "Next.js",
+    "Designer",
+    "Video Editor",
+    "Technology",
+    "Cyber Security",
+    "OSINT",
+    "Finance",
     "Web Development",
-    "Blog",
   ],
   authors: [{ name: "Erik Santoso" }],
   creator: "Erik Santoso",
@@ -53,7 +55,7 @@ export const metadata = {
     siteName: "Erik Santoso Portfolio",
     title: "Erik Santoso - Portfolio",
     description:
-      "Portfolio website of Erik Santoso - Undergraduate Communication Student",
+      "Hello, I'm Erik Santoso. Undergraduate Communication Student. Part time designer and video editor. Full time Unemployer. Enjoy learning new things. Passionate about technology, editing, design, cyber security, OSINT and finance.",
     images: [
       {
         url: `${baseUrl}/logo512.png`,
@@ -67,7 +69,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Erik Santoso - Portfolio",
     description:
-      "Portfolio website of Erik Santoso - Undergraduate Communication Student",
+      "Hello, I'm Erik Santoso. Undergraduate Communication Student. Part time designer and video editor. Full time Unemployer. Enjoy learning new things. Passionate about technology, editing, design, cyber security, OSINT and finance.",
     images: [`${baseUrl}/logo512.png`],
   },
   robots: {
