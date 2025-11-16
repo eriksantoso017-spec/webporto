@@ -208,6 +208,9 @@ export default function BlogListClient({
                   href={`/blog/${post.id}`}
                   ref={(el) => (cardRefs.current[index] = el)}
                   className="group cursor-pointer parallax-card"
+                  style={{
+                    transitionDelay: `${index * 0.1}s`,
+                  }}
                 >
                   {/* Thumbnail - 289x289px */}
                   <div className="w-[289px] h-[289px] mx-auto mb-4 overflow-hidden rounded-lg">
