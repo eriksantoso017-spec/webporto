@@ -863,7 +863,7 @@ const Portfolio2x3 = () => {
   );
 
   const renderSkillsContent = () => (
-    <div className="min-h-screen p-8 bg-black">
+    <div className="min-h-screen p-8 bg-black skills-tab-container">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
           My Skills
@@ -901,8 +901,8 @@ const Portfolio2x3 = () => {
               {softSkills.map((skill, index) => {
                 const Icon = skill.icon;
                 return (
-                  <div key={index} className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-500"></div>
+                  <div key={index} className="relative group soft-skill-card">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-500 soft-skill-glow"></div>
                     <div className="relative bg-black rounded-lg p-6 flex flex-col items-center text-center space-y-3 border border-gray-800 group-hover:scale-105 transition-transform">
                       <Icon className="w-12 h-12 text-green-400" />
                       <span className="text-white font-medium">
