@@ -163,7 +163,7 @@ export default function BlogListClient({
                 {/* Search Input - Minimizes on scroll */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isSearchExpanded ? "w-72 opacity-100" : "w-0 opacity-0"
+                    isSearchExpanded ? "w-[202px] opacity-100" : "w-0 opacity-0"
                   }`}
                 >
                   <input
@@ -171,21 +171,21 @@ export default function BlogListClient({
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-4 pr-4 py-3 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300"
+                    className="w-full pl-3 pr-3 py-2 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300 text-sm"
                   />
                 </div>
                 {/* Search Icon Button - Always visible, clickable to expand */}
                 <button
                   onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-                  className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 hover:scale-110 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
+                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 hover:scale-110 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
                   aria-label="Search"
                 >
-                  <Search className="w-5 h-5 text-white" />
+                  <Search className="w-[14px] h-[14px] text-white" />
                 </button>
               </div>
               {/* Search Results - Only show when expanded and has query */}
               {isSearchExpanded && searchQuery && (
-                <div className="mt-3 text-sm text-gray-400 text-center w-72">
+                <div className="mt-3 text-xs text-gray-400 text-center w-[202px]">
                   {filteredPosts.length} result
                   {filteredPosts.length !== 1 ? "s" : ""}
                 </div>

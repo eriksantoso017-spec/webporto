@@ -48,6 +48,23 @@
   animation: icon-bounce 2s ease-in-out infinite;
 }
 
+@keyframes jiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-jiggle {
+  animation: jiggle 0.5s ease-in-out infinite;
+}
+
 /* Parallax card reveal animation */
 .parallax-card {
   opacity: 0;

@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/Components";
 import { ArrowLeft, ArrowUp, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { useState, useEffect } from "react";
 
 export default function BlogPostClient({ post }) {
   const router = useRouter();
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -16,6 +19,29 @@ export default function BlogPostClient({ post }) {
       behavior: "smooth",
     });
   };
+
+  // Calculate scroll percentage
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      
+      const scrollableHeight = documentHeight - windowHeight;
+      const percentage = scrollableHeight > 0 
+        ? Math.round((scrollTop / scrollableHeight) * 100)
+        : 0;
+      
+      setScrollPercentage(Math.min(100, Math.max(0, percentage)));
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen p-8 bg-black blog-background font-open-sans">
@@ -69,9 +95,17 @@ export default function BlogPostClient({ post }) {
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[53.35px] md:h-[53.35px] p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[53.35px] md:h-[53.35px] p-0 flex items-center justify-center rounded-lg transition-all duration-300 group shadow-lg hover:shadow-purple-500/50 hover:scale-110 animate-float"
       >
-        <ArrowUp className="w-5 h-5 md:w-[22.31px] md:h-[22.31px] animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
+        {isHovered ? (
+          <ArrowUp className="w-5 h-5 md:w-[22.31px] md:h-[22.31px] transition-transform duration-300 group-hover:scale-125" />
+        ) : (
+          <span className="text-[10px] md:text-xs font-semibold transition-opacity duration-300">
+            {scrollPercentage}%
+          </span>
+        )}
       </Button>
     </div>
   );

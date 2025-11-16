@@ -342,10 +342,13 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
 };
 
 // --- Komponen Kartu Galeri Gambar ---
-const ImageProjectCard = ({ project }) => {
+const ImageProjectCard = ({ project, index = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const cardRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
 
   const prevImageWithBounds = (e) => {
     e.stopPropagation();
@@ -362,60 +365,148 @@ const ImageProjectCard = ({ project }) => {
     setIsLightboxOpen(true);
   };
 
+  // Parallax and reveal animation effect
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    // Intersection Observer for reveal animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    observer.observe(card);
+
+    // Parallax scroll effect - lightweight
+    const handleScroll = () => {
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const cardTop = rect.top;
+      const cardHeight = rect.height;
+
+      // Only apply parallax if card is visible
+      if (cardTop < windowHeight && cardTop > -cardHeight) {
+        const scrollProgress =
+          (windowHeight - cardTop) / (windowHeight + cardHeight);
+        const offset = (scrollProgress - 0.5) * 15; // Subtle parallax (15px max)
+        setParallaxOffset(offset);
+      }
+    };
+
+    // Disable parallax on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      let ticking = false;
+      const onScroll = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      handleScroll(); // Initial call
+
+      return () => {
+        observer.disconnect();
+        window.removeEventListener("scroll", onScroll);
+      };
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
       {/* [MODIFIKASI] Menggunakan struktur "glowing border" */}
-      <div className="relative group self-start">
+      <div
+        ref={cardRef}
+        className="relative group self-start w-full max-w-[380px] h-[306px] mx-auto md:w-[380px] portfolio-card-parallax"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible
+            ? `translateY(${parallaxOffset}px)`
+            : "translateY(30px)",
+          transition: `opacity 0.6s ease-out ${
+            index * 0.1
+          }s, transform 0.3s ease-out`,
+        }}
+      >
         {/* RGB Border Effect */}
         <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
 
         {/* Card Content */}
-        <div className="relative bg-black rounded-xl overflow-hidden border border-gray-800">
-          <div className="p-0">
-            <div className="relative w-full h-48">
-              <img
-                src={project.images[currentIndex]}
-                alt={`${project.title} - slide ${currentIndex + 1}`}
-                className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => handleImageClick(currentIndex)}
-              />
+        <div
+          className="relative bg-black rounded-xl overflow-hidden border border-gray-800 w-full h-full cursor-pointer"
+          onClick={() => handleImageClick(currentIndex)}
+        >
+          <div className="relative w-full h-full">
+            <img
+              src={project.images[currentIndex]}
+              alt={`${project.title} - slide ${currentIndex + 1}`}
+              className="w-full h-full object-cover hover:opacity-90 transition-opacity pointer-events-none"
+            />
 
-              <div className="absolute top-1/2 left-2 right-2 flex justify-between transform -translate-y-1/2">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={prevImageWithBounds}
-                  disabled={currentIndex === 0}
-                  className="swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0"
-                >
-                  <ArrowLeft className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={nextImageWithBounds}
-                  disabled={currentIndex === project.images.length - 1}
-                  className="swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0"
-                >
-                  <ArrowRight className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
-                </Button>
-              </div>
-
-              <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
-                {project.images.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full ${
-                      currentIndex === index ? "bg-white" : "bg-white/50"
-                    }`}
-                  />
-                ))}
-              </div>
+            {/* Title - Only visible on hover, positioned at bottom left */}
+            <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              <h3 className="text-[0.875rem] font-bold text-white px-4 pb-3 pt-6 -ml-[5px]">
+                {project.title}
+              </h3>
             </div>
 
-            <div className="p-6 space-y-2">
-              <h3 className="text-xl font-bold text-white">{project.title}</h3>
-              <p className="text-gray-300">{project.description}</p>
+            <div className="absolute top-1/2 left-2 right-2 flex justify-between transform -translate-y-1/2 pointer-events-none">
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImageWithBounds(e);
+                }}
+                disabled={currentIndex === 0}
+                className="swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImageWithBounds(e);
+                }}
+                disabled={currentIndex === project.images.length - 1}
+                className="swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+              >
+                <ArrowRight className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+              </Button>
+            </div>
+
+            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2 pointer-events-none">
+              {project.images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${
+                    currentIndex === index ? "bg-white" : "bg-white/50"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -440,6 +531,7 @@ const Portfolio2x3 = () => {
   const [currentVideoPage, setCurrentVideoPage] = useState(1);
   const [imageLoadMoreCount, setImageLoadMoreCount] = useState(0);
   const [videoLoadMoreCount, setVideoLoadMoreCount] = useState(0);
+  const [isButtonsMinimized, setIsButtonsMinimized] = useState(false);
 
   const itemsPerPage = 12;
   const initialItems = 12;
@@ -452,6 +544,40 @@ const Portfolio2x3 = () => {
     setImageLoadMoreCount(0);
     setVideoLoadMoreCount(0);
   }, [activeTab]);
+
+  // Handle button minimize on scroll for desktop
+  useEffect(() => {
+    if (expandedSection !== "portfolio") {
+      setIsButtonsMinimized(false);
+      return;
+    }
+
+    const handleScroll = () => {
+      // Only apply on desktop
+      if (window.innerWidth < 768) {
+        setIsButtonsMinimized(false);
+        return;
+      }
+
+      const scrollY = window.scrollY;
+
+      // Minimize buttons when scrolled past 200px (past header area)
+      if (scrollY > 200) {
+        setIsButtonsMinimized(true);
+      } else {
+        setIsButtonsMinimized(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [expandedSection]);
 
   // Redirect to blog page when blog section is clicked
   useEffect(() => {
@@ -815,9 +941,13 @@ const Portfolio2x3 = () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="images" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              {displayedImageProjects.map((project) => (
-                <ImageProjectCard key={project.id} project={project} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[50px] items-start mx-5 md:mx-5 justify-center">
+              {displayedImageProjects.map((project, index) => (
+                <ImageProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                />
               ))}
             </div>
             {/* Load More Button for Images */}
@@ -877,7 +1007,6 @@ const Portfolio2x3 = () => {
                     <h3 className="text-xl font-bold text-white">
                       {project.title}
                     </h3>
-                    <p className="text-gray-300">{project.description}</p>
                   </div>
                 </div>
               ))}
@@ -1097,19 +1226,43 @@ const Portfolio2x3 = () => {
         <div className="relative">
           <Button
             onClick={() => setExpandedSection(null)}
-            className="close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
+            className={`close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group ${
+              isButtonsMinimized && expandedSection === "portfolio"
+                ? "md:w-10 md:h-10 md:px-0"
+                : ""
+            }`}
           >
             <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
-            <span className="hidden md:inline">Close</span>
+            <span
+              className={`hidden md:inline transition-opacity duration-300 ${
+                isButtonsMinimized && expandedSection === "portfolio"
+                  ? "md:hidden"
+                  : ""
+              }`}
+            >
+              Close
+            </span>
           </Button>
           {(expandedSection === "portfolio" ||
             expandedSection === "contact") && (
             <Button
               onClick={() => setExpandedSection("home")}
-              className="back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group"
+              className={`back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group ${
+                isButtonsMinimized && expandedSection === "portfolio"
+                  ? "md:w-10 md:h-10 md:px-0"
+                  : ""
+              }`}
             >
               <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
-              <span className="hidden md:inline">Back to Home</span>
+              <span
+                className={`hidden md:inline transition-opacity duration-300 ${
+                  isButtonsMinimized && expandedSection === "portfolio"
+                    ? "md:hidden"
+                    : ""
+                }`}
+              >
+                Back to Home
+              </span>
             </Button>
           )}
           {renderContent()}
