@@ -1,5 +1,8 @@
 import { getAllPosts } from "@/lib/markdown";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
@@ -26,7 +29,9 @@ ${posts
   .map(
     (post) => `  <url>
     <loc>${baseUrl}/blog/${post.id}</loc>
-    <lastmod>${post.date ? new Date(post.date).toISOString() : new Date().toISOString()}</lastmod>
+    <lastmod>${
+      post.date ? new Date(post.date).toISOString() : new Date().toISOString()
+    }</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`
@@ -35,9 +40,10 @@ ${posts
 </urlset>`;
 
   return new Response(sitemap, {
+    status: 200,
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
     },
   });
 }
-
