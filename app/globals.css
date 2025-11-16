@@ -512,13 +512,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgb(168, 85, 247) 0%,
-    rgb(147, 51, 234) 30%,
-    rgb(99, 102, 241) 60%,
-    rgb(59, 130, 246) 100%
-  );
+  background: rgb(88, 28, 135);
   border-radius: 20px;
   border: 2px solid #000000;
   transition: all 0.3s ease;
@@ -526,86 +520,29 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    rgb(192, 132, 252) 0%,
-    rgb(168, 85, 247) 30%,
-    rgb(129, 140, 248) 60%,
-    rgb(96, 165, 250) 100%
-  );
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
-  border-color: rgba(168, 85, 247, 0.3);
+  background: rgb(109, 40, 217);
+  box-shadow: 0 0 15px rgba(88, 28, 135, 0.6);
+  border-color: rgba(88, 28, 135, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(
-    180deg,
-    rgb(147, 51, 234) 0%,
-    rgb(126, 34, 206) 30%,
-    rgb(79, 70, 229) 60%,
-    rgb(37, 99, 235) 100%
-  );
+  background: rgb(74, 29, 110);
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(168, 85, 247) #000000;
+  scrollbar-color: rgb(88, 28, 135) #000000;
 }
 
 /* For Firefox, we need to use a different approach for gradient */
-@supports (scrollbar-color: rgb(168, 85, 247) #000000) {
+@supports (scrollbar-color: rgb(88, 28, 135) #000000) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgb(168, 85, 247) #000000;
+    scrollbar-color: rgb(88, 28, 135) #000000;
   }
 }
 
-/* Custom Scrollbar for Skills Tab - Light Blue to Light Green Gradient */
-.skills-tab-container ::-webkit-scrollbar {
-  width: 14px;
-}
-
-.skills-tab-container ::-webkit-scrollbar-track {
-  background: #000000;
-  border-left: 1px solid rgba(31, 41, 55, 0.3);
-}
-
-.skills-tab-container ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgb(147, 197, 253) 0%,
-    rgb(96, 165, 250) 30%,
-    rgb(59, 130, 246) 60%,
-    rgb(34, 197, 94) 100%
-  );
-  border-radius: 20px;
-  border: 2px solid #000000;
-  transition: all 0.3s ease;
-  min-height: 50px;
-}
-
-.skills-tab-container ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    rgb(191, 219, 254) 0%,
-    rgb(147, 197, 253) 30%,
-    rgb(96, 165, 250) 60%,
-    rgb(74, 222, 128) 100%
-  );
-  box-shadow: 0 0 15px rgba(96, 165, 250, 0.6);
-  border-color: rgba(96, 165, 250, 0.3);
-}
-
-.skills-tab-container ::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(
-    180deg,
-    rgb(96, 165, 250) 0%,
-    rgb(59, 130, 246) 30%,
-    rgb(37, 99, 235) 60%,
-    rgb(22, 163, 74) 100%
-  );
-}
 
 /* Fix Soft Skills Card Glow Effect - Mobile */
 @media (max-width: 768px) {
