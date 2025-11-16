@@ -831,9 +831,9 @@ const Portfolio2x3 = () => {
           Undergraduate Communication Student
         </h2>
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-          Part time designer and video editor. Full time Gamer. Enjoy learning
-          new things. Passionate about technology, editing, design, cyber
-          security, OSINT and finance.
+          Part time designer and video editor. Full time Unemployer. Enjoy
+          learning new things. Passionate about technology, editing, design,
+          cyber security, OSINT and finance.
         </p>
         <div className="flex flex-wrap gap-4 justify-center mt-8">
           <Button
@@ -1197,7 +1197,7 @@ const Portfolio2x3 = () => {
               My <span className="text-purple-500">Portfolio</span>
             </h1>
             <p className="text-xl text-gray-300">
-              Cogito Ergo Sum-Rene Descartes
+              I hate being responsible-Ekko
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
