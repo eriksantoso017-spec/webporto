@@ -1,5 +1,10 @@
 import "./globals.css";
-import { Open_Sans, Merriweather, PT_Sans, JetBrains_Mono } from "next/font/google";
+import {
+  Open_Sans,
+  Merriweather,
+  PT_Sans,
+  JetBrains_Mono,
+} from "next/font/google";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -110,15 +115,14 @@ export default function RootLayout({ children }) {
     name: "Erik Santoso",
     jobTitle: "Undergraduate Communication Student",
     url: baseUrl,
-    sameAs: [
-      // Tambahkan link social media Anda di sini jika ada
-      // "https://github.com/yourusername",
-      // "https://linkedin.com/in/yourusername",
-    ],
+    sameAs: [],
   };
 
   return (
-    <html lang="en" className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
