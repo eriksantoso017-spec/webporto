@@ -146,7 +146,7 @@ export default function BlogListClient({
       <div className="min-h-screen p-8 bg-black blog-background font-open-sans blog-tab-container">
         <Button
           onClick={() => router.push("/")}
-          className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
+          className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group"
         >
           <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
           <span className="hidden md:inline">Close</span>
@@ -177,7 +177,7 @@ export default function BlogListClient({
                 {/* Search Icon Button - Always visible, clickable to expand */}
                 <button
                   onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 hover:scale-110 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
+                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
                   aria-label="Search"
                 >
                   <Search className="w-[14px] h-[14px] text-white" />
@@ -218,7 +218,7 @@ export default function BlogListClient({
                       <img
                         src={post.thumbnail}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-800 flex items-center justify-center">
@@ -272,9 +272,9 @@ export default function BlogListClient({
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[53.35px] md:h-[53.35px] p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-9 h-9 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
       >
-        <ArrowUp className="w-5 h-5 md:w-[22.31px] md:h-[22.31px] animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
+        <ArrowUp className="w-[18px] h-[18px] md:w-[20.08px] md:h-[20.08px] animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </>
   );

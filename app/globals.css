@@ -544,6 +544,80 @@
 }
 
 
+/* Fix Portfolio Card Responsive Layout */
+.portfolio-card-parallax {
+  width: 100%;
+  max-width: 380px;
+  min-width: 0;
+  height: 306px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Mobile - centered with padding */
+@media (max-width: 639px) {
+  .portfolio-card-parallax {
+    width: calc(100% - 40px);
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Tablet/Small - centered */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .portfolio-card-parallax {
+    width: 100%;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-shrink: 0;
+  }
+}
+
+/* Desktop - fixed width, but keep centered like landing page */
+@media (min-width: 1024px) {
+  .portfolio-card-parallax {
+    width: 380px;
+    max-width: 380px;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    flex-shrink: 0;
+  }
+}
+
+/* Ensure grid container handles resize properly - using landing page logic */
+.portfolio-grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-items: center;
+  place-items: center;
+}
+
+/* Tablet/Small screens - 2 columns, centered */
+@media (min-width: 640px) {
+  .portfolio-grid-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    place-items: center;
+  }
+}
+
+/* Desktop - 3 columns, centered like landing page */
+@media (min-width: 1024px) {
+  .portfolio-grid-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-items: center;
+    place-items: center;
+  }
+}
+
 /* Fix Soft Skills Card Glow Effect - Mobile */
 @media (max-width: 768px) {
   .soft-skill-card {

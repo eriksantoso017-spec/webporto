@@ -256,7 +256,7 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
       {/* Close Button */}
       <Button
         onClick={onClose}
-        className="absolute top-4 right-4 z-[10000] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center rounded-lg hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-red-500/50"
+        className="absolute top-4 right-4 z-[10000] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center rounded-lg transition-all duration-300 group shadow-lg hover:shadow-red-500/50"
       >
         <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2 group-hover:rotate-90 transition-transform duration-300" />
         <span className="hidden md:inline">Close</span>
@@ -305,9 +305,9 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
               handlePrev();
             }}
             disabled={currentIndex === 0}
-            className="lightbox-swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+            className="lightbox-swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+            <ArrowLeft className="w-4 h-4 transition-transform duration-300" />
           </Button>
           <Button
             size="icon"
@@ -317,9 +317,9 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
               handleNext();
             }}
             disabled={currentIndex === images.length - 1}
-            className="lightbox-swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+            className="lightbox-swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
           >
-            <ArrowRight className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300" />
           </Button>
         </div>
       )}
@@ -405,31 +405,51 @@ const ImageProjectCard = ({ project, index = 0 }) => {
       }
     };
 
-    // Disable parallax on mobile for better performance
-    const isMobile = window.innerWidth < 768;
-    if (!isMobile) {
-      let ticking = false;
-      const onScroll = () => {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            handleScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      };
+    // Check if mobile and handle resize
+    const checkMobileAndSetup = () => {
+      const isMobile = window.innerWidth < 768;
+      if (!isMobile) {
+        let ticking = false;
+        const onScroll = () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        };
 
-      window.addEventListener("scroll", onScroll, { passive: true });
-      handleScroll(); // Initial call
+        window.addEventListener("scroll", onScroll, { passive: true });
+        handleScroll(); // Initial call
 
-      return () => {
-        observer.disconnect();
-        window.removeEventListener("scroll", onScroll);
-      };
-    }
+        return () => {
+          window.removeEventListener("scroll", onScroll);
+        };
+      }
+      return null;
+    };
+
+    // Initial setup
+    const cleanupScroll = checkMobileAndSetup();
+
+    // Handle resize to update parallax behavior
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Re-check mobile status and re-setup if needed
+        checkMobileAndSetup();
+      }, 150);
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       observer.disconnect();
+      if (cleanupScroll) cleanupScroll();
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
@@ -438,7 +458,7 @@ const ImageProjectCard = ({ project, index = 0 }) => {
       {/* [MODIFIKASI] Menggunakan struktur "glowing border" */}
       <div
         ref={cardRef}
-        className="relative group self-start w-full max-w-[380px] h-[306px] mx-auto md:w-[380px] portfolio-card-parallax"
+        className="relative group self-start portfolio-card-parallax"
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible
@@ -480,9 +500,9 @@ const ImageProjectCard = ({ project, index = 0 }) => {
                   prevImageWithBounds(e);
                 }}
                 disabled={currentIndex === 0}
-                className="swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+                className="swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
               >
-                <ArrowLeft className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+                <ArrowLeft className="w-4 h-4 transition-transform duration-300" />
               </Button>
               <Button
                 size="icon"
@@ -492,9 +512,9 @@ const ImageProjectCard = ({ project, index = 0 }) => {
                   nextImageWithBounds(e);
                 }}
                 disabled={currentIndex === project.images.length - 1}
-                className="swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+                className="swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
               >
-                <ArrowRight className="w-4 h-4 group-hover:scale-125 transition-transform duration-300" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-300" />
               </Button>
             </div>
 
@@ -532,10 +552,28 @@ const Portfolio2x3 = () => {
   const [imageLoadMoreCount, setImageLoadMoreCount] = useState(0);
   const [videoLoadMoreCount, setVideoLoadMoreCount] = useState(0);
   const [isButtonsMinimized, setIsButtonsMinimized] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(0);
 
   const itemsPerPage = 12;
   const initialItems = 12;
   const maxLoadMore = 2; // Load more maksimal 2 kali (24 card total)
+
+  // Track viewport width for responsive updates
+  useEffect(() => {
+    const updateViewportWidth = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    // Set initial width
+    updateViewportWidth();
+
+    // Add resize listener
+    window.addEventListener("resize", updateViewportWidth, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", updateViewportWidth);
+    };
+  }, []);
 
   // Reset page and load more count when switching tabs
   useEffect(() => {
@@ -878,7 +916,7 @@ const Portfolio2x3 = () => {
                 return (
                   <div key={index} className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-500"></div>
-                    <div className="relative bg-black rounded-lg p-6 flex flex-col items-center text-center space-y-3 border border-gray-800 group-hover:scale-105 transition-transform">
+                    <div className="relative bg-black rounded-lg p-6 flex flex-col items-center text-center space-y-3 border border-gray-800 transition-transform">
                       <img
                         src={skill.icon}
                         alt={`${skill.name} icon`}
@@ -903,7 +941,7 @@ const Portfolio2x3 = () => {
                 return (
                   <div key={index} className="relative group soft-skill-card">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-500 soft-skill-glow"></div>
-                    <div className="relative bg-black rounded-lg p-6 flex flex-col items-center text-center space-y-3 border border-gray-800 group-hover:scale-105 transition-transform">
+                    <div className="relative bg-black rounded-lg p-6 flex flex-col items-center text-center space-y-3 border border-gray-800 transition-transform">
                       <Icon className="w-12 h-12 text-green-400" />
                       <span className="text-white font-medium">
                         {skill.name}
@@ -929,22 +967,22 @@ const Portfolio2x3 = () => {
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 bg-transparent gap-4">
             <TabsTrigger
               value="images"
-              className="text-gray-400 data-[state=active]:text-white pb-2 transition-all duration-300 bg-transparent border-b-2 border-transparent data-[state=active]:border-purple-500 hover:text-purple-400 hover:border-purple-400 hover:scale-105 cursor-pointer"
+              className="text-gray-400 data-[state=active]:text-white pb-2 transition-all duration-300 bg-transparent border-b-2 border-transparent data-[state=active]:border-purple-500 hover:text-purple-400 hover:border-purple-400 cursor-pointer"
             >
               Image Gallery
             </TabsTrigger>
             <TabsTrigger
               value="videos"
-              className="text-gray-400 data-[state=active]:text-white pb-2 transition-all duration-300 bg-transparent border-b-2 border-transparent data-[state=active]:border-purple-500 hover:text-purple-400 hover:border-purple-400 hover:scale-105 cursor-pointer"
+              className="text-gray-400 data-[state=active]:text-white pb-2 transition-all duration-300 bg-transparent border-b-2 border-transparent data-[state=active]:border-purple-500 hover:text-purple-400 hover:border-purple-400 cursor-pointer"
             >
               Video Projects
             </TabsTrigger>
           </TabsList>
           <TabsContent value="images" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[50px] items-start mx-5 md:mx-5 justify-center">
+            <div className="portfolio-grid-container items-start max-w-full">
               {displayedImageProjects.map((project, index) => (
                 <ImageProjectCard
-                  key={project.id}
+                  key={`${project.id}-${viewportWidth}`}
                   project={project}
                   index={index}
                 />
@@ -1052,9 +1090,9 @@ const Portfolio2x3 = () => {
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
       >
-        <ArrowUp className="w-5 h-5 animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
+        <ArrowUp className="w-5 h-5 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </div>
   );
@@ -1131,9 +1169,9 @@ const Portfolio2x3 = () => {
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float hover:scale-110 transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
       >
-        <ArrowUp className="w-5 h-5 animate-icon-bounce group-hover:animate-none group-hover:scale-125 transition-transform duration-300" />
+        <ArrowUp className="w-5 h-5 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </div>
   );
@@ -1156,7 +1194,7 @@ const Portfolio2x3 = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${contact.color} p-6 rounded-xl hover:scale-110 transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group`}
+                className={`${contact.color} p-6 rounded-xl transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group`}
               >
                 <Icon className="w-12 h-12 text-white group-hover:animate-bounce" />
                 <span className="text-white font-semibold">{contact.name}</span>
@@ -1226,7 +1264,7 @@ const Portfolio2x3 = () => {
         <div className="relative">
           <Button
             onClick={() => setExpandedSection(null)}
-            className={`close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group ${
+            className={`close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group ${
               isButtonsMinimized && expandedSection === "portfolio"
                 ? "md:w-10 md:h-10 md:px-0"
                 : ""
@@ -1247,7 +1285,7 @@ const Portfolio2x3 = () => {
             expandedSection === "contact") && (
             <Button
               onClick={() => setExpandedSection("home")}
-              className={`back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:scale-110 md:hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group ${
+              className={`back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group ${
                 isButtonsMinimized && expandedSection === "portfolio"
                   ? "md:w-10 md:h-10 md:px-0"
                   : ""
