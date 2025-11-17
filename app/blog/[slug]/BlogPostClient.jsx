@@ -66,7 +66,7 @@ export default function BlogPostClient({ post }) {
           <span className="hidden md:inline">To Blog</span>
         </Button>
       </Link>
-      <div className="mx-4 md:mx-[331px] blog-content">
+      <div className="mx-4 md:mx-[289.67px] blog-content">
         <article className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{post.date}</span>
