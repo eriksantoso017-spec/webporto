@@ -4,9 +4,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Components";
 import { ArrowLeft, ArrowUp, X } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import rehypeRaw from "rehype-raw";
+
+// Lazy load ReactMarkdown - hanya load saat diperlukan
+const ReactMarkdown = dynamic(() => import("react-markdown"), {
+  ssr: false,
+  loading: () => (
+    <div className="text-gray-400 animate-pulse">Loading content...</div>
+  ),
+});
 
 export default function BlogPostClient({ post }) {
   const router = useRouter();
