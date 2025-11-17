@@ -272,9 +272,9 @@ export default function BlogListClient({
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-9 h-9 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
       >
-        <ArrowUp className="w-[18px] h-[18px] md:w-[20.08px] md:h-[20.08px] animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
+        <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </>
   );
