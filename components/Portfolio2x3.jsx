@@ -389,39 +389,39 @@ const Portfolio2x3 = () => {
   const cubeData = [
     {
       id: "home",
-      title: "Home",
-      subtitle: "Welcome",
-      preview: "Get to know me",
+      title: ".home",
+      subtitle: "/* Welcome */",
+      preview: "// Get to know me",
     },
     {
       id: "skills",
-      title: "Skills",
-      subtitle: "What I Do",
-      preview: "My technical expertise",
+      title: ".skills",
+      subtitle: "/* What I Do */",
+      preview: "// My technical expertise",
     },
     {
       id: "portfolio",
-      title: "Portfolio",
-      subtitle: "My Work",
-      preview: "Projects I have built",
+      title: ".portfolio",
+      subtitle: "/* My Work */",
+      preview: "// Projects I have built",
     },
     {
       id: "education",
-      title: "Education",
-      subtitle: "Learning Journey",
-      preview: "Academic background",
+      title: ".education",
+      subtitle: "/* Learning Journey */",
+      preview: "// Academic background",
     },
     {
       id: "contact",
-      title: "Contact",
-      subtitle: "Get In Touch",
-      preview: "Let's connect",
+      title: ".contact",
+      subtitle: "/* Get In Touch */",
+      preview: "// Let's connect",
     },
     {
       id: "blog",
-      title: "Blog",
-      subtitle: "Thoughts & Ideas",
-      preview: "Random Thinking",
+      title: ".blog",
+      subtitle: "/* Thoughts & Ideas */",
+      preview: "// Random Thinking",
     },
   ];
 
@@ -790,7 +790,7 @@ const Portfolio2x3 = () => {
         onClick={scrollToTop}
         className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
       >
-        <ArrowUp className="w-5 h-5 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
+        <ArrowUp className="w-5 h-5 md:w-7 md:h-7 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </div>
   );
@@ -869,7 +869,7 @@ const Portfolio2x3 = () => {
         onClick={scrollToTop}
         className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
       >
-        <ArrowUp className="w-5 h-5 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
+        <ArrowUp className="w-5 h-5 md:w-7 md:h-7 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </div>
   );
@@ -944,12 +944,23 @@ const Portfolio2x3 = () => {
                 className="relative group cursor-pointer"
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
-                <div className="relative bg-black rounded-lg p-8 h-64 flex flex-col justify-center items-center text-center space-y-4 border border-gray-800 group-hover:border-transparent transition-all">
-                  <h2 className="text-3xl font-bold text-white">
-                    {item.title}
-                  </h2>
-                  <p className="text-xl text-purple-400">{item.subtitle}</p>
-                  <p className="text-gray-400">{item.preview}</p>
+                <div className="relative bg-black rounded-lg p-8 h-64 flex flex-col border border-gray-800 group-hover:border-transparent transition-all font-jetbrains-mono overflow-hidden">
+                  {/* Window Controls - Three Circles */}
+                  <div className="absolute top-4 left-4 flex gap-2 z-10">
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-col justify-center items-start text-left space-y-3 mt-8">
+                    <h2 className="text-2xl font-semibold text-[#569cd6]">
+                      {item.title}
+                    </h2>
+                    <p className="text-lg text-[#ce9178]">{item.subtitle}</p>
+                    <p className="text-base text-[#6a9955]">{item.preview}</p>
+                  </div>
+
                   <div className="absolute bottom-4 right-4 text-gray-500 group-hover:text-purple-500 transition-colors">
                     <ExternalLink className="w-6 h-6" />
                   </div>

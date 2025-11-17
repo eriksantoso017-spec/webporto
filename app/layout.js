@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Open_Sans, Merriweather, PT_Sans } from "next/font/google";
+import { Open_Sans, Merriweather, PT_Sans, JetBrains_Mono } from "next/font/google";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -20,6 +20,13 @@ const ptSans = PT_Sans({
   weight: ["400", "700"],
   style: ["normal", "italic"],
   variable: "--font-pt-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -111,7 +118,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable}`}>
+    <html lang="en" className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
