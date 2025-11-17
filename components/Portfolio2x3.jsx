@@ -929,8 +929,9 @@ const Portfolio2x3 = () => {
       {!expandedSection ? (
         <div className="min-h-screen p-8">
           <div className="text-center mb-12 pt-8">
-            <h1 className="text-[2.7rem] md:text-[3.375rem] font-semibold mb-4 font-jetbrains-mono">
-              <span className="text-purple-400">import</span>{" "}
+            <h1 className="text-[2.16rem] md:text-[3.375rem] font-semibold mb-4 font-jetbrains-mono">
+              <span className="text-purple-400">import</span>
+              <br />
               <span className="text-[#D4D4D4]">{"{ myPortfolio }"}</span>
             </h1>
             <p className="text-xl text-gray-300">
