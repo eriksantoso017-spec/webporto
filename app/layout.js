@@ -106,8 +106,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.com";
 
   const structuredData = {
     "@context": "https://schema.org",

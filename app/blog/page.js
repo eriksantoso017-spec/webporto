@@ -3,12 +3,10 @@ import BlogListClient from "./BlogListClient";
 
 export const metadata = {
   title: "Blog - Erik Santoso Portfolio",
-  description:
-    "Blog posts by Erik Santoso covering various topics about web development, technology, and personal experiences.",
+  description: "Blog posts by Erik Santoso covering various topics.",
   openGraph: {
     title: "Blog - Erik Santoso Portfolio",
-    description:
-      "Blog posts by Erik Santoso covering various topics about web development, technology, and personal experiences.",
+    description: "Blog posts by Erik Santoso covering various topics.",
     type: "website",
   },
 };
