@@ -46,8 +46,9 @@ export const config = {
      * - favicon.ico (favicon file)
      * - sitemap.xml (sitemap file)
      * - robots.txt (robots file)
+     * - .well-known (well-known files for verification)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|\\.well-known).*)",
   ],
 };
 
