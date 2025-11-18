@@ -69,7 +69,7 @@ export const metadata = {
       "Hello, I'm Erik Santoso. Undergraduate Communication Student. Part time designer and video editor. Full time Unemployer. Enjoy learning new things. Passionate about technology, editing, design, cyber security, OSINT and finance.",
     images: [
       {
-        url: `${baseUrl}/logo512.png`,
+        url: `${baseUrl}/logo-erik-512.png`,
         width: 512,
         height: 512,
         alt: "Erik Santoso Portfolio",
@@ -81,7 +81,7 @@ export const metadata = {
     title: "Erik Santoso - Portfolio",
     description:
       "Hello, I'm Erik Santoso. Undergraduate Communication Student. Part time designer and video editor. Full time Unemployer. Enjoy learning new things. Passionate about technology, editing, design, cyber security, OSINT and finance.",
-    images: [`${baseUrl}/logo512.png`],
+    images: [`${baseUrl}/logo-erik-512.png`],
   },
   robots: {
     index: true,
@@ -97,7 +97,7 @@ export const metadata = {
   icons: {
     icon: "/portoweb.ico",
     shortcut: "/portoweb.ico",
-    apple: "/logo192.png",
+    apple: "/logo-erik-192.png",
   },
   verification: {
     google: "voTjcKXM8nz1boHa-HVwu1lMaxixB8BrFYYxYPKotEo", // Kode verifikasi dari Google Search Console
