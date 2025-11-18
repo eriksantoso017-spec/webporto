@@ -788,7 +788,7 @@ const Portfolio2x3 = () => {
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group"
       >
         <ArrowUp className="w-5 h-5 md:w-7 md:h-7 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
@@ -867,7 +867,7 @@ const Portfolio2x3 = () => {
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group shadow-lg hover:shadow-purple-500/50"
+        className="back-to-top-btn fixed bottom-4 right-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group"
       >
         <ArrowUp className="w-5 h-5 md:w-7 md:h-7 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
@@ -974,7 +974,7 @@ const Portfolio2x3 = () => {
         <div className="relative">
           <Button
             onClick={() => setExpandedSection(null)}
-            className={`close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group ${
+            className={`close-btn fixed top-4 left-4 z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow transition-all duration-300 group ${
               isButtonsMinimized && expandedSection === "portfolio"
                 ? "md:w-10 md:h-10 md:px-0"
                 : ""
@@ -995,7 +995,7 @@ const Portfolio2x3 = () => {
             expandedSection === "contact") && (
             <Button
               onClick={() => setExpandedSection("home")}
-              className={`back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group ${
+              className={`back-to-home-btn fixed top-4 right-4 z-50 bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-purple-500 text-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 flex items-center justify-center animate-pulse-slow transition-all duration-300 group ${
                 isButtonsMinimized && expandedSection === "portfolio"
                   ? "md:w-10 md:h-10 md:px-0"
                   : ""

@@ -90,10 +90,7 @@
   }
 }
 
-/* Hover effect untuk back to top button */
-.back-to-top-btn:hover {
-  animation: pulse-glow 1.5s ease-in-out infinite;
-}
+/* Hover effect untuk back to top button - glow effect removed */
 
 /* Background animations for Blog tab */
 @keyframes gradient-shift {
@@ -426,9 +423,7 @@
   }
 }
 
-.close-btn:hover {
-  animation: close-glow 1.5s ease-in-out infinite;
-}
+/* Close button hover glow effect removed */
 
 /* Back to Home button animations */
 @keyframes back-to-home-glow {
@@ -442,9 +437,7 @@
   }
 }
 
-.back-to-home-btn:hover {
-  animation: back-to-home-glow 1.5s ease-in-out infinite;
-}
+/* Back to home button hover glow effect removed */
 
 /* Back to Blog button animations */
 @keyframes back-to-blog-glow {
@@ -458,9 +451,7 @@
   }
 }
 
-.back-to-blog-btn:hover {
-  animation: back-to-blog-glow 1.5s ease-in-out infinite;
-}
+/* Back to blog button hover glow effect removed */
 
 /* Blockquote styling with vertical lines */
 .prose blockquote {
