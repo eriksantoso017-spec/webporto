@@ -389,39 +389,39 @@ const Portfolio2x3 = () => {
   const cubeData = [
     {
       id: "home",
-      title: ".home",
-      subtitle: "/* Welcome */",
-      preview: "// Get to know me",
+      title: ".home {",
+      subtitle: "welcome: get-to-know-me;",
+      preview: "}",
     },
     {
       id: "skills",
-      title: ".skills",
-      subtitle: "/* What I Do */",
-      preview: "// My technical expertise",
+      title: ".skills {",
+      subtitle: "what-i-do: my-technical-expertise;",
+      preview: "}",
     },
     {
       id: "portfolio",
-      title: ".portfolio",
-      subtitle: "/* My Work */",
-      preview: "// Projects I have built",
+      title: ".portfolio {",
+      subtitle: "my-work: projects-i-have-built;",
+      preview: "}",
     },
     {
       id: "education",
-      title: ".education",
-      subtitle: "/* Learning Journey */",
-      preview: "// Academic background",
+      title: ".education {",
+      subtitle: "learning-journey: academic-background;",
+      preview: "}",
     },
     {
       id: "contact",
-      title: ".contact",
-      subtitle: "/* Get In Touch */",
-      preview: "// Let's connect",
+      title: ".contact {",
+      subtitle: "get-in-touch: let-us-connect;",
+      preview: "}",
     },
     {
       id: "blog",
-      title: ".blog",
-      subtitle: "/* Thoughts & Ideas */",
-      preview: "// Random Thinking",
+      title: ".blog {",
+      subtitle: "random-thinking: thoughts-&-ideas;",
+      preview: "}",
     },
   ];
 
@@ -955,11 +955,50 @@ const Portfolio2x3 = () => {
 
                   {/* Content */}
                   <div className="flex flex-col justify-center items-start text-left space-y-3 mt-8">
-                    <h2 className="text-2xl font-semibold text-[#569cd6]">
+                    <h2 className="text-2xl font-semibold text-[#dfa73a]">
                       {item.title}
                     </h2>
-                    <p className="text-lg text-[#ce9178]">{item.subtitle}</p>
-                    <p className="text-base text-[#6a9955]">{item.preview}</p>
+                    <p className="text-lg">
+                      {(() => {
+                        const colonIndex = item.subtitle.indexOf(":");
+                        if (colonIndex === -1) {
+                          return (
+                            <span className="text-[#ce9178]">
+                              {item.subtitle}
+                            </span>
+                          );
+                        }
+                        const beforeColon = item.subtitle.substring(
+                          0,
+                          colonIndex
+                        );
+                        const afterColon = item.subtitle.substring(
+                          colonIndex + 1
+                        );
+                        const semicolonIndex = afterColon.indexOf(";");
+                        const afterColonText =
+                          semicolonIndex !== -1
+                            ? afterColon.substring(0, semicolonIndex)
+                            : afterColon;
+                        const hasSemicolon = semicolonIndex !== -1;
+
+                        return (
+                          <>
+                            <span className="text-[#569cd6]">
+                              {beforeColon}
+                            </span>
+                            <span className="text-white">:</span>
+                            <span className="text-[#c084fc]">
+                              {afterColonText}
+                            </span>
+                            {hasSemicolon && (
+                              <span className="text-white">;</span>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </p>
+                    <p className="text-base text-[#dfa73a]">{item.preview}</p>
                   </div>
 
                   <div className="absolute bottom-4 right-4 text-gray-500 group-hover:text-purple-500 transition-colors">

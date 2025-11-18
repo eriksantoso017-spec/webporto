@@ -35,8 +35,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.com";
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
@@ -56,7 +55,7 @@ export const metadata = {
     "Cyber Security",
     "OSINT",
     "Finance",
-    "Web Development",
+    "Blog",
   ],
   authors: [{ name: "Erik Santoso" }],
   creator: "Erik Santoso",
