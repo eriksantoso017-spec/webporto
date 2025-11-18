@@ -958,7 +958,7 @@ const Portfolio2x3 = () => {
                     <h2 className="text-2xl font-semibold text-[#dfa73a]">
                       {item.title}
                     </h2>
-                    <p className="text-lg">
+                    <p className="text-lg" style={{ marginLeft: "13px" }}>
                       {(() => {
                         const colonIndex = item.subtitle.indexOf(":");
                         if (colonIndex === -1) {
