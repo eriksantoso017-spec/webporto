@@ -5,23 +5,12 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.com";
 
 export const metadata = {
   title: "Blog",
-  description:
-    "Blog posts by Erik Santoso covering my opinion about various topics.",
-  keywords: [
-    "Erik Santoso",
-    "Blog",
-    "Technology",
-    "Design",
-    "Cyber Security",
-    "OSINT",
-    "Finance",
-    "Articles",
-  ],
+  description: "Concern and thought shared from a goy perspective.",
+  keywords: ["Erik Santoso", "Blog", "Articles", "Muse", "Thought"],
   authors: [{ name: "Erik Santoso" }],
   openGraph: {
-    title: "Blog - Erik Santoso Portfolio",
-    description:
-      "Blog posts by Erik Santoso covering my opinion about various topics.",
+    title: "Outporing muse",
+    description: "Concern and thought shared from a goy perspective.",
     type: "website",
     url: `${baseUrl}/blog`,
     siteName: "Erik Santoso Portfolio",
@@ -36,9 +25,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog - Erik Santoso Portfolio",
-    description:
-      "Blog posts by Erik Santoso covering my opinion about various topics.",
+    title: "Outporing muse",
+    description: "Concern and thought shared from a goy perspective.",
     images: [`${baseUrl}/logo-erik-512.png`],
   },
   alternates: {
