@@ -9,7 +9,7 @@ export const metadata = {
   keywords: ["Erik Santoso", "Blog", "Articles", "Muse", "Thought"],
   authors: [{ name: "Erik Santoso" }],
   openGraph: {
-    title: "Outporing muse",
+    title: "Outporing Muse",
     description: "Concern and thought shared from a goy perspective.",
     type: "website",
     url: `${baseUrl}/blog`,
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Outporing muse",
+    title: "Outporing Muse",
     description: "Concern and thought shared from a goy perspective.",
     images: [`${baseUrl}/logo-erik-512.png`],
   },
