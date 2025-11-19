@@ -187,8 +187,8 @@ const ImageProjectCard = ({ project, index = 0 }) => {
 
             {/* Title - Only visible on hover, positioned at bottom left */}
             {/* Bayangan di belakang judul - dipisahkan dan diturunkan 3px */}
-            <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none translate-y-[3px]">
-              <div className="px-4 pb-[17px] pt-6"></div>
+            <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none translate-y-[3px]">
+              <div className="px-4 pb-[57px] pt-6"></div>
             </div>
             {/* Judul post - posisi tetap sama */}
             <div className="absolute bottom-[3px] left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -228,7 +228,7 @@ const ImageProjectCard = ({ project, index = 0 }) => {
               {project.images.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full ${
+                  className={`w-[6.16px] h-[6.16px] rounded-full ${
                     currentIndex === index ? "bg-white" : "bg-white/50"
                   }`}
                 />
@@ -335,7 +335,11 @@ const Portfolio2x3 = () => {
 
   // Scroll ke judul tab Portfolio saat dibuka di mobile
   useEffect(() => {
-    if (expandedSection === "portfolio" && isMobileDevice && portfolioTitleRef.current) {
+    if (
+      expandedSection === "portfolio" &&
+      isMobileDevice &&
+      portfolioTitleRef.current
+    ) {
       // Delay sedikit untuk memastikan DOM sudah ter-render
       setTimeout(() => {
         portfolioTitleRef.current?.scrollIntoView({
@@ -681,7 +685,7 @@ const Portfolio2x3 = () => {
   const renderPortfolioContent = () => (
     <div className="min-h-screen p-8 bg-black">
       <div className="max-w-7xl mx-auto">
-        <h2 
+        <h2
           ref={portfolioTitleRef}
           className="text-4xl md:text-5xl font-bold text-white mb-8 text-center"
         >
