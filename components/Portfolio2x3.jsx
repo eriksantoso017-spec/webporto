@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useIsMobileDevice } from "@/hooks/useDeviceType";
 import {
   Mail,
   Github,
@@ -47,6 +48,7 @@ const ImageProjectCard = ({ project, index = 0 }) => {
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const isMobileDevice = useIsMobileDevice();
 
   const prevImageWithBounds = (e) => {
     e.stopPropagation();
@@ -105,8 +107,7 @@ const ImageProjectCard = ({ project, index = 0 }) => {
 
     // Check if mobile and handle resize
     const checkMobileAndSetup = () => {
-      const isMobile = window.innerWidth < 768;
-      if (!isMobile) {
+      if (!isMobileDevice) {
         let ticking = false;
         const onScroll = () => {
           if (!ticking) {
@@ -129,15 +130,17 @@ const ImageProjectCard = ({ project, index = 0 }) => {
     };
 
     // Initial setup
-    const cleanupScroll = checkMobileAndSetup();
+    let cleanupScroll = checkMobileAndSetup();
 
     // Handle resize to update parallax behavior
     let resizeTimeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        // Re-check mobile status and re-setup if needed
-        checkMobileAndSetup();
+        // Cleanup previous scroll listener
+        if (cleanupScroll) cleanupScroll();
+        // Re-setup based on current device type
+        cleanupScroll = checkMobileAndSetup();
       }, 150);
     };
 
@@ -149,7 +152,7 @@ const ImageProjectCard = ({ project, index = 0 }) => {
       window.removeEventListener("resize", handleResize);
       clearTimeout(resizeTimeout);
     };
-  }, []);
+  }, [isMobileDevice]);
 
   return (
     <>
@@ -183,7 +186,12 @@ const ImageProjectCard = ({ project, index = 0 }) => {
             />
 
             {/* Title - Only visible on hover, positioned at bottom left */}
-            <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            {/* Bayangan di belakang judul - dipisahkan dan diturunkan 3px */}
+            <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none translate-y-[3px]">
+              <div className="px-4 pb-[17px] pt-6"></div>
+            </div>
+            {/* Judul post - posisi tetap sama */}
+            <div className="absolute bottom-[3px] left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <h3 className="text-[0.875rem] font-bold text-white px-4 pb-3 pt-6 -ml-[5px]">
                 {project.title}
               </h3>
@@ -251,6 +259,8 @@ const Portfolio2x3 = () => {
   const [videoLoadMoreCount, setVideoLoadMoreCount] = useState(0);
   const [isButtonsMinimized, setIsButtonsMinimized] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(0);
+  const isMobileDevice = useIsMobileDevice();
+  const portfolioTitleRef = useRef(null);
 
   const itemsPerPage = 12;
   const initialItems = 12;
@@ -290,7 +300,7 @@ const Portfolio2x3 = () => {
 
     const handleScroll = () => {
       // Only apply on desktop
-      if (window.innerWidth < 768) {
+      if (isMobileDevice) {
         setIsButtonsMinimized(false);
         return;
       }
@@ -313,7 +323,7 @@ const Portfolio2x3 = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [expandedSection]);
+  }, [expandedSection, isMobileDevice]);
 
   // Redirect to blog page when blog section is clicked
   useEffect(() => {
@@ -322,6 +332,19 @@ const Portfolio2x3 = () => {
       setExpandedSection(null); // Reset to prevent re-render
     }
   }, [expandedSection, router]);
+
+  // Scroll ke judul tab Portfolio saat dibuka di mobile
+  useEffect(() => {
+    if (expandedSection === "portfolio" && isMobileDevice && portfolioTitleRef.current) {
+      // Delay sedikit untuk memastikan DOM sudah ter-render
+      setTimeout(() => {
+        portfolioTitleRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  }, [expandedSection, isMobileDevice]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -658,7 +681,10 @@ const Portfolio2x3 = () => {
   const renderPortfolioContent = () => (
     <div className="min-h-screen p-8 bg-black">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+        <h2 
+          ref={portfolioTitleRef}
+          className="text-4xl md:text-5xl font-bold text-white mb-8 text-center"
+        >
           My Portfolio
         </h2>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

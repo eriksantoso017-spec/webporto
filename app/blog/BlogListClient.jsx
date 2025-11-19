@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Components";
 import { ArrowUp, X, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useIsMobileDevice } from "@/hooks/useDeviceType";
 
 export default function BlogListClient({
   blogPosts,
@@ -17,6 +18,7 @@ export default function BlogListClient({
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchExpanded, setIsSearchExpanded] = useState(true);
+  const isMobileDevice = useIsMobileDevice();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -99,8 +101,7 @@ export default function BlogListClient({
     };
 
     // Disable parallax on mobile for better performance
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) return;
+    if (isMobileDevice) return;
 
     let ticking = false;
     const onScroll = () => {
@@ -119,7 +120,7 @@ export default function BlogListClient({
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, [filteredPosts]);
+  }, [filteredPosts, isMobileDevice]);
 
   // Handle search bar minimize on scroll
   useEffect(() => {

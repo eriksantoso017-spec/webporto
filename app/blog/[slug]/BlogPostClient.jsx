@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowUp, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import rehypeRaw from "rehype-raw";
+import { useDeviceType } from "@/hooks/useDeviceType";
 
 // Lazy load ReactMarkdown - hanya load saat diperlukan
 const ReactMarkdown = dynamic(() => import("react-markdown"), {
@@ -20,6 +21,22 @@ export default function BlogPostClient({ post }) {
   const router = useRouter();
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const { isMobileDevice, isDesktopDevice, viewportWidth } = useDeviceType();
+  
+  // Tentukan margin berdasarkan device type
+  // Desktop asli: margin normal (290px)
+  // Mobile di desktop mode: margin lebih kecil (100px)
+  // Mobile: margin kecil (16px)
+  const getArticleMargin = () => {
+    if (viewportWidth < 768) {
+      return "mx-4"; // Mobile viewport (< 768px)
+    }
+    // Viewport >= 768px (desktop mode)
+    if (isMobileDevice) {
+      return "mx-4 md:mx-[100px]"; // Mobile device di desktop mode
+    }
+    return "mx-4 md:mx-[290px]"; // Desktop asli
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -66,7 +83,7 @@ export default function BlogPostClient({ post }) {
           <span className="hidden md:inline">To Blog</span>
         </Button>
       </Link>
-      <div className="mx-4 md:mx-[290px] blog-content">
+      <div className={`${getArticleMargin()} blog-content`}>
         <article className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{post.date}</span>
