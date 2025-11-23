@@ -14,6 +14,10 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-markdown'],
   },
+  // Note: Compression (Gzip/Brotli) is automatically handled by:
+  // - Vercel (if deployed there) - automatic compression
+  // - Next.js standalone server - automatic compression
+  // - For custom servers, configure compression in your server (nginx/Apache)
   images: {
     remotePatterns: [
       {

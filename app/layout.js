@@ -122,6 +122,12 @@ export default function RootLayout({ children }) {
       className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Resource hints for performance */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
