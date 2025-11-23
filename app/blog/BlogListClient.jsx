@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Components";
 import { ArrowUp, X, Search, ChevronLeft, ChevronRight } from "lucide-react";
@@ -216,10 +217,14 @@ export default function BlogListClient({
                   {/* Thumbnail - 289x289px */}
                   <div className="w-[289px] h-[289px] mx-auto mb-4 overflow-hidden rounded-lg">
                     {post.thumbnail ? (
-                      <img
+                      <Image
                         src={post.thumbnail}
                         alt={post.title}
+                        width={289}
+                        height={289}
                         className="w-full h-full object-cover transition-transform duration-500"
+                        loading="lazy"
+                        quality={85}
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-800 flex items-center justify-center">

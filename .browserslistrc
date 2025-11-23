@@ -1,0 +1,14 @@
+# Modern browser support to reduce polyfills
+# Targets browsers that support ES2020+ features
+
+# Production: Support modern browsers (last 2 versions, not dead, not IE11)
+>0.2%
+not dead
+not op_mini all
+not ie 11
+
+# Development: Latest versions only for faster builds
+last 1 chrome version
+last 1 firefox version
+last 1 safari version
+

@@ -2,6 +2,9 @@ import { getAllPostIds, getPostById } from "@/lib/markdown";
 import { notFound } from "next/navigation";
 import BlogPostClient from "./BlogPostClient";
 
+// Enable ISR - regenerate every hour (3600 seconds)
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const postIds = getAllPostIds();
   return postIds.map((id) => ({

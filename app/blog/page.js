@@ -34,6 +34,9 @@ export const metadata = {
   },
 };
 
+// Enable ISR - regenerate every hour (3600 seconds)
+export const revalidate = 3600;
+
 export default function BlogPage({ searchParams }) {
   const allPosts = getAllPosts();
   const page = parseInt(searchParams?.page || "1", 10);

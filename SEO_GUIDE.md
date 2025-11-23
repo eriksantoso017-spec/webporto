@@ -1,4 +1,4 @@
-# 🚀 Panduan SEO: Cara Membuat Website Muncul di Google
+# Panduan SEO: Cara Membuat Website Muncul di Google
 
 Panduan lengkap untuk membuat website portfolio Anda muncul di hasil pencarian Google.
 
@@ -19,6 +19,7 @@ Panduan lengkap untuk membuat website portfolio Anda muncul di hasil pencarian G
 ### ✅ Yang Sudah Disiapkan
 
 Website Anda sudah memiliki:
+
 - ✅ **Sitemap.xml** - File untuk membantu Google menemukan semua halaman
 - ✅ **Robots.txt** - File untuk mengatur crawler Google
 - ✅ **Metadata SEO** - Title, description, Open Graph tags
@@ -75,11 +76,13 @@ Google akan meminta verifikasi bahwa Anda adalah pemilik website. Ada beberapa m
 #### **Metode 1: HTML Tag (Paling Mudah)**
 
 1. Google akan memberikan kode HTML seperti:
+
    ```html
    <meta name="google-site-verification" content="xxxxxxxxxxxxxxxxxxxxx" />
    ```
 
 2. Tambahkan kode ini ke `app/layout.js`:
+
    ```jsx
    export const metadata = {
      // ... metadata lainnya
@@ -159,6 +162,7 @@ Sitemap Anda tersedia di: `https://your-domain.vercel.app/sitemap.xml`
 ### ✅ Mobile-Friendly
 
 Website Anda sudah responsive, pastikan:
+
 - Semua tombol bisa diklik di mobile
 - Teks mudah dibaca tanpa zoom
 - Tidak ada horizontal scroll
@@ -170,6 +174,7 @@ Website Anda sudah responsive, pastikan:
 ### Google Search Console
 
 Cek secara rutin:
+
 - **Performance** - Berapa banyak orang menemukan website Anda
 - **Coverage** - Halaman mana yang sudah diindeks
 - **Sitemaps** - Status sitemap Anda
@@ -178,6 +183,7 @@ Cek secara rutin:
 ### Google Analytics (Opsional)
 
 Untuk tracking lebih detail:
+
 1. Daftar di https://analytics.google.com
 2. Buat property baru
 3. Dapatkan tracking ID
@@ -194,7 +200,8 @@ Untuk tracking lebih detail:
 - **Indexing pertama**: 3-7 hari
 - **Muncul di hasil pencarian**: 1-4 minggu (tergantung popularitas keyword)
 
-**Tips:** 
+**Tips:**
+
 - Website baru biasanya butuh waktu lebih lama
 - Konten berkualitas dan update rutin mempercepat proses
 - Backlink dari website lain juga membantu
@@ -206,6 +213,7 @@ Untuk tracking lebih detail:
 ### Metode 1: Google Search
 
 Cari di Google:
+
 ```
 site:your-domain.vercel.app
 ```
@@ -272,4 +280,3 @@ Gunakan checklist ini untuk memastikan semua sudah setup:
 ---
 
 **Selamat!** Website Anda sudah siap untuk muncul di Google. Ingat, SEO adalah proses jangka panjang. Terus update konten dan pantau performa di Google Search Console! 🚀
-

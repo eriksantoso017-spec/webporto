@@ -49,7 +49,7 @@ Anda bisa menggunakan **Markdown** syntax:
 - **Bold text**
 - _Italic text_
 - `Code snippets`
-- [Links](https://example.com)
+- [Tulisan link](https://example.com)
 - Dan banyak lagi!
 ```
 
