@@ -253,6 +253,7 @@ const Portfolio2x3 = () => {
   const [videoLoadMoreCount, setVideoLoadMoreCount] = useState(0);
   const [isButtonsMinimized, setIsButtonsMinimized] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(0);
+  const [isBlogLoading, setIsBlogLoading] = useState(false);
   const isMobileDevice = useIsMobileDevice();
   const portfolioTitleRef = useRef(null);
 
@@ -322,8 +323,23 @@ const Portfolio2x3 = () => {
   // Redirect to blog page when blog section is clicked
   useEffect(() => {
     if (expandedSection === "blog") {
-      router.push("/blog");
-      setExpandedSection(null); // Reset to prevent re-render
+      // Show loading animation immediately
+      setIsBlogLoading(true);
+
+      // Small delay to show loading animation before navigation
+      const timer = setTimeout(() => {
+        router.push("/blog");
+        // Keep loading state for a bit longer to ensure smooth transition
+        setTimeout(() => {
+          setIsBlogLoading(false);
+          setExpandedSection(null); // Reset to prevent re-render
+        }, 200);
+      }, 500); // 500ms delay to show loading animation clearly
+
+      return () => clearTimeout(timer);
+    } else {
+      // Reset loading state when section changes
+      setIsBlogLoading(false);
     }
   }, [expandedSection, router]);
 
@@ -956,8 +972,41 @@ const Portfolio2x3 = () => {
       case "contact":
         return renderContactContent();
       case "blog":
-        // Blog is handled by useEffect redirect, return null here
-        return null;
+        // Show loading animation while blog is loading
+        return (
+          <div className="min-h-screen p-8 bg-black flex items-center justify-center">
+            <div className="text-center">
+              <div className="relative inline-block mb-6">
+                {/* Outer spinning ring */}
+                <div className="blog-loading-spinner w-20 h-20 border-4 border-purple-500/30 border-t-purple-500 rounded-full"></div>
+                {/* Inner pulsing circle */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-purple-500/20 rounded-full animate-pulse"></div>
+                {/* Center dot */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-purple-500 rounded-full"></div>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-jetbrains-mono animate-pulse">
+                <span className="text-purple-400">Loading</span>{" "}
+                <span className="text-white">Blog</span>
+                <span className="inline-block animate-bounce">.</span>
+                <span
+                  className="inline-block animate-bounce"
+                  style={{ animationDelay: "0.2s" }}
+                >
+                  .
+                </span>
+                <span
+                  className="inline-block animate-bounce"
+                  style={{ animationDelay: "0.4s" }}
+                >
+                  .
+                </span>
+              </h2>
+              <p className="text-gray-400 text-sm md:text-base mt-2">
+                Preparing your reading experience
+              </p>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
