@@ -156,12 +156,12 @@ export default function BlogListClient({
         <div className="max-w-7xl mx-auto blog-content">
           {/* Header with Title and Search Bar */}
           <div className="relative mb-12">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 relative">
-              <h1 className="text-4xl md:text-5xl font-bold text-white text-center lg:text-left">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-4 relative">
+              <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
                 Blog Posts
               </h1>
               {/* Search Bar - Hanya muncul di desktop, sejajar dengan judul di pojok kanan */}
-              <div className="hidden lg:flex items-center gap-2">
+              <div className="hidden lg:flex items-center gap-2 absolute right-0">
                 {/* Search Input - Minimizes on scroll */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
