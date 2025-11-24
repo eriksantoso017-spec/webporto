@@ -6,33 +6,38 @@ import {
   JetBrains_Mono,
 } from "next/font/google";
 
+// Optimized font loading - reduced weights to minimize CSS size
 const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700"], // Reduced from 6 to 3 weights
   variable: "--font-open-sans",
   display: "swap",
+  preload: true, // Preload font for faster rendering
 });
 
 const merriweather = Merriweather({
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["400", "700"], // Reduced from 4 to 2 weights
   variable: "--font-merriweather",
   display: "swap",
+  preload: false, // Not critical, don't preload
 });
 
 const ptSans = PT_Sans({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "700"], // Keep only used weights
+  style: ["normal", "italic"], // Keep italic for blog content
   variable: "--font-pt-sans",
   display: "swap",
+  preload: false, // Not critical, don't preload
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  weight: ["400", "600"], // Reduced from 8 to 2 weights (only used weights)
   variable: "--font-jetbrains-mono",
   display: "swap",
+  preload: false, // Not critical, don't preload
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.com";
