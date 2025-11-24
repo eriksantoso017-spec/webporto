@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Components";
 import { ArrowLeft, ArrowUp, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import dynamic from "next/dynamic";
 import { useDeviceType } from "@/hooks/useDeviceType";
 
@@ -17,18 +17,40 @@ const ReactMarkdown = dynamic(() => import("react-markdown"), {
   ),
 });
 
+// Memoized Markdown component untuk mencegah re-render yang tidak perlu
+const MemoizedMarkdown = memo(({ content }) => {
+  return <ReactMarkdown>{content}</ReactMarkdown>;
+}, (prevProps, nextProps) => prevProps.content === nextProps.content);
+
+MemoizedMarkdown.displayName = "MemoizedMarkdown";
+
 export default function BlogPostClient({ post }) {
   const router = useRouter();
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { isMobileDevice, isDesktopDevice, viewportWidth } = useDeviceType();
   
-  // Tentukan margin berdasarkan device type
+  // Track mount state untuk mencegah hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
+  // Tentukan margin berdasarkan device type - memoized untuk performa
   // Desktop asli: margin normal (290px)
   // Mobile di desktop mode: margin lebih kecil (100px)
   // Mobile: margin kecil (16px)
-  const getArticleMargin = () => {
-    if (viewportWidth < 768) {
+  // Gunakan nilai default yang konsisten untuk SSR, update setelah mount
+  const articleMargin = useMemo(() => {
+    // Selama belum mounted, gunakan nilai default yang konsisten
+    if (!isMounted) {
+      return "mx-4 md:mx-[290px]"; // Default desktop untuk SSR
+    }
+    
+    // Setelah mounted, gunakan nilai yang sebenarnya
+    const width = viewportWidth || (typeof window !== 'undefined' ? window.innerWidth : 768);
+    
+    if (width < 768) {
       return "mx-4"; // Mobile viewport (< 768px)
     }
     // Viewport >= 768px (desktop mode)
@@ -36,7 +58,7 @@ export default function BlogPostClient({ post }) {
       return "mx-4 md:mx-[100px]"; // Mobile device di desktop mode
     }
     return "mx-4 md:mx-[290px]"; // Desktop asli
-  };
+  }, [isMounted, viewportWidth, isMobileDevice]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -45,19 +67,35 @@ export default function BlogPostClient({ post }) {
     });
   };
 
-  // Calculate scroll percentage
+  // Calculate scroll percentage - optimized for mobile performance
   useEffect(() => {
+    // Hanya jalankan setelah mounted untuk mencegah hydration mismatch
+    if (!isMounted) return;
+    
+    // Disable scroll percentage on mobile for better performance
+    if (isMobileDevice) {
+      setScrollPercentage(0);
+      return;
+    }
+
+    let ticking = false;
     const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      
-      const scrollableHeight = documentHeight - windowHeight;
-      const percentage = scrollableHeight > 0 
-        ? Math.round((scrollTop / scrollableHeight) * 100)
-        : 0;
-      
-      setScrollPercentage(Math.min(100, Math.max(0, percentage)));
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          
+          const scrollableHeight = documentHeight - windowHeight;
+          const percentage = scrollableHeight > 0 
+            ? Math.round((scrollTop / scrollableHeight) * 100)
+            : 0;
+          
+          setScrollPercentage(Math.min(100, Math.max(0, percentage)));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -66,7 +104,7 @@ export default function BlogPostClient({ post }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMounted, isMobileDevice]);
 
   return (
     <div className="min-h-screen p-8 bg-black blog-background font-open-sans blog-tab-container">
@@ -83,7 +121,7 @@ export default function BlogPostClient({ post }) {
           <span className="hidden md:inline font-bold">To Blog</span>
         </Button>
       </Link>
-      <div className={`${getArticleMargin()} blog-content`}>
+      <div className={`${articleMargin || 'mx-4'} blog-content`}>
         <article className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{post.date}</span>
@@ -115,9 +153,7 @@ export default function BlogPostClient({ post }) {
               {post.excerpt}
             </p>
             <div className="text-gray-300 leading-relaxed space-y-4 prose prose-invert prose-p:text-gray-300 prose-headings:text-white prose-a:text-purple-400 prose-strong:text-white prose-code:text-pink-400 prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-4 prose-blockquote:my-6 prose-blockquote:bg-gray-800/50 prose-blockquote:rounded-r-lg prose-blockquote:text-gray-200 prose-blockquote:italic max-w-none">
-              <ReactMarkdown>
-                {post.content}
-              </ReactMarkdown>
+              <MemoizedMarkdown content={post.content} />
             </div>
           </div>
         </article>

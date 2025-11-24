@@ -156,12 +156,12 @@ export default function BlogListClient({
         <div className="max-w-7xl mx-auto blog-content">
           {/* Header with Title and Search Bar */}
           <div className="relative mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
-              Blog Posts
-            </h1>
-            {/* Search Bar - Fixed Position to the Right with Minimize Animation */}
-            <div className="hidden lg:block fixed top-8 right-8 z-10">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 relative">
+              <h1 className="text-4xl md:text-5xl font-bold text-white text-center lg:text-left">
+                Blog Posts
+              </h1>
+              {/* Search Bar - Hanya muncul di desktop, sejajar dengan judul di pojok kanan */}
+              <div className="hidden lg:flex items-center gap-2">
                 {/* Search Input - Minimizes on scroll */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
@@ -187,7 +187,7 @@ export default function BlogListClient({
               </div>
               {/* Search Results - Only show when expanded and has query */}
               {isSearchExpanded && searchQuery && (
-                <div className="mt-3 text-xs text-gray-400 text-center w-[202px]">
+                <div className="hidden lg:block absolute top-full right-0 mt-2 text-xs text-gray-400 text-right">
                   {filteredPosts.length} result
                   {filteredPosts.length !== 1 ? "s" : ""}
                 </div>

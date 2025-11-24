@@ -269,6 +269,29 @@
 .blog-content {
   position: relative;
   z-index: 1;
+  /* Optimasi performa untuk desktop */
+  contain: layout style paint;
+  will-change: scroll-position;
+}
+
+/* Optimasi untuk mobile - disable animasi background yang berat */
+@media (max-width: 768px) {
+  .blog-background::before,
+  .blog-background::after {
+    animation: none !important;
+    opacity: 0.5;
+  }
+  
+  .blog-content {
+    /* Hapus contain di mobile untuk mencegah konten hilang */
+    contain: none;
+    will-change: auto;
+  }
+  
+  /* Disable transform animations di mobile untuk performa lebih baik */
+  .prose img {
+    will-change: auto;
+  }
 }
 
 /* Particle dots animation for Home tab */
