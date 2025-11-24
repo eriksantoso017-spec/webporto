@@ -48,45 +48,81 @@
   animation: icon-bounce 2s ease-in-out infinite;
 }
 
-/* Blog Loading Animation */
-@keyframes blog-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+/* Blog Loading Animation - Box on Hill */
+#blog-loader {
+  position: relative;
+  width: 5.4em;
+  height: 5.4em;
+  background-color: transparent;
 }
 
-@keyframes blog-pulse-glow {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-    box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.6), 0 0 30px rgba(147, 51, 234, 0.3);
-  }
+#blog-hill {
+  position: absolute;
+  width: 7.1em;
+  height: 7.1em;
+  top: 1.7em;
+  left: 1.7em;
+  background-color: transparent;
+  border-left: 0.25em solid #a855f7; /* Purple color */
+  transform: rotate(45deg);
 }
 
-.blog-loading-spinner {
-  animation: blog-spin 1s linear infinite;
-  box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
-}
-
-.blog-loading-spinner::after {
+#blog-hill:after {
   content: '';
   position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.2) 0%, transparent 70%);
-  animation: blog-pulse-glow 2s ease-in-out infinite;
-  pointer-events: none;
+  width: 7.1em;
+  height: 7.1em;
+  left: 0;
+  background-color: #000000; /* Black background */
+}
+
+#blog-box {
+  position: absolute;
+  left: 0;
+  bottom: -0.1em;
+  width: 1em;
+  height: 1em;
+  background-color: transparent;
+  border: 0.25em solid #a855f7; /* Purple color */
+  border-radius: 15%;
+  transform: translate(0, -1em) rotate(-45deg);
+  animation: blog-push 2.5s cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
+}
+
+@keyframes blog-push {
+  0% {
+    transform: translate(0, -1em) rotate(-45deg);
+  }
+  5% {
+    transform: translate(0, -1em) rotate(-50deg);
+  }
+  20% {
+    transform: translate(1em, -2em) rotate(47deg);
+  }
+  25% {
+    transform: translate(1em, -2em) rotate(45deg);
+  }
+  30% {
+    transform: translate(1em, -2em) rotate(40deg);
+  }
+  45% {
+    transform: translate(2em, -3em) rotate(137deg);
+  }
+  50% {
+    transform: translate(2em, -3em) rotate(135deg);
+  }
+  55% {
+    transform: translate(2em, -3em) rotate(130deg);
+  }
+  70% {
+    transform: translate(3em, -4em) rotate(217deg);
+  }
+  75% {
+    transform: translate(3em, -4em) rotate(220deg);
+  }
+  100% {
+    transform: translate(0, -1em) rotate(-225deg);
+  }
 }
 
 @keyframes jiggle {

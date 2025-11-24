@@ -977,12 +977,11 @@ const Portfolio2x3 = () => {
           <div className="min-h-screen p-8 bg-black flex items-center justify-center">
             <div className="text-center">
               <div className="relative inline-block mb-6">
-                {/* Outer spinning ring */}
-                <div className="blog-loading-spinner w-20 h-20 border-4 border-purple-500/30 border-t-purple-500 rounded-full"></div>
-                {/* Inner pulsing circle */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-purple-500/20 rounded-full animate-pulse"></div>
-                {/* Center dot */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-purple-500 rounded-full"></div>
+                {/* Box on Hill Animation */}
+                <div id="blog-loader" className="mx-auto">
+                  <div id="blog-box"></div>
+                  <div id="blog-hill"></div>
+                </div>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-jetbrains-mono animate-pulse">
                 <span className="text-purple-400">Loading</span>{" "}
