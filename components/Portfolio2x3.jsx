@@ -15,12 +15,6 @@ import {
   ArrowRight,
   ArrowUp,
   ArrowDown,
-  MessageSquare,
-  Users,
-  Clock,
-  Lightbulb,
-  Target,
-  Zap,
   Facebook,
 } from "lucide-react";
 import {
@@ -461,12 +455,15 @@ const Portfolio2x3 = () => {
   ];
 
   const softSkills = [
-    { name: "Communication", icon: MessageSquare },
-    { name: "Problem Solving", icon: Lightbulb },
-    { name: "Team Work", icon: Users },
-    { name: "Leadership", icon: Target },
-    { name: "Time Management", icon: Clock },
-    { name: "Creativity", icon: Zap },
+    { name: "Communication", icon: "/icons/icon-skills/communication.svg" },
+    {
+      name: "Problem Solving",
+      icon: "/icons/icon-skills/problem-solving-skills.svg",
+    },
+    { name: "Team Work", icon: "/icons/icon-skills/teamwork.svg" },
+    { name: "Diligent", icon: "/icons/icon-skills/diligence.svg" },
+    { name: "Time Management", icon: "/icons/icon-skills/management-time.svg" },
+    { name: "Creativity", icon: "/icons/icon-skills/creativity.svg" },
   ];
 
   const education = [
@@ -662,12 +659,15 @@ const Portfolio2x3 = () => {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {softSkills.map((skill, index) => {
-                const Icon = skill.icon;
                 return (
                   <div key={index} className="relative group soft-skill-card">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-500 soft-skill-glow"></div>
                     <div className="relative bg-black rounded-lg p-6 flex flex-col items-center text-center space-y-3 border border-gray-800 transition-transform">
-                      <Icon className="w-12 h-12 text-green-400" />
+                      <img
+                        src={skill.icon}
+                        alt={`${skill.name} icon`}
+                        className="w-12 h-12"
+                      />
                       <span className="text-white font-medium">
                         {skill.name}
                       </span>

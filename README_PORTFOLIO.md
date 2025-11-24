@@ -5,6 +5,7 @@ File ini berisi panduan lengkap untuk mengupdate Image Gallery di tab **Portfoli
 ## 📁 Lokasi File
 
 File data portfolio berada di:
+
 ```
 data/portfolioData.js
 ```
@@ -17,7 +18,6 @@ Setiap project dalam image gallery harus mengikuti struktur berikut:
 {
   id: number,              // ID unik untuk setiap project (WAJIB)
   title: string,          // Judul project (WAJIB)
-  description: string,     // Deskripsi singkat project (WAJIB)
   images: [string, ...],  // Array URL gambar (WAJIB, minimal 1 gambar)
 }
 ```
@@ -34,7 +34,7 @@ Gunakan URL lengkap dari website eksternal (contoh: dari Imgur, Cloudinary, atau
 images: [
   "https://example.com/images/project1.jpg",
   "https://example.com/images/project2.jpg",
-]
+];
 ```
 
 ### Cara 2: Menggunakan File Lokal (Public Folder)
@@ -46,10 +46,11 @@ images: [
   "/images/porto/project1/hal-1.png",
   "/images/porto/project1/hal-2.png",
   "/images/porto/project1/hal-3.png",
-]
+];
 ```
 
 **Struktur folder yang disarankan:**
+
 ```
 public/
   └── images/
@@ -69,11 +70,10 @@ public/
 ```javascript
 export const imageProjects = [
   // ... project yang sudah ada ...
-  
+
   {
-    id: 5,  // Gunakan ID yang belum digunakan
+    id: 5, // Gunakan ID yang belum digunakan
     title: "Nama Project Baru",
-    description: "Deskripsi singkat tentang project ini",
     images: [
       "/images/porto/nama-project/gambar-1.png",
       "/images/porto/nama-project/gambar-2.png",
@@ -90,15 +90,14 @@ export const imageProjects = [
 
 3. Edit field yang diinginkan:
    - `title`: Ubah judul project
-   - `description`: Ubah deskripsi project
    - `images`: Tambah/hapus/ubah URL gambar
 
 **Contoh mengedit project:**
+
 ```javascript
 {
   id: 1,
   title: "Judul Baru",  // Diubah
-  description: "Deskripsi baru yang lebih lengkap",  // Diubah
   images: [
     "/images/porto/feeds-etika/hal-1.png",  // Gambar tetap
     "/images/porto/feeds-etika/hal-2.png",  // Gambar tetap
@@ -132,7 +131,6 @@ Berikut contoh lengkap untuk project dengan 3 gambar:
 {
   id: 6,
   title: "Website E-Commerce",
-  description: "Platform e-commerce modern dengan fitur shopping cart dan payment gateway",
   images: [
     "/images/porto/ecommerce/homepage.png",
     "/images/porto/ecommerce/product-detail.png",
@@ -145,12 +143,13 @@ Berikut contoh lengkap untuk project dengan 3 gambar:
 
 Setelah melakukan perubahan pada `portfolioData.js`:
 
-1. **Development (Local):** 
+1. **Development (Local):**
+
    - Perubahan akan langsung terlihat jika development server sedang berjalan
    - Jika tidak, restart dengan: `npm run dev`
 
 2. **Production (Deployed):**
-   - Commit perubahan ke Git: 
+   - Commit perubahan ke Git:
      ```bash
      git add data/portfolioData.js
      git commit -m "Update portfolio gallery"
@@ -176,4 +175,3 @@ Setelah melakukan perubahan pada `portfolioData.js`:
 ---
 
 **Pertanyaan?** Pastikan untuk membaca dokumentasi Next.js untuk informasi lebih lanjut tentang static assets: https://nextjs.org/docs/app/building-your-application/optimizing/static-assets
-
