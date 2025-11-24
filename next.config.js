@@ -14,6 +14,39 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-markdown'],
   },
+  // Webpack configuration for better code splitting and tree-shaking
+  webpack: (config, { isServer, dev }) => {
+    if (!isServer && !dev) {
+      // Better tree-shaking in production
+      config.optimization = {
+        ...config.optimization,
+        usedExports: true,
+        // Enable module concatenation for better tree-shaking
+        concatenateModules: true,
+        // Better minification
+        minimize: true,
+      };
+      
+      // Improve code splitting
+      if (config.optimization.splitChunks) {
+        config.optimization.splitChunks = {
+          ...config.optimization.splitChunks,
+          chunks: 'all',
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            // Separate vendor chunk
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+              priority: 10,
+            },
+          },
+        };
+      }
+    }
+    return config;
+  },
   // Note: Compression (Gzip/Brotli) is automatically handled by:
   // - Vercel (if deployed there) - automatic compression
   // - Next.js standalone server - automatic compression

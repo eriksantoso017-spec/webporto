@@ -754,64 +754,73 @@ const Portfolio2x3 = () => {
             )}
           </TabsContent>
           <TabsContent value="videos" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              {displayedVideoProjects.map((project) => (
-                <div key={project.id} className="relative group self-start">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-                  <div className="relative bg-black rounded-xl p-6 space-y-4 border border-gray-800">
-                    <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={`https://www.youtube.com/embed/${project.youtubeId}`}
-                        title={project.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+            {activeTab === "videos" && (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                  {displayedVideoProjects.map((project) => (
+                    <div key={project.id} className="relative group self-start">
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative bg-black rounded-xl p-6 space-y-4 border border-gray-800">
+                        <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${project.youtubeId}`}
+                            title={project.title}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            loading="lazy"
+                          />
+                        </div>
+                        <h3 className="text-xl font-bold text-white">
+                          {project.title}
+                        </h3>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-white">
-                      {project.title}
-                    </h3>
+                  ))}
+                </div>
+                {/* Load More Button for Videos */}
+                {shouldShowVideoLoadMore && !shouldShowVideoPagination && (
+                  <div className="mt-8 flex justify-center">
+                    <Button
+                      onClick={handleVideoLoadMore}
+                      className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-300"
+                    >
+                      <span>Load More</span>
+                      <ArrowDown className="w-4 h-4" />
+                    </Button>
                   </div>
-                </div>
-              ))}
-            </div>
-            {/* Load More Button for Videos */}
-            {shouldShowVideoLoadMore && !shouldShowVideoPagination && (
-              <div className="mt-8 flex justify-center">
-                <Button
-                  onClick={handleVideoLoadMore}
-                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-300"
-                >
-                  <span>Load More</span>
-                  <ArrowDown className="w-4 h-4" />
-                </Button>
-              </div>
-            )}
-            {/* Pagination Controls for Videos */}
-            {shouldShowVideoPagination && totalVideoPages > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-4">
-                <Button
-                  onClick={() => handleVideoPageChange(currentVideoPage - 1)}
-                  disabled={currentVideoPage === 1}
-                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>Previous</span>
-                </Button>
-                <div className="text-gray-400 text-sm">
-                  Page {currentVideoPage} of {totalVideoPages}
-                </div>
-                <Button
-                  onClick={() => handleVideoPageChange(currentVideoPage + 1)}
-                  disabled={currentVideoPage === totalVideoPages}
-                  className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
-                >
-                  <span>Next</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </div>
+                )}
+                {/* Pagination Controls for Videos */}
+                {shouldShowVideoPagination && totalVideoPages > 1 && (
+                  <div className="mt-8 flex items-center justify-center gap-4">
+                    <Button
+                      onClick={() =>
+                        handleVideoPageChange(currentVideoPage - 1)
+                      }
+                      disabled={currentVideoPage === 1}
+                      className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      <span>Previous</span>
+                    </Button>
+                    <div className="text-gray-400 text-sm">
+                      Page {currentVideoPage} of {totalVideoPages}
+                    </div>
+                    <Button
+                      onClick={() =>
+                        handleVideoPageChange(currentVideoPage + 1)
+                      }
+                      disabled={currentVideoPage === totalVideoPages}
+                      className="bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300"
+                    >
+                      <span>Next</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </div>
+                )}
+              </>
             )}
           </TabsContent>
         </Tabs>
