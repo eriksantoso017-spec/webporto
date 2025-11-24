@@ -71,16 +71,23 @@ export default function BlogPostClient({ post }) {
   useEffect(() => {
     // Hanya jalankan setelah mounted untuk mencegah hydration mismatch
     if (!isMounted) return;
-    
-    // Disable scroll percentage on mobile for better performance
-    if (isMobileDevice) {
-      setScrollPercentage(0);
-      return;
-    }
 
+    let lastUpdateTime = 0;
     let ticking = false;
+    // Throttle lebih agresif di mobile (update setiap 200ms vs setiap frame)
+    const throttleDelay = isMobileDevice ? 200 : 0;
+    
     const handleScroll = () => {
       if (!ticking) {
+        const now = Date.now();
+        const timeSinceLastUpdate = now - lastUpdateTime;
+        
+        // Skip jika belum cukup waktu untuk update (throttling)
+        if (timeSinceLastUpdate < throttleDelay) {
+          ticking = false;
+          return;
+        }
+        
         window.requestAnimationFrame(() => {
           const windowHeight = window.innerHeight;
           const documentHeight = document.documentElement.scrollHeight;
@@ -92,6 +99,7 @@ export default function BlogPostClient({ post }) {
             : 0;
           
           setScrollPercentage(Math.min(100, Math.max(0, percentage)));
+          lastUpdateTime = Date.now();
           ticking = false;
         });
         ticking = true;
@@ -164,7 +172,7 @@ export default function BlogPostClient({ post }) {
         onMouseLeave={() => setIsHovered(false)}
         className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg transition-all duration-300 group animate-float"
       >
-        {isHovered ? (
+        {isHovered || isMobileDevice ? (
           <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] transition-transform duration-300" />
         ) : (
           <span className="text-[10px] md:text-[10.8px] font-semibold transition-opacity duration-300">
