@@ -1,51 +1,69 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { contacts } from "@/data/portfolioConstants";
-import { useEffect, useRef } from "react";
 
-// Generate random box-shadow for stars - optimized for performance
+// Generate random box-shadow for stars
 const generateStarShadows = (count) => {
-  let shadows = [];
-  // Use viewport dimensions or fallback to 2000x2000
-  const width = typeof window !== 'undefined' ? window.innerWidth : 2000;
-  const height = typeof window !== 'undefined' ? window.innerHeight : 2000;
-  
+  const shadows = [];
   for (let i = 0; i < count; i++) {
-    const x = Math.floor(Math.random() * width);
-    const y = Math.floor(Math.random() * height);
-    shadows.push(`${x}px ${y}px 0 0 #a855f7`); // Purple color with no blur
+    const x = Math.floor(Math.random() * 2000);
+    const y = Math.floor(Math.random() * 2000);
+    shadows.push(`${x}px ${y}px #a855f7`); // Purple color
   }
-  return shadows.join(', ');
+  return shadows.join(", ");
 };
 
 const ContactContent = () => {
-  const starsRef = useRef(null);
-  const stars2Ref = useRef(null);
-  const stars3Ref = useRef(null);
+  const [starShadows, setStarShadows] = useState({
+    stars1: "",
+    stars2: "",
+    stars3: "",
+  });
 
   useEffect(() => {
-    // Generate and set box-shadow for stars - use fewer stars for better performance
-    if (starsRef.current) {
-      const smallShadows = generateStarShadows(300);
-      starsRef.current.style.boxShadow = smallShadows;
-    }
-    if (stars2Ref.current) {
-      const mediumShadows = generateStarShadows(100);
-      stars2Ref.current.style.boxShadow = mediumShadows;
-    }
-    if (stars3Ref.current) {
-      const bigShadows = generateStarShadows(50);
-      stars3Ref.current.style.boxShadow = bigShadows;
-    }
+    // Generate stars on mount
+    setStarShadows({
+      stars1: generateStarShadows(700),
+      stars2: generateStarShadows(200),
+      stars3: generateStarShadows(100),
+    });
   }, []);
 
   return (
-    <div className="min-h-screen p-8 bg-black flex items-center justify-center relative overflow-hidden contact-stars-background">
-      {/* Stars Animation Background */}
-      <div ref={starsRef} id="stars" className="contact-stars"></div>
-      <div ref={stars2Ref} id="stars2" className="contact-stars2"></div>
-      <div ref={stars3Ref} id="stars3" className="contact-stars3"></div>
-      
+    <div className="min-h-screen p-8 bg-black flex items-center justify-center contact-stars-background relative overflow-hidden">
+      {/* Stars Background */}
+      <div
+        id="contact-stars"
+        className="contact-stars-layer contact-stars-small"
+        style={{ boxShadow: starShadows.stars1 }}
+      >
+        <div
+          className="contact-stars-after"
+          style={{ boxShadow: starShadows.stars1 }}
+        ></div>
+      </div>
+      <div
+        id="contact-stars2"
+        className="contact-stars-layer contact-stars-medium"
+        style={{ boxShadow: starShadows.stars2 }}
+      >
+        <div
+          className="contact-stars-after"
+          style={{ boxShadow: starShadows.stars2 }}
+        ></div>
+      </div>
+      <div
+        id="contact-stars3"
+        className="contact-stars-layer contact-stars-big"
+        style={{ boxShadow: starShadows.stars3 }}
+      >
+        <div
+          className="contact-stars-after"
+          style={{ boxShadow: starShadows.stars3 }}
+        ></div>
+      </div>
+
       <div className="max-w-4xl w-full relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
           Get In Touch
@@ -62,9 +80,9 @@ const ContactContent = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group contact-link"
+                className="flex flex-col items-center justify-center space-y-3 group transition-transform duration-300 hover:scale-110"
               >
-                <Icon className="w-12 h-12 text-white group-hover:animate-bounce group-hover:scale-110 transition-transform duration-300" />
+                <Icon className="w-12 h-12 text-white group-hover:animate-bounce" />
                 <span className="text-white font-semibold">{contact.name}</span>
               </a>
             );

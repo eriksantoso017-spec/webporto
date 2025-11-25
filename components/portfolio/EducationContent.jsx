@@ -29,7 +29,7 @@ const EducationContent = () => {
                   <div
                     className={`absolute -inset-0.5 bg-gradient-to-r ${edu.gradientClass} rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500`}
                   ></div>
-                  <div className="relative bg-black rounded-xl p-6 space-y-3 border border-gray-800">
+                  <div className="relative bg-black rounded-xl p-6 space-y-3">
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-4">
                         <img
