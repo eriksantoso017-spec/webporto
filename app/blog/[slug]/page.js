@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const post = getPostById(params.slug);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eriksant.com";
 
   if (!post) {
     return {
