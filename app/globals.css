@@ -737,7 +737,7 @@
 
 /* Contact Stars Animation */
 .contact-stars-background {
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  background: radial-gradient(ellipse at bottom, #000000 0%, #000000 100%);
   position: relative;
   overflow: hidden;
 }
