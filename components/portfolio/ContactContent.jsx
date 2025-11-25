@@ -31,7 +31,7 @@ const ContactContent = () => {
   }, []);
 
   return (
-    <div className="min-h-screen p-8 bg-black flex items-center justify-center contact-stars-background relative overflow-hidden">
+    <div className="min-h-screen p-8 bg-black contact-stars-background relative overflow-hidden">
       {/* Stars Background */}
       <div
         id="contact-stars"
@@ -65,7 +65,7 @@ const ContactContent = () => {
       </div>
 
       <div className="max-w-4xl w-full relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
           Get In Touch
         </h2>
         <p className="text-gray-300 text-center mb-12 text-lg">

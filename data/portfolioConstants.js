@@ -73,7 +73,7 @@ export const education = [
     institution: "MAN Sidoarjo",
     year: "2019-2022",
     icon: "/icons/mansda.svg",
-    gradientClass: "from-green-300 to-yellow-400",
+    glowClass: "from-green-300 to-yellow-400", // Hijau muda ke kuning
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ export const education = [
     institution: "Universitas Brawijaya",
     year: "2022-Now",
     icon: "/icons/brawijaya.svg",
-    gradientClass: "from-blue-700 to-amber-500",
+    glowClass: "from-blue-900 to-yellow-500", // Biru tua ke emas
   },
 ];
 

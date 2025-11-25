@@ -27,9 +27,9 @@ const EducationContent = () => {
               {education.map((edu) => (
                 <div key={edu.id} className="relative group">
                   <div
-                    className={`absolute -inset-0.5 bg-gradient-to-r ${edu.gradientClass} rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500`}
+                    className={`absolute -inset-0.5 bg-gradient-to-r ${edu.glowClass} rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500`}
                   ></div>
-                  <div className="relative bg-black rounded-xl p-6 space-y-3">
+                  <div className="relative bg-black rounded-xl p-6 space-y-3 border border-gray-800">
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-4">
                         <img
