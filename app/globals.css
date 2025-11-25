@@ -735,36 +735,6 @@
   }
 }
 
-/* Education Card Hover Effect - Border Gradient (no glow) */
-.education-card-hover {
-  position: relative;
-}
-
-.education-card-hover::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 0.75rem;
-  padding: 2px;
-  background: linear-gradient(to right, rgb(134, 239, 172), rgb(250, 204, 21));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.education-card-hover[data-gradient*="blue-700"]::before {
-  background: linear-gradient(to right, rgb(29, 78, 216), rgb(245, 158, 11));
-}
-
-.education-card-hover:hover::before {
-  opacity: 1;
-}
-
 /* Contact Stars Animation Background */
 .contact-stars-background {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
