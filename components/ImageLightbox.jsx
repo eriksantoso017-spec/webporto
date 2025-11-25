@@ -273,7 +273,8 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
               e.stopPropagation();
               handlePrev();
             }}
-            className="lightbox-swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+            disabled={currentIndex === 0}
+            className="lightbox-swipe-btn-left !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
           >
             <ArrowLeft className="w-4 h-4 transition-transform duration-300" />
           </Button>
@@ -284,7 +285,8 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
               e.stopPropagation();
               handleNext();
             }}
-            className="lightbox-swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
+            disabled={currentIndex === images.length - 1}
+            className="lightbox-swipe-btn-right !bg-black/50 !text-white hover:!bg-black/80 hover:!bg-opacity-80 disabled:opacity-30 hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 group animate-pulse-slow border-0 w-8 h-8 p-0 pointer-events-auto"
           >
             <ArrowRight className="w-4 h-4 transition-transform duration-300" />
           </Button>

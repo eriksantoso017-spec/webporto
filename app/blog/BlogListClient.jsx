@@ -173,13 +173,13 @@ export default function BlogListClient({
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-3 pr-3 py-2 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300 text-sm"
+                    className="w-full pl-3 pr-3 py-2 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none transition-all duration-300 text-sm"
                   />
                 </div>
                 {/* Search Icon Button - Always visible, clickable to expand */}
                 <button
                   onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 flex-shrink-0"
+                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
                   aria-label="Search"
                 >
                   <Search className="w-[14px] h-[14px] text-white" />
@@ -232,14 +232,14 @@ export default function BlogListClient({
                       </div>
                     )}
                   </div>
-                  
+
                   {/* Title and Date Container - Centered for mobile */}
                   <div className="w-[289px] mx-auto sm:w-auto">
                     {/* Title */}
                     <h2 className="text-lg font-bold text-white mb-2 font-merriweather line-clamp-2 group-hover:text-purple-400 transition-colors text-center sm:text-left">
                       {post.title}
                     </h2>
-                    
+
                     {/* Date */}
                     <p className="text-sm text-gray-400 font-pt-sans text-center sm:text-left">
                       {post.date}
