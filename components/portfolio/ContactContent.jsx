@@ -1,71 +1,73 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { contacts } from "@/data/portfolioConstants";
 
-// Generate random box-shadow for stars
+// Generate random star positions
 const generateStarShadows = (count) => {
-  const shadows = [];
+  let shadows = "";
   for (let i = 0; i < count; i++) {
     const x = Math.floor(Math.random() * 2000);
     const y = Math.floor(Math.random() * 2000);
-    shadows.push(`${x}px ${y}px #a855f7`); // Purple color
+    shadows += `${x}px ${y}px #a855f7`; // Purple color (#a855f7)
+    if (i < count - 1) shadows += ", ";
   }
-  return shadows.join(", ");
+  return shadows;
 };
 
 const ContactContent = () => {
-  const [starShadows, setStarShadows] = useState({
-    stars1: "",
-    stars2: "",
-    stars3: "",
-  });
+  const starsRef = useRef(null);
+  const stars2Ref = useRef(null);
+  const stars3Ref = useRef(null);
+  const starsAfterRef = useRef(null);
+  const stars2AfterRef = useRef(null);
+  const stars3AfterRef = useRef(null);
 
   useEffect(() => {
-    // Generate stars on mount
-    setStarShadows({
-      stars1: generateStarShadows(700),
-      stars2: generateStarShadows(200),
-      stars3: generateStarShadows(100),
-    });
+    // Generate star shadows for each layer
+    if (starsRef.current) {
+      const shadows = generateStarShadows(700);
+      starsRef.current.style.boxShadow = shadows;
+    }
+
+    if (starsAfterRef.current) {
+      const shadows = generateStarShadows(700);
+      starsAfterRef.current.style.boxShadow = shadows;
+    }
+
+    if (stars2Ref.current) {
+      const shadows = generateStarShadows(200);
+      stars2Ref.current.style.boxShadow = shadows;
+    }
+
+    if (stars2AfterRef.current) {
+      const shadows = generateStarShadows(200);
+      stars2AfterRef.current.style.boxShadow = shadows;
+    }
+
+    if (stars3Ref.current) {
+      const shadows = generateStarShadows(100);
+      stars3Ref.current.style.boxShadow = shadows;
+    }
+
+    if (stars3AfterRef.current) {
+      const shadows = generateStarShadows(100);
+      stars3AfterRef.current.style.boxShadow = shadows;
+    }
   }, []);
 
   return (
-    <div className="min-h-screen p-8 bg-black contact-stars-background relative overflow-hidden">
+    <div className="min-h-screen p-8 bg-black flex items-center justify-center relative overflow-hidden contact-stars">
       {/* Stars Background */}
-      <div
-        id="contact-stars"
-        className="contact-stars-layer contact-stars-small"
-        style={{ boxShadow: starShadows.stars1 }}
-      >
-        <div
-          className="contact-stars-after"
-          style={{ boxShadow: starShadows.stars1 }}
-        ></div>
-      </div>
-      <div
-        id="contact-stars2"
-        className="contact-stars-layer contact-stars-medium"
-        style={{ boxShadow: starShadows.stars2 }}
-      >
-        <div
-          className="contact-stars-after"
-          style={{ boxShadow: starShadows.stars2 }}
-        ></div>
-      </div>
-      <div
-        id="contact-stars3"
-        className="contact-stars-layer contact-stars-big"
-        style={{ boxShadow: starShadows.stars3 }}
-      >
-        <div
-          className="contact-stars-after"
-          style={{ boxShadow: starShadows.stars3 }}
-        ></div>
-      </div>
-
+      <div id="stars" ref={starsRef}></div>
+      <div className="stars-after" ref={starsAfterRef}></div>
+      <div id="stars2" ref={stars2Ref}></div>
+      <div className="stars2-after" ref={stars2AfterRef}></div>
+      <div id="stars3" ref={stars3Ref}></div>
+      <div className="stars3-after" ref={stars3AfterRef}></div>
+      
       <div className="max-w-4xl w-full relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
           Get In Touch
         </h2>
         <p className="text-gray-300 text-center mb-12 text-lg">
