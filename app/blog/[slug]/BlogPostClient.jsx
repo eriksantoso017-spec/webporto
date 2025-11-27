@@ -145,16 +145,22 @@ export default function BlogPostClient({ post }) {
       </div>
       <Button
         onClick={scrollToTop}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => !isMobileDevice && setIsHovered(true)}
+        onMouseLeave={() => !isMobileDevice && setIsHovered(false)}
         className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg transition-all duration-300 group animate-float"
       >
-        {isHovered ? (
-          <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] transition-transform duration-300" />
+        {isMobileDevice ? (
+          // Mobile: hanya tampilkan icon arrow up
+          <ArrowUp className="w-5 h-5 transition-transform duration-300" />
         ) : (
-          <span className="text-[10px] md:text-[10.8px] font-semibold transition-opacity duration-300">
-            {scrollPercentage}%
-          </span>
+          // Desktop: pertahankan behavior hover (scroll percentage atau arrow up)
+          isHovered ? (
+            <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] transition-transform duration-300" />
+          ) : (
+            <span className="text-[10px] md:text-[10.8px] font-semibold transition-opacity duration-300">
+              {scrollPercentage}%
+            </span>
+          )
         )}
       </Button>
     </div>
