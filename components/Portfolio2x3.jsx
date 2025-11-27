@@ -360,51 +360,6 @@ const Portfolio2x3 = () => {
     }
   }, [expandedSection, isMobileDevice]);
 
-  // Generate stars animation for contact tab
-  useEffect(() => {
-    if (expandedSection !== "contact") return;
-
-    // Function to generate multiple box shadows
-    const generateBoxShadows = (n, color) => {
-      const shadows = [];
-      for (let i = 0; i < n; i++) {
-        const x = Math.random() * 2000;
-        const y = Math.random() * 2000;
-        shadows.push(`${x}px ${y}px ${color}`);
-      }
-      return shadows.join(", ");
-    };
-
-    // Wait for DOM to be ready
-    const timer = setTimeout(() => {
-      // Generate shadows for each layer
-      const stars1Element = document.getElementById("contact-stars");
-      const stars2Element = document.getElementById("contact-stars2");
-      const stars3Element = document.getElementById("contact-stars3");
-
-      if (stars1Element) {
-        stars1Element.style.boxShadow = generateBoxShadows(
-          700,
-          "rgb(168, 85, 247)"
-        );
-      }
-      if (stars2Element) {
-        stars2Element.style.boxShadow = generateBoxShadows(
-          200,
-          "rgb(168, 85, 247)"
-        );
-      }
-      if (stars3Element) {
-        stars3Element.style.boxShadow = generateBoxShadows(
-          100,
-          "rgb(168, 85, 247)"
-        );
-      }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [expandedSection]);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -608,31 +563,37 @@ const Portfolio2x3 = () => {
       name: "Email",
       icon: Mail,
       link: "mailto:ricksant853@gmail.com",
+      color: "bg-red-600",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
       link: "https://www.linkedin.com/in/erik-santoso-89596324b/",
+      color: "bg-blue-600",
     },
     {
       name: "GitHub",
       icon: Github,
       link: "https://github.com/eriksantoso17",
+      color: "bg-gray-700",
     },
     {
       name: "Twitter",
       icon: Twitter,
       link: "https://x.com/agenbuahkhuldi",
+      color: "bg-sky-500",
     },
     {
       name: "Instagram",
       icon: Instagram,
       link: "https://www.instagram.com/rickandsant/",
+      color: "bg-pink-600",
     },
     {
       name: "Facebook",
       icon: Facebook,
       link: "https://www.facebook.com/rickandsants/",
+      color: "bg-blue-800",
     },
   ];
 
@@ -904,18 +865,7 @@ const Portfolio2x3 = () => {
               {education.map((edu) => (
                 <div key={edu.id} className="relative group">
                   <div
-                    className={`absolute -inset-0.5 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500 ${
-                      edu.id === 1
-                        ? ""
-                        : `bg-gradient-to-r ${edu.gradientClass}`
-                    }`}
-                    style={
-                      edu.id === 1
-                        ? {
-                            background: `linear-gradient(to right, #09900F, #facc15)`,
-                          }
-                        : {}
-                    }
+                    className={`absolute -inset-0.5 bg-gradient-to-r ${edu.gradientClass} rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500`}
                   ></div>
                   <div className="relative bg-black rounded-xl p-6 space-y-3 border border-gray-800">
                     <div className="flex items-start justify-between">
@@ -981,10 +931,10 @@ const Portfolio2x3 = () => {
 
   const renderContactContent = () => (
     <div className="min-h-screen p-8 bg-black flex items-center justify-center contact-stars-background relative overflow-hidden">
-      {/* Stars Animation Layers */}
-      <div id="contact-stars" className="contact-stars-layer"></div>
-      <div id="contact-stars2" className="contact-stars-layer"></div>
-      <div id="contact-stars3" className="contact-stars-layer"></div>
+      {/* Stars Animation Background */}
+      <div id="contact-stars"></div>
+      <div id="contact-stars2"></div>
+      <div id="contact-stars3"></div>
 
       <div className="max-w-4xl w-full relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
@@ -1002,7 +952,7 @@ const Portfolio2x3 = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 bg-transparent transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group hover:scale-110"
+                className={`${contact.color} p-6 rounded-xl transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group`}
               >
                 <Icon className="w-12 h-12 text-white group-hover:animate-bounce" />
                 <span className="text-white font-semibold">{contact.name}</span>

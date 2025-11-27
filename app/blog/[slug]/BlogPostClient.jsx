@@ -28,26 +28,14 @@ export default function BlogPostClient({ post }) {
   const router = useRouter();
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const { isMobileDevice, isDesktopDevice, viewportWidth } = useDeviceType();
-  
-  // Track mount state untuk mencegah hydration mismatch
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   
   // Tentukan margin berdasarkan device type - memoized untuk performa
   // Desktop asli: margin normal (290px)
   // Mobile di desktop mode: margin lebih kecil (100px)
   // Mobile: margin kecil (16px)
-  // Gunakan nilai default yang konsisten untuk SSR, update setelah mount
   const articleMargin = useMemo(() => {
-    // Selama belum mounted, gunakan nilai default yang konsisten
-    if (!isMounted) {
-      return "mx-4 md:mx-[290px]"; // Default desktop untuk SSR
-    }
-    
-    // Setelah mounted, gunakan nilai yang sebenarnya
+    // Fallback jika viewportWidth belum terdeteksi (0 atau undefined)
     const width = viewportWidth || (typeof window !== 'undefined' ? window.innerWidth : 768);
     
     if (width < 768) {
@@ -58,7 +46,7 @@ export default function BlogPostClient({ post }) {
       return "mx-4 md:mx-[100px]"; // Mobile device di desktop mode
     }
     return "mx-4 md:mx-[290px]"; // Desktop asli
-  }, [isMounted, viewportWidth, isMobileDevice]);
+  }, [viewportWidth, isMobileDevice]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -69,25 +57,15 @@ export default function BlogPostClient({ post }) {
 
   // Calculate scroll percentage - optimized for mobile performance
   useEffect(() => {
-    // Hanya jalankan setelah mounted untuk mencegah hydration mismatch
-    if (!isMounted) return;
+    // Disable scroll percentage on mobile for better performance
+    if (isMobileDevice) {
+      setScrollPercentage(0);
+      return;
+    }
 
-    let lastUpdateTime = 0;
     let ticking = false;
-    // Throttle lebih agresif di mobile (update setiap 200ms vs setiap frame)
-    const throttleDelay = isMobileDevice ? 200 : 0;
-    
     const handleScroll = () => {
       if (!ticking) {
-        const now = Date.now();
-        const timeSinceLastUpdate = now - lastUpdateTime;
-        
-        // Skip jika belum cukup waktu untuk update (throttling)
-        if (timeSinceLastUpdate < throttleDelay) {
-          ticking = false;
-          return;
-        }
-        
         window.requestAnimationFrame(() => {
           const windowHeight = window.innerHeight;
           const documentHeight = document.documentElement.scrollHeight;
@@ -99,7 +77,6 @@ export default function BlogPostClient({ post }) {
             : 0;
           
           setScrollPercentage(Math.min(100, Math.max(0, percentage)));
-          lastUpdateTime = Date.now();
           ticking = false;
         });
         ticking = true;
@@ -112,7 +89,7 @@ export default function BlogPostClient({ post }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isMounted, isMobileDevice]);
+  }, [isMobileDevice]);
 
   return (
     <div className="min-h-screen p-8 bg-black blog-background font-open-sans blog-tab-container">
@@ -172,7 +149,7 @@ export default function BlogPostClient({ post }) {
         onMouseLeave={() => setIsHovered(false)}
         className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg transition-all duration-300 group animate-float"
       >
-        {isHovered || isMobileDevice ? (
+        {isHovered ? (
           <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] transition-transform duration-300" />
         ) : (
           <span className="text-[10px] md:text-[10.8px] font-semibold transition-opacity duration-300">

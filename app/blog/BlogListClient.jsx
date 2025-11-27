@@ -160,7 +160,7 @@ export default function BlogListClient({
               <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
                 Blog Posts
               </h1>
-              {/* Search Bar - Hanya muncul di desktop, sejajar dengan judul di pojok kanan */}
+              {/* Search Bar - Sejajar dengan judul di desktop, absolute di kanan */}
               <div className="hidden lg:flex items-center gap-2 absolute right-0">
                 {/* Search Input - Minimizes on scroll */}
                 <div
@@ -173,13 +173,13 @@ export default function BlogListClient({
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-3 pr-3 py-2 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none transition-all duration-300 text-sm"
+                    className="w-full pl-3 pr-3 py-2 bg-gray-800 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300 text-sm"
                   />
                 </div>
                 {/* Search Icon Button - Always visible, clickable to expand */}
                 <button
                   onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 flex-shrink-0"
+                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
                   aria-label="Search"
                 >
                   <Search className="w-[14px] h-[14px] text-white" />
