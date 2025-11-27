@@ -608,37 +608,31 @@ const Portfolio2x3 = () => {
       name: "Email",
       icon: Mail,
       link: "mailto:ricksant853@gmail.com",
-      color: "bg-red-600",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
       link: "https://www.linkedin.com/in/erik-santoso-89596324b/",
-      color: "bg-blue-600",
     },
     {
       name: "GitHub",
       icon: Github,
       link: "https://github.com/eriksantoso17",
-      color: "bg-gray-700",
     },
     {
       name: "Twitter",
       icon: Twitter,
       link: "https://x.com/agenbuahkhuldi",
-      color: "bg-sky-500",
     },
     {
       name: "Instagram",
       icon: Instagram,
       link: "https://www.instagram.com/rickandsant/",
-      color: "bg-pink-600",
     },
     {
       name: "Facebook",
       icon: Facebook,
       link: "https://www.facebook.com/rickandsants/",
-      color: "bg-blue-800",
     },
   ];
 
@@ -910,7 +904,18 @@ const Portfolio2x3 = () => {
               {education.map((edu) => (
                 <div key={edu.id} className="relative group">
                   <div
-                    className={`absolute -inset-0.5 bg-gradient-to-r ${edu.gradientClass} rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500`}
+                    className={`absolute -inset-0.5 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500 ${
+                      edu.id === 1
+                        ? ""
+                        : `bg-gradient-to-r ${edu.gradientClass}`
+                    }`}
+                    style={
+                      edu.id === 1
+                        ? {
+                            background: `linear-gradient(to right, #09900F, #facc15)`,
+                          }
+                        : {}
+                    }
                   ></div>
                   <div className="relative bg-black rounded-xl p-6 space-y-3 border border-gray-800">
                     <div className="flex items-start justify-between">
@@ -997,7 +1002,7 @@ const Portfolio2x3 = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-6 transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group hover:scale-110"
+                className="p-6 bg-transparent transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group hover:scale-110"
               >
                 <Icon className="w-12 h-12 text-white group-hover:animate-bounce" />
                 <span className="text-white font-semibold">{contact.name}</span>

@@ -179,7 +179,7 @@ export default function BlogListClient({
                 {/* Search Icon Button - Always visible, clickable to expand */}
                 <button
                   onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 shadow-lg hover:shadow-purple-500/50 flex-shrink-0"
+                  className="w-[34px] h-[34px] bg-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-purple-600 flex-shrink-0"
                   aria-label="Search"
                 >
                   <Search className="w-[14px] h-[14px] text-white" />
