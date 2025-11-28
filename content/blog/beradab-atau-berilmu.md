@@ -3,7 +3,7 @@ title: "Beradab atau Berilmu?"
 excerpt: "Orang beradab ada, orang berilmu ada, orang beradab tapi tidak berilmu ada? Orang berilmu tapi tidak beradab ada? Orang beradab dan berilmu ada, orang tidak beradab dan tidak berilmu mungkin ada (saya contohnya)."
 date: "November 15, 2025"
 readTime: "3 min read"
-thumbnail: "/images/thumbnail/beradab.png"
+thumbnail: "/images/thumbnail/adab-ilmu.png"
 ---
 
 > **Di kelas ini, saya lebih suka terhadap mahasiswa yang sopan, daripada mahasiswa yang pintar tapi kurang ajar -- Salah satu dosen yang pernah mengajar saya**
