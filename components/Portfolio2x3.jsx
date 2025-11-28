@@ -180,11 +180,10 @@ const ImageProjectCard = ({ project, index = 0 }) => {
             />
 
             {/* Title - Only visible on hover, positioned at bottom left */}
-            {/* Bayangan di belakang judul - dipisahkan dan diturunkan 3px */}
             <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none translate-y-[3px]">
               <div className="px-4 pb-[57px] pt-6"></div>
             </div>
-            {/* Judul post - posisi tetap sama */}
+            {/* Judul post */}
             <div className="absolute bottom-[3px] left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <h3 className="text-[0.875rem] font-bold text-white px-4 pb-3 pt-6 -ml-[5px]">
                 {project.title}
@@ -489,7 +488,7 @@ const Portfolio2x3 = () => {
       institution: "MAN Sidoarjo",
       year: "2019-2022",
       icon: "/icons/mansda.svg",
-      gradientClass: "from-green-300 to-yellow-400",
+      gradientClass: "from-green-500 to-yellow-400",
     },
     {
       id: 2,
@@ -941,7 +940,7 @@ const Portfolio2x3 = () => {
           Get In Touch
         </h2>
         <p className="text-gray-300 text-center mb-12 text-lg">
-          Let's connect! Feel free to reach out through any of these platforms.
+          Feel free to reach out through any of these platforms.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {contacts.map((contact) => {
@@ -1006,7 +1005,7 @@ const Portfolio2x3 = () => {
                 </span>
               </h2>
               <p className="text-gray-400 text-sm md:text-base mt-2">
-                Preparing your reading experience
+                Boxsyphus climbing the hill...
               </p>
             </div>
           </div>
