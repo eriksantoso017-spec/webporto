@@ -28,6 +28,8 @@ export default function BlogPostClient({ post }) {
   const router = useRouter();
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { isMobileDevice, isDesktopDevice, viewportWidth } = useDeviceType();
   
   // Tentukan margin berdasarkan device type - memoized untuk performa
@@ -54,6 +56,127 @@ export default function BlogPostClient({ post }) {
       behavior: "smooth",
     });
   };
+
+  // Loading progress bar - track page load
+  useEffect(() => {
+    setIsLoading(true);
+    setLoadingProgress(0);
+
+    let progressInterval;
+    let domCheckInterval;
+    let timeout;
+    const imageLoadHandlers = [];
+
+    // Simulate initial progress
+    const simulateProgress = () => {
+      let currentProgress = 0;
+      progressInterval = setInterval(() => {
+        if (currentProgress < 80) {
+          currentProgress += Math.random() * 15 + 5; // Random increment between 5-20
+          currentProgress = Math.min(currentProgress, 80);
+          setLoadingProgress(Math.floor(currentProgress));
+        }
+      }, 100);
+    };
+
+    // Check when all resources are loaded
+    const handleComplete = () => {
+      if (progressInterval) clearInterval(progressInterval);
+      if (domCheckInterval) clearInterval(domCheckInterval);
+      if (timeout) clearTimeout(timeout);
+      
+      // Remove all image event listeners
+      imageLoadHandlers.forEach(({ img, handler }) => {
+        img.removeEventListener('load', handler);
+        img.removeEventListener('error', handler);
+      });
+      imageLoadHandlers.length = 0;
+
+      setLoadingProgress(100);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300); // Small delay to show 100% before hiding
+    };
+
+    // Check images loaded
+    const checkImagesLoaded = () => {
+      const images = document.querySelectorAll('img');
+      if (images.length === 0) {
+        handleComplete();
+        return;
+      }
+
+      let loadedCount = 0;
+      const totalImages = images.length;
+
+      const imageLoadHandler = (img) => () => {
+        loadedCount++;
+        const progress = 80 + Math.floor((loadedCount / totalImages) * 20);
+        setLoadingProgress(Math.min(progress, 100));
+        
+        if (loadedCount === totalImages) {
+          handleComplete();
+        }
+      };
+
+      images.forEach((img) => {
+        const handler = imageLoadHandler(img);
+        if (img.complete) {
+          loadedCount++;
+          const progress = 80 + Math.floor((loadedCount / totalImages) * 20);
+          setLoadingProgress(Math.min(progress, 100));
+        } else {
+          img.addEventListener('load', handler);
+          img.addEventListener('error', handler); // Count errors as loaded
+          imageLoadHandlers.push({ img, handler });
+        }
+      });
+
+      // If all images are already loaded
+      if (loadedCount === totalImages) {
+        handleComplete();
+      }
+    };
+
+    // Start progress simulation
+    simulateProgress();
+
+    // Check DOM ready state
+    const checkDOMReady = () => {
+      if (document.readyState === 'complete') {
+        if (domCheckInterval) clearInterval(domCheckInterval);
+        // Wait a bit for React to render
+        setTimeout(() => {
+          checkImagesLoaded();
+        }, 100);
+      }
+    };
+
+    // Initial DOM check
+    checkDOMReady();
+
+    // Poll DOM ready state
+    domCheckInterval = setInterval(checkDOMReady, 50);
+
+    // Fallback timeout - ensure progress bar disappears even if something goes wrong
+    timeout = setTimeout(() => {
+      handleComplete();
+    }, 5000);
+
+    // Also listen to window load event
+    window.addEventListener('load', handleComplete, { once: true });
+
+    return () => {
+      if (progressInterval) clearInterval(progressInterval);
+      if (domCheckInterval) clearInterval(domCheckInterval);
+      if (timeout) clearTimeout(timeout);
+      window.removeEventListener('load', handleComplete);
+      imageLoadHandlers.forEach(({ img, handler }) => {
+        img.removeEventListener('load', handler);
+        img.removeEventListener('error', handler);
+      });
+    };
+  }, [post.id]); // Re-run when post changes
 
   // Calculate scroll percentage - optimized for mobile performance
   useEffect(() => {
@@ -93,17 +216,32 @@ export default function BlogPostClient({ post }) {
 
   return (
     <div className="min-h-screen p-8 bg-black blog-background font-open-sans blog-tab-container">
+      {/* Loading Progress Bar */}
+      {isLoading && (
+        <div 
+          className="fixed top-0 left-0 w-full bg-transparent z-[200]"
+          style={{ height: '0.9px' }}
+        >
+          <div
+            className="h-full bg-purple-500 transition-all duration-300 ease-out"
+            style={{
+              width: `${loadingProgress}%`,
+              boxShadow: '0 0 10px rgba(168, 85, 247, 0.8), 0 0 5px rgba(168, 85, 247, 0.5)',
+            }}
+          />
+        </div>
+      )}
       <Button
         onClick={() => router.push("/")}
         className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow transition-all duration-300 group"
       >
         <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
-        <span className="hidden md:inline font-bold">Close</span>
+        <span className="hidden md:inline">Close</span>
       </Button>
       <Link href="/blog" className="hidden md:block">
         <Button className="back-to-blog-btn fixed top-4 right-4 md:right-[9px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-pink-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 hidden md:flex items-center justify-center animate-pulse-slow transition-all duration-300 group">
           <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
-          <span className="hidden md:inline font-bold">To Blog</span>
+          <span className="hidden md:inline">To Blog</span>
         </Button>
       </Link>
       <div className={`${articleMargin || 'mx-4'} blog-content`}>

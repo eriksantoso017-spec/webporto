@@ -151,14 +151,14 @@ export default function BlogListClient({
           className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow transition-all duration-300 group"
         >
           <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
-          <span className="hidden md:inline font-bold">Close</span>
+          <span className="hidden md:inline">Close</span>
         </Button>
         <div className="max-w-7xl mx-auto blog-content">
           {/* Header with Title and Search Bar */}
           <div className="relative mb-12">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-4 relative">
               <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
-                Blog Posts
+                Blog <span className="text-purple-500">Posts</span>
               </h1>
               {/* Search Bar - Sejajar dengan judul di desktop, absolute di kanan */}
               <div className="hidden lg:flex items-center gap-2 absolute right-0">
