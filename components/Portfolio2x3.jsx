@@ -221,6 +221,15 @@ const SkillCard = ({ skill, gradientFrom, gradientTo, className = "" }) => (
             </span>
             <span className="hidden md:inline">Communication</span>
           </>
+        ) : skill.name === "PowerPoint" ? (
+          <>
+            <span className="md:hidden">
+              Power-
+              <br />
+              Point
+            </span>
+            <span className="hidden md:inline">PowerPoint</span>
+          </>
         ) : skill.name === "Time Management" ? (
           <>
             <span className="md:hidden">
