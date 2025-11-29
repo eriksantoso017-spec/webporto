@@ -199,55 +199,137 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+// Helper function to get abbreviation (first letter + "..")
+const getAbbreviation = (name) => {
+  if (!name) return "";
+  const firstLetter = name.charAt(0).toUpperCase();
+  return `${firstLetter}..`;
+};
+
 // Reusable Components
-const SkillCard = ({ skill, gradientFrom, gradientTo, className = "" }) => (
-  <div className={`relative group ${className}`}>
-    <div
-      className={`absolute -inset-[1px] bg-gradient-to-r ${gradientFrom} ${gradientTo} rounded-lg blur-sm opacity-40 group-hover:opacity-100 transition duration-500`}
-    ></div>
-    <div className="relative bg-black rounded-lg px-3 py-5 md:px-4 md:py-4 flex items-center gap-2 md:gap-3 border border-gray-800 transition-transform w-full min-h-[90px] md:h-[90px]">
-      <img
-        src={skill.icon}
-        alt={`${skill.name} icon`}
-        className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0"
-      />
-      <span className="text-white font-medium text-left flex-1 break-words">
-        {skill.name === "Communication" ? (
-          <>
-            <span className="md:hidden">
-              Communi-
+const SkillCard = ({ skill, gradientFrom, gradientTo, className = "" }) => {
+  // Get first letter for abbreviation
+  const abbreviation = getAbbreviation(skill.name);
+
+  // Generate skill class name for CSS targeting
+  const skillClassName = skill.name.toLowerCase().replace(/\s+/g, "-");
+
+  return (
+    <div className={`relative group ${className}`}>
+      <div
+        className={`absolute -inset-[1px] bg-gradient-to-r ${gradientFrom} ${gradientTo} rounded-lg blur-sm opacity-40 group-hover:opacity-100 transition duration-500`}
+      ></div>
+      <div className="relative bg-black rounded-lg px-2 py-4 sm:px-3 sm:py-5 md:px-4 md:py-4 flex items-center gap-1.5 sm:gap-2 md:gap-3 border border-gray-800 transition-transform w-full min-h-[70px] sm:min-h-[80px] md:min-h-[90px] md:h-[90px]">
+        <img
+          src={skill.icon}
+          alt={`${skill.name} icon`}
+          className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 flex-shrink-0 transition-all duration-300"
+        />
+        <span
+          className={`text-white font-medium text-left flex-1 break-words text-xs sm:text-sm md:text-base skill-name-text skill-${skillClassName}`}
+        >
+          {/* Abbreviation for all skills at very small screens */}
+          <span className="skill-abbreviation">{abbreviation}</span>
+
+          {/* Photoshop: Photo- / shop (250-285px) */}
+          {skill.name === "Photoshop" && (
+            <span className="skill-photoshop-break-250-285">
+              Photo-
               <br />
-              cation
+              shop
             </span>
-            <span className="hidden md:inline">Communication</span>
-          </>
-        ) : skill.name === "PowerPoint" ? (
-          <>
-            <span className="md:hidden">
+          )}
+
+          {/* Communication: Comm- / uni- / cation (250-274px) */}
+          {skill.name === "Communication" && (
+            <>
+              <span className="skill-communication-break-250-274">
+                Comm-
+                <br />
+                uni-
+                <br />
+                cation
+              </span>
+              <span className="skill-communication-break-275-360">
+                Communi-
+                <br />
+                cation
+              </span>
+            </>
+          )}
+
+          {/* PowerPoint: Power- / Point (250-286px) */}
+          {skill.name === "PowerPoint" && (
+            <span className="skill-powerpoint-break-250-286">
               Power-
               <br />
               Point
             </span>
-            <span className="hidden md:inline">PowerPoint</span>
-          </>
-        ) : skill.name === "Time Management" ? (
-          <>
-            <span className="md:hidden">
-              Time
+          )}
+
+          {/* Time Management: Time / Management (340-470px) */}
+          {skill.name === "Time Management" && (
+            <>
+              <span className="skill-timemanagement-break-340-470">
+                Time
+                <br />
+                Management
+              </span>
+              <span className="skill-timemanagement-break-250-339">
+                Time
+                <br />
+                Manage-
+                <br />
+                ment
+              </span>
+            </>
+          )}
+
+          {/* Premiere Pro: Premiere / Pro (250-320px) */}
+          {skill.name === "Premiere Pro" && (
+            <span className="skill-premiere-pro-break-250-320">
+              Premiere
               <br />
-              Manage-
-              <br />
-              ment
+              Pro
             </span>
-            <span className="hidden md:inline">Time Management</span>
-          </>
-        ) : (
-          skill.name
-        )}
-      </span>
+          )}
+
+          {/* Problem Solving: Problem / Solving (250-339px) */}
+          {skill.name === "Problem Solving" && (
+            <span className="skill-problem-solving-break-250-339">
+              Problem
+              <br />
+              Solving
+            </span>
+          )}
+
+          {/* Team Work: Team / Work (250-305px) */}
+          {skill.name === "Team Work" && (
+            <span className="skill-team-work-break-250-305">
+              Team
+              <br />
+              Work
+            </span>
+          )}
+
+          {/* Default for other skills */}
+          {skill.name !== "Photoshop" &&
+            skill.name !== "Communication" &&
+            skill.name !== "PowerPoint" &&
+            skill.name !== "Time Management" &&
+            skill.name !== "Premiere Pro" &&
+            skill.name !== "Problem Solving" &&
+            skill.name !== "Team Work" && (
+              <span className="skill-default-line-break">{skill.name}</span>
+            )}
+
+          {/* Full text for all skills */}
+          <span className="skill-full-text">{skill.name}</span>
+        </span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const BackToTopButton = () => (
   <Button

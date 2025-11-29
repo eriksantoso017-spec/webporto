@@ -4,6 +4,15 @@
 
 /* Open Sans font is loaded via next/font/google in layout.js */
 
+/* Force dark mode for mobile browser navbar */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  color-scheme: dark;
+}
+
 @keyframes float {
   0%,
   100% {
@@ -974,5 +983,236 @@
   }
   to {
     transform: translateY(-2000px);
+  }
+}
+
+/* Skill Name Text Responsive Breakpoints */
+.skill-name-text {
+  position: relative;
+}
+
+/* Default: hide all variations */
+.skill-name-text > span {
+  display: none;
+}
+
+/* ≤250px: Show abbreviation for ALL skills */
+@media (max-width: 250px) {
+  .skill-abbreviation {
+    display: block !important;
+  }
+}
+
+/* 250-285px: Photoshop Photo- / shop */
+@media (min-width: 250px) and (max-width: 285px) {
+  .skill-photoshop .skill-photoshop-break-250-285 {
+    display: block !important;
+  }
+  .skill-photoshop .skill-abbreviation,
+  .skill-photoshop .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* 250-286px: PowerPoint Power- / Point */
+@media (min-width: 250px) and (max-width: 286px) {
+  .skill-powerpoint .skill-powerpoint-break-250-286 {
+    display: block !important;
+  }
+  .skill-powerpoint .skill-abbreviation,
+  .skill-powerpoint .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* 250-339px: Time Management Time / Manage- / ment */
+@media (min-width: 250px) and (max-width: 339px) {
+  .skill-time-management .skill-timemanagement-break-250-339 {
+    display: block !important;
+  }
+  .skill-time-management .skill-abbreviation,
+  .skill-time-management .skill-timemanagement-break-340-470,
+  .skill-time-management .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* 250-274px: Communication Comm- / uni- / cation */
+@media (min-width: 250px) and (max-width: 274px) {
+  .skill-communication .skill-communication-break-250-274 {
+    display: block !important;
+  }
+  .skill-communication .skill-abbreviation,
+  .skill-communication .skill-communication-break-275-360,
+  .skill-communication .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* 275-360px: Communication Communi- / cation */
+@media (min-width: 275px) and (max-width: 360px) {
+  .skill-communication .skill-communication-break-275-360 {
+    display: block !important;
+  }
+  .skill-communication .skill-abbreviation,
+  .skill-communication .skill-communication-break-250-274,
+  .skill-communication .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* 340-470px: Time Management Time / Management */
+@media (min-width: 340px) and (max-width: 470px) {
+  .skill-time-management .skill-timemanagement-break-340-470 {
+    display: block !important;
+  }
+  .skill-time-management .skill-abbreviation,
+  .skill-time-management .skill-timemanagement-break-250-339,
+  .skill-time-management .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* Fallback ranges - show full text outside specific breakpoints but before 640px */
+/* Photoshop: 286-639px show full text */
+@media (min-width: 286px) and (max-width: 639px) {
+  .skill-photoshop .skill-full-text {
+    display: block !important;
+  }
+  .skill-photoshop .skill-photoshop-break-250-285,
+  .skill-photoshop .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* PowerPoint: 287-639px show full text */
+@media (min-width: 287px) and (max-width: 639px) {
+  .skill-powerpoint .skill-full-text {
+    display: block !important;
+  }
+  .skill-powerpoint .skill-powerpoint-break-250-286,
+  .skill-powerpoint .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* Communication: 361-639px show full text */
+@media (min-width: 361px) and (max-width: 639px) {
+  .skill-communication .skill-full-text {
+    display: block !important;
+  }
+  .skill-communication .skill-communication-break-250-274,
+  .skill-communication .skill-communication-break-275-360,
+  .skill-communication .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* 250-320px: Premiere Pro Premiere / Pro */
+@media (min-width: 250px) and (max-width: 320px) {
+  .skill-premiere-pro .skill-premiere-pro-break-250-320 {
+    display: block !important;
+  }
+  .skill-premiere-pro .skill-abbreviation,
+  .skill-premiere-pro .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* Premiere Pro: 321-639px show full text */
+@media (min-width: 321px) and (max-width: 639px) {
+  .skill-premiere-pro .skill-full-text {
+    display: block !important;
+  }
+  .skill-premiere-pro .skill-premiere-pro-break-250-320,
+  .skill-premiere-pro .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* 250-339px: Problem Solving Problem / Solving */
+@media (min-width: 250px) and (max-width: 339px) {
+  .skill-problem-solving .skill-problem-solving-break-250-339 {
+    display: block !important;
+  }
+  .skill-problem-solving .skill-abbreviation,
+  .skill-problem-solving .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* Problem Solving: 340-639px show full text */
+@media (min-width: 340px) and (max-width: 639px) {
+  .skill-problem-solving .skill-full-text {
+    display: block !important;
+  }
+  .skill-problem-solving .skill-problem-solving-break-250-339,
+  .skill-problem-solving .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* 250-305px: Team Work Team / Work */
+@media (min-width: 250px) and (max-width: 305px) {
+  .skill-team-work .skill-team-work-break-250-305 {
+    display: block !important;
+  }
+  .skill-team-work .skill-abbreviation,
+  .skill-team-work .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* Team Work: 306-639px show full text */
+@media (min-width: 306px) and (max-width: 639px) {
+  .skill-team-work .skill-full-text {
+    display: block !important;
+  }
+  .skill-team-work .skill-team-work-break-250-305,
+  .skill-team-work .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* Time Management: 471-639px show full text */
+@media (min-width: 471px) and (max-width: 639px) {
+  .skill-time-management .skill-full-text {
+    display: block !important;
+  }
+  .skill-time-management .skill-timemanagement-break-340-470,
+  .skill-time-management .skill-timemanagement-break-250-339,
+  .skill-time-management .skill-abbreviation {
+    display: none !important;
+  }
+}
+
+/* Other skills (not specified): 250-639px show default line breaks or full text */
+@media (min-width: 250px) and (max-width: 639px) {
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(.skill-powerpoint):not(.skill-time-management):not(.skill-premiere-pro):not(.skill-problem-solving):not(.skill-team-work) .skill-default-line-break {
+    display: block !important;
+  }
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(.skill-powerpoint):not(.skill-time-management):not(.skill-premiere-pro):not(.skill-problem-solving):not(.skill-team-work) .skill-abbreviation,
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(.skill-powerpoint):not(.skill-time-management):not(.skill-premiere-pro):not(.skill-problem-solving):not(.skill-team-work) .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* ≥640px: Show full text for ALL skills */
+@media (min-width: 640px) {
+  .skill-full-text {
+    display: block !important;
+  }
+  .skill-abbreviation,
+  .skill-photoshop-break-250-285,
+  .skill-powerpoint-break-250-286,
+  .skill-communication-break-250-274,
+  .skill-communication-break-275-360,
+  .skill-timemanagement-break-250-339,
+  .skill-timemanagement-break-340-470,
+  .skill-premiere-pro-break-250-320,
+  .skill-problem-solving-break-250-339,
+  .skill-team-work-break-250-305,
+  .skill-default-line-break {
+    display: none !important;
   }
 }

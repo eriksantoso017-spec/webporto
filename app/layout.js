@@ -125,8 +125,12 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} ${jetbrainsMono.variable}`}
+      style={{ colorScheme: 'dark' }}
     >
       <head>
+        {/* Theme color for mobile browser navbar - dark mode */}
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="dark" />
         {/* Resource hints for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
