@@ -244,7 +244,7 @@ export default function BlogPostClient({ post }) {
           <span className="hidden md:inline">To Blog</span>
         </Button>
       </Link>
-      <div className={`${articleMargin || 'mx-4'} blog-content`}>
+      <div className={`${articleMargin || 'mx-4'} blog-content mt-[40px] mb-[85px]`}>
         <article className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{post.date}</span>

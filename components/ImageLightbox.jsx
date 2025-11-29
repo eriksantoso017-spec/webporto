@@ -11,6 +11,8 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [lastTouchDistance, setLastTouchDistance] = useState(0);
+  const [imageOpacity, setImageOpacity] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   const imgRef = useRef(null);
 
   useEffect(() => {
@@ -18,6 +20,8 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
       setCurrentIndex(initialIndex || 0);
       setScale(1);
       setPosition({ x: 0, y: 0 });
+      setIsImageLoading(true);
+      setImageOpacity(0);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -28,6 +32,27 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
     };
   }, [isOpen, initialIndex]);
 
+  // Reset image loading state when currentIndex changes
+  useEffect(() => {
+    if (isOpen) {
+      setIsImageLoading(true);
+      setImageOpacity(0);
+    }
+  }, [currentIndex, isOpen]);
+
+  const handleImageLoad = () => {
+    setIsImageLoading(false);
+    // Slowly reveal image with fade-in animation
+    setTimeout(() => {
+      setImageOpacity(1);
+    }, 50);
+  };
+
+  const handleImageLoadStart = () => {
+    setIsImageLoading(true);
+    setImageOpacity(0);
+  };
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -35,11 +60,21 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
       if (e.key === "Escape") {
         onClose();
       } else if (e.key === "ArrowLeft") {
-        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+        setCurrentIndex((prev) => {
+          const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+          setIsImageLoading(true);
+          setImageOpacity(0);
+          return newIndex;
+        });
         setScale(1);
         setPosition({ x: 0, y: 0 });
       } else if (e.key === "ArrowRight") {
-        setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+        setCurrentIndex((prev) => {
+          const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+          setIsImageLoading(true);
+          setImageOpacity(0);
+          return newIndex;
+        });
         setScale(1);
         setPosition({ x: 0, y: 0 });
       }
@@ -50,13 +85,23 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
   }, [isOpen, images.length, onClose]);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setCurrentIndex((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : images.length - 1;
+      setIsImageLoading(true);
+      setImageOpacity(0);
+      return newIndex;
+    });
     setScale(1);
     setPosition({ x: 0, y: 0 });
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setCurrentIndex((prev) => {
+      const newIndex = prev < images.length - 1 ? prev + 1 : 0;
+      setIsImageLoading(true);
+      setImageOpacity(0);
+      return newIndex;
+    });
     setScale(1);
     setPosition({ x: 0, y: 0 });
   };
@@ -253,14 +298,26 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
           src={images[currentIndex]}
           alt={`Image ${currentIndex + 1}`}
           className="max-w-full max-h-[90vh] object-contain select-none"
+          onLoad={handleImageLoad}
+          onLoadStart={handleImageLoadStart}
           style={{
             transform: `scale(${scale}) translate(${position.x / scale}px, ${
               position.y / scale
             }px)`,
             transition: isDragging ? "none" : "transform 0.3s ease",
+            opacity: imageOpacity,
+            transitionProperty: isDragging ? "transform" : "transform, opacity",
+            transitionDuration: isDragging ? "0.3s" : "0.3s, 0.5s",
+            transitionTimingFunction: isDragging ? "ease" : "ease, ease-in-out",
           }}
           draggable={false}
         />
+        {/* Loading placeholder */}
+        {isImageLoading && (
+          <div className="absolute inset-0 bg-gray-900 animate-pulse flex items-center justify-center">
+            <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
+          </div>
+        )}
       </div>
 
       {/* Swipe Buttons */}

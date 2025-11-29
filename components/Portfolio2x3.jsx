@@ -394,22 +394,58 @@ const ImageProjectCard = ({ project, index = 0 }) => {
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [imageOpacity, setImageOpacity] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   const isMobileDevice = useIsMobileDevice();
 
   const prevImageWithBounds = (e) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
+    setCurrentIndex((prev) => {
+      const newIndex = Math.max(0, prev - 1);
+      setIsImageLoading(true);
+      setImageOpacity(0);
+      return newIndex;
+    });
   };
 
   const nextImageWithBounds = (e) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => Math.min(project.images.length - 1, prev + 1));
+    setCurrentIndex((prev) => {
+      const newIndex = Math.min(project.images.length - 1, prev + 1);
+      setIsImageLoading(true);
+      setImageOpacity(0);
+      return newIndex;
+    });
+  };
+
+  const handleImageLoad = () => {
+    setIsImageLoading(false);
+    // Slowly reveal image with fade-in animation
+    setTimeout(() => {
+      setImageOpacity(1);
+    }, 50);
+  };
+
+  const handleImageLoadStart = () => {
+    setIsImageLoading(true);
+    setImageOpacity(0);
   };
 
   const handleImageClick = (index) => {
     setLightboxIndex(index);
     setIsLightboxOpen(true);
   };
+
+  // Initialize image opacity on mount
+  useEffect(() => {
+    // Preload first image
+    const img = new Image();
+    img.src = project.images[0];
+    img.onload = () => {
+      setIsImageLoading(false);
+      setImageOpacity(1);
+    };
+  }, []);
 
   useEffect(() => {
     const card = cardRef.current;
@@ -509,8 +545,18 @@ const ImageProjectCard = ({ project, index = 0 }) => {
             <img
               src={project.images[currentIndex]}
               alt={`${project.title} - slide ${currentIndex + 1}`}
-              className="w-full h-full object-cover hover:opacity-90 transition-opacity pointer-events-none"
+              className="w-full h-full object-cover hover:opacity-90 pointer-events-none"
+              onLoad={handleImageLoad}
+              onLoadStart={handleImageLoadStart}
+              style={{
+                opacity: imageOpacity,
+                transition: "opacity 0.5s ease-in-out",
+              }}
             />
+            {/* Loading placeholder */}
+            {isImageLoading && (
+              <div className="absolute inset-0 bg-gray-900 animate-pulse" />
+            )}
             <div className="absolute bottom-[3px] left-0 right-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none translate-y-[3px]">
               <div className="px-4 pb-[57px] pt-6"></div>
             </div>
