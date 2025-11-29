@@ -212,7 +212,29 @@ const SkillCard = ({ skill, gradientFrom, gradientTo, className = "" }) => (
         className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0"
       />
       <span className="text-white font-medium text-left flex-1 break-words">
-        {skill.name}
+        {skill.name === "Communication" ? (
+          <>
+            <span className="md:hidden">
+              Communi-
+              <br />
+              cation
+            </span>
+            <span className="hidden md:inline">Communication</span>
+          </>
+        ) : skill.name === "Time Management" ? (
+          <>
+            <span className="md:hidden">
+              Time
+              <br />
+              Manage-
+              <br />
+              ment
+            </span>
+            <span className="hidden md:inline">Time Management</span>
+          </>
+        ) : (
+          skill.name
+        )}
       </span>
     </div>
   </div>
