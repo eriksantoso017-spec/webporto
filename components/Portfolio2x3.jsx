@@ -771,7 +771,7 @@ const Portfolio2x3 = () => {
     <div className="min-h-screen p-8 bg-black skills-tab-container">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          My <span className="text-purple-500">Skills</span>
+          My Skills
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Technical Skills - Left Column */}
