@@ -206,6 +206,27 @@ const getAbbreviation = (name) => {
   return `${firstLetter}..`;
 };
 
+// Helper function to split text into individual characters with spans
+const splitToChars = (text, className = "") => {
+  return text.split("").map((char, index) => {
+    if (char === " ") {
+      // For spaces, show as empty line or skip
+      return (
+        <span
+          key={`space-${index}`}
+          className={className}
+          style={{ display: "block", height: "0.5em" }}
+        ></span>
+      );
+    }
+    return (
+      <span key={`char-${index}`} className={className}>
+        {char}
+      </span>
+    );
+  });
+};
+
 // Reusable Components
 const SkillCard = ({ skill, gradientFrom, gradientTo, className = "" }) => {
   // Get first letter for abbreviation
@@ -380,26 +401,52 @@ const PaginationControls = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-const VideoCard = ({ project }) => (
-  <div className="relative group self-start">
-    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-    <div className="relative bg-black rounded-xl p-6 space-y-4 border border-gray-800">
-      <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
-        <iframe
-          width="100%"
-          height="100%"
-          src={`https://www.youtube.com/embed/${project.youtubeId}`}
-          title={project.title}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          loading="lazy"
-        />
+// Helper function to get first word + ".."
+const getFirstWordAbbreviation = (text) => {
+  if (!text) return "";
+  const firstWord = text.split(" ")[0];
+  return `${firstWord}..`;
+};
+
+// Helper function to get first letter + ".."
+const getFirstLetterAbbreviation = (text) => {
+  if (!text) return "";
+  const firstLetter = text.charAt(0).toUpperCase();
+  return `${firstLetter}..`;
+};
+
+const VideoCard = ({ project }) => {
+  const firstWordAbbr = getFirstWordAbbreviation(project.title);
+  const firstLetterAbbr = getFirstLetterAbbreviation(project.title);
+
+  return (
+    <div className="relative group self-start video-card">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 rounded-xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+      <div className="relative bg-black rounded-xl p-6 space-y-4 border border-gray-800 video-card-content">
+        <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden video-thumbnail">
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${project.youtubeId}`}
+            title={project.title}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+        <h3 className="text-xl font-bold text-white video-card-title">
+          {/* Full title */}
+          <span className="video-title-full">{project.title}</span>
+          {/* First word + ".." */}
+          <span className="video-title-first-word">{firstWordAbbr}</span>
+          {/* First letter + ".." */}
+          <span className="video-title-first-letter">{firstLetterAbbr}</span>
+        </h3>
       </div>
-      <h3 className="text-xl font-bold text-white">{project.title}</h3>
     </div>
-  </div>
-);
+  );
+};
 
 const GlowCard = ({ children, gradientClass, className = "" }) => (
   <div className={`relative group ${className}`}>
@@ -438,6 +485,101 @@ const CubeCard = ({ item, onClick }) => {
     );
   };
 
+  // Get abbreviated versions for ≤150px
+  const getAbbreviatedTitle = () => {
+    const titleMap = {
+      home: ".h..",
+      skills: ".s..",
+      portfolio: ".p..",
+      education: ".e..",
+      contact: ".c..",
+      blog: ".b..",
+    };
+    return titleMap[item.id] || item.title;
+  };
+
+  const getAbbreviatedSubtitle = () => {
+    const subtitleMap = {
+      home: (
+        <>
+          <span className="text-[#569cd6]">w..</span>
+          <span className="text-white">:</span>
+          <span className="text-[#c084fc]">
+            g..
+            <br />
+            k..
+          </span>
+        </>
+      ),
+      skills: (
+        <>
+          <span className="text-[#569cd6]">w..</span>
+          <span className="text-white">:</span>
+          <span className="text-[#c084fc]">
+            m..
+            <br />
+            t..
+            <br />
+            e..
+          </span>
+        </>
+      ),
+      portfolio: (
+        <>
+          <span className="text-[#569cd6]">m..</span>
+          <span className="text-white">:</span>
+          <span className="text-[#c084fc]">
+            p..
+            <br />
+            i.-
+            <br />
+            b..
+          </span>
+        </>
+      ),
+      education: (
+        <>
+          <span className="text-[#569cd6]">l.-</span>
+          <span className="text-white">:</span>
+          <span className="text-[#c084fc]">
+            j..
+            <br />
+            a..
+            <br />
+            b..
+          </span>
+        </>
+      ),
+      contact: (
+        <>
+          <span className="text-[#569cd6]">g.-</span>
+          <span className="text-white">:</span>
+          <span className="text-[#c084fc]">
+            t..
+            <br />
+            l..
+            <br />
+            c..
+          </span>
+        </>
+      ),
+      blog: (
+        <>
+          <span className="text-[#569cd6]">r..</span>
+          <span className="text-white">:</span>
+          <span className="text-[#c084fc]">
+            t..
+            <br />
+            t..
+            <br />
+            &..
+          </span>
+        </>
+      ),
+    };
+    return subtitleMap[item.id] || parseSubtitle(item.subtitle);
+  };
+
   return (
     <div
       key={item.id}
@@ -445,18 +587,29 @@ const CubeCard = ({ item, onClick }) => {
       className="relative group cursor-pointer"
     >
       <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
-      <div className="relative bg-black rounded-lg p-8 h-64 flex flex-col border border-gray-800 group-hover:border-transparent transition-all font-jetbrains-mono overflow-hidden">
+      <div
+        className={`relative bg-black rounded-lg p-8 h-64 flex flex-col border border-gray-800 group-hover:border-transparent transition-all font-jetbrains-mono overflow-hidden cube-card cube-card-${item.id}`}
+      >
         <div className="absolute top-4 left-4 flex gap-2 z-10">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
           <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
         </div>
         <div className="flex flex-col justify-center items-start text-left space-y-3 mt-8">
-          <h2 className="text-2xl font-semibold text-[#dfa73a]">
-            {item.title}
+          <h2 className="text-2xl font-semibold text-[#dfa73a] cube-card-title">
+            <span className="cube-title-full">{item.title}</span>
+            <span className="cube-title-abbr">{getAbbreviatedTitle()}</span>
           </h2>
-          <p className="text-lg" style={{ marginLeft: "13px" }}>
-            {parseSubtitle(item.subtitle)}
+          <p
+            className="text-lg cube-card-subtitle"
+            style={{ marginLeft: "13px" }}
+          >
+            <span className="cube-subtitle-full">
+              {parseSubtitle(item.subtitle)}
+            </span>
+            <span className="cube-subtitle-abbr">
+              {getAbbreviatedSubtitle()}
+            </span>
           </p>
           <p className="text-base text-[#dfa73a]">{item.preview}</p>
         </div>
@@ -812,35 +965,395 @@ const Portfolio2x3 = () => {
   const renderHomeContent = () => (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-black home-particles">
       <div className="text-center space-y-6 max-w-3xl home-content">
-        <h1 className="text-5xl md:text-7xl font-bold text-white animate-pulse">
-          Hello, I'm <span className="text-purple-500">Erik Santoso</span>
+        <h1 className="text-5xl md:text-7xl font-bold text-white animate-pulse section-title home-title">
+          {/* Full version: ≥281px */}
+          <span className="home-title-full">
+            Hello, I'm <span className="text-purple-500">Erik Santoso</span>
+          </span>
+          {/* 4 words per line: 271-280px */}
+          <span className="home-title-break-271-280">
+            Hello, I'm
+            <br />
+            <span className="text-purple-500">Erik Santoso</span>
+          </span>
+          {/* 3 words per line: 221-270px */}
+          <span className="home-title-break-221-270">
+            Hello,
+            <br />
+            I'm <span className="text-purple-500">Erik</span>
+            <br />
+            <span className="text-purple-500">Santoso</span>
+          </span>
+          {/* 2 words per line: 151-220px */}
+          <span className="home-title-break-151-220">
+            Hello,
+            <br />
+            I'm
+            <br />
+            <span className="text-purple-500">Erik</span>
+            <br />
+            <span className="text-purple-500">Santoso</span>
+          </span>
+          {/* 1 word per line: 101-150px */}
+          <span className="home-title-break-101-150">
+            Hello,
+            <br />
+            I'm
+            <br />
+            <span className="text-purple-500">Erik</span>
+            <br />
+            <span className="text-purple-500">Santoso</span>
+          </span>
+          {/* Max 3 chars per line: 91-100px */}
+          <span className="home-title-break-91-100">
+            Hel
+            <br />
+            lo,
+            <br />
+            I'm
+            <br />
+            <span className="text-purple-500">Eri</span>
+            <br />
+            <span className="text-purple-500">k</span>
+            <br />
+            <span className="text-purple-500">San</span>
+            <br />
+            <span className="text-purple-500">tos</span>
+            <br />
+            <span className="text-purple-500">o</span>
+          </span>
+          {/* 1 char per line: ≤90px */}
+          <span className="home-title-break-90">
+            <span className="text-white">
+              {splitToChars("Hello, I'm ", "home-char")}
+            </span>
+            <span className="text-purple-500">
+              {splitToChars("Erik Santoso", "home-char")}
+            </span>
+          </span>
         </h1>
-        <h2 className="text-2xl md:text-4xl font-semibold text-white">
-          Undergraduate Communication Student
+        <h2 className="text-2xl md:text-4xl font-semibold text-white section-subtitle home-subtitle">
+          {/* Full version: ≥281px */}
+          <span className="home-subtitle-full">
+            Undergraduate Communication Student
+          </span>
+          {/* 4 words per line: 271-280px */}
+          <span className="home-subtitle-break-271-280">
+            Undergraduate Communication
+            <br />
+            Student
+          </span>
+          {/* 3 words per line: 221-270px */}
+          <span className="home-subtitle-break-221-270">
+            Undergraduate
+            <br />
+            Communication
+            <br />
+            Student
+          </span>
+          {/* 2 words per line: 151-220px */}
+          <span className="home-subtitle-break-151-220">
+            Undergraduate
+            <br />
+            Communication
+            <br />
+            Student
+          </span>
+          {/* 1 word per line: 101-150px */}
+          <span className="home-subtitle-break-101-150">
+            Undergraduate
+            <br />
+            Communication
+            <br />
+            Student
+          </span>
+          {/* Max 3 chars per line: 91-100px */}
+          <span className="home-subtitle-break-91-100">
+            Und
+            <br />
+            erg
+            <br />
+            rad
+            <br />
+            uat
+            <br />
+            e
+            <br />
+            Com
+            <br />
+            mun
+            <br />
+            ica
+            <br />
+            tion
+            <br />
+            Stu
+            <br />
+            den
+            <br />t
+          </span>
+          {/* 1 char per line: ≤90px */}
+          <span className="home-subtitle-break-90">
+            <span className="home-subtitle-break-90-text">
+              {splitToChars("Undergraduate Communication Student", "home-char")}
+            </span>
+          </span>
         </h2>
-        <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-          Part time designer and video editor. Full time Unemployer. Enjoy
-          learning new things. Passionate about technology, editing, design,
-          cyber security, OSINT and finance.
+        <p className="text-lg md:text-xl text-gray-300 leading-relaxed section-description home-description">
+          {/* Full version: ≥281px */}
+          <span className="home-description-full">
+            Part time designer and video editor. Full time Unemployer. Enjoy
+            learning new things. Passionate about technology, editing, design,
+            cyber security, OSINT and finance.
+          </span>
+          {/* 4 words per line: 271-280px */}
+          <span className="home-description-break-271-280">
+            Part time designer and
+            <br />
+            video editor. Full time
+            <br />
+            Unemployer. Enjoy learning
+            <br />
+            new things. Passionate about
+            <br />
+            technology, editing, design,
+            <br />
+            cyber security, OSINT and
+            <br />
+            finance.
+          </span>
+          {/* 3 words per line: 221-270px */}
+          <span className="home-description-break-221-270">
+            Part time designer
+            <br />
+            and video editor.
+            <br />
+            Full time Unemployer.
+            <br />
+            Enjoy learning new
+            <br />
+            things. Passionate about
+            <br />
+            technology, editing, design,
+            <br />
+            cyber security, OSINT
+            <br />
+            and finance.
+          </span>
+          {/* 2 words per line: 151-220px */}
+          <span className="home-description-break-151-220">
+            Part time
+            <br />
+            designer and
+            <br />
+            video editor.
+            <br />
+            Full time
+            <br />
+            Unemployer. Enjoy
+            <br />
+            learning new
+            <br />
+            things. Passionate
+            <br />
+            about technology,
+            <br />
+            editing, design,
+            <br />
+            cyber security,
+            <br />
+            OSINT and
+            <br />
+            finance.
+          </span>
+          {/* 1 word per line: 101-150px */}
+          <span className="home-description-break-101-150">
+            Part
+            <br />
+            time
+            <br />
+            designer
+            <br />
+            and
+            <br />
+            video
+            <br />
+            editor.
+            <br />
+            Full
+            <br />
+            time
+            <br />
+            Unemployer.
+            <br />
+            Enjoy
+            <br />
+            learning
+            <br />
+            new
+            <br />
+            things.
+            <br />
+            Passionate
+            <br />
+            about
+            <br />
+            technology,
+            <br />
+            editing,
+            <br />
+            design,
+            <br />
+            cyber
+            <br />
+            security,
+            <br />
+            OSINT
+            <br />
+            and
+            <br />
+            finance.
+          </span>
+          {/* Max 3 chars per line: 91-100px */}
+          <span className="home-description-break-91-100">
+            Par
+            <br />
+            t
+            <br />
+            tim
+            <br />
+            e
+            <br />
+            des
+            <br />
+            ign
+            <br />
+            er
+            <br />
+            and
+            <br />
+            vid
+            <br />
+            eo
+            <br />
+            edi
+            <br />
+            tor.
+            <br />
+            Ful
+            <br />
+            l
+            <br />
+            tim
+            <br />
+            e
+            <br />
+            Un
+            <br />
+            emp
+            <br />
+            loy
+            <br />
+            er.
+            <br />
+            Enj
+            <br />
+            oy
+            <br />
+            lea
+            <br />
+            rni
+            <br />
+            ng
+            <br />
+            new
+            <br />
+            thi
+            <br />
+            ngs.
+            <br />
+            Pas
+            <br />
+            sio
+            <br />
+            nat
+            <br />
+            e
+            <br />
+            abo
+            <br />
+            ut
+            <br />
+            tec
+            <br />
+            hno
+            <br />
+            log
+            <br />
+            y,
+            <br />
+            edi
+            <br />
+            tin
+            <br />
+            g,
+            <br />
+            des
+            <br />
+            ign
+            <br />
+            ,
+            <br />
+            cyb
+            <br />
+            er
+            <br />
+            sec
+            <br />
+            uri
+            <br />
+            ty,
+            <br />
+            OSI
+            <br />
+            NT
+            <br />
+            and
+            <br />
+            fin
+            <br />
+            anc
+            <br />
+            e.
+          </span>
+          {/* 1 char per line: ≤90px */}
+          <span className="home-description-break-90">
+            <span className="home-description-break-90-text">
+              {splitToChars(
+                "Part time designer and video editor. Full time Unemployer. Enjoy learning new things. Passionate about technology, editing, design, cyber security, OSINT and finance.",
+                "home-char"
+              )}
+            </span>
+          </span>
         </p>
-        <div className="flex flex-wrap gap-4 justify-center mt-8">
+        <div className="flex flex-wrap gap-4 justify-center mt-8 home-buttons-container">
           <Button
             onClick={() => setExpandedSection("portfolio")}
-            className="bg-purple-600 text-white hover:bg-purple-700"
+            className="bg-purple-600 text-white hover:bg-purple-700 home-button"
           >
             View My Work
           </Button>
           <Button
             onClick={() => setExpandedSection("contact")}
             variant="outline"
-            className="border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white"
+            className="border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white home-button"
           >
             Get In Touch
           </Button>
           <a
             href="/cvdungu.pdf"
             download
-            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 border border-gray-300 inline-flex items-center justify-center"
+            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 border border-gray-300 inline-flex items-center justify-center home-button"
           >
             Download CV
           </a>
@@ -852,13 +1365,13 @@ const Portfolio2x3 = () => {
   const renderSkillsContent = () => (
     <div className="min-h-screen p-8 bg-black skills-tab-container">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center section-title">
           My Skills
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Technical Skills - Left Column */}
           <div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6">
+            <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 section-subtitle">
               Technical Skills
             </h3>
             <div className="grid grid-cols-2 gap-3">
@@ -874,7 +1387,7 @@ const Portfolio2x3 = () => {
           </div>
           {/* Soft Skills - Right Column */}
           <div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-green-400 mb-6">
+            <h3 className="text-2xl md:text-3xl font-semibold text-green-400 mb-6 section-subtitle">
               Soft Skills
             </h3>
             <div className="grid grid-cols-2 gap-3">
@@ -899,7 +1412,7 @@ const Portfolio2x3 = () => {
       <div className="max-w-7xl mx-auto">
         <h2
           ref={portfolioTitleRef}
-          className="text-4xl md:text-5xl font-bold text-white mb-8 text-center"
+          className="text-4xl md:text-5xl font-bold text-white mb-8 text-center section-title"
         >
           My <span className="text-purple-500">Portfolio</span>
         </h2>
@@ -969,33 +1482,39 @@ const Portfolio2x3 = () => {
   );
 
   const renderEducationContent = () => (
-    <div className="min-h-screen p-8 bg-black">
+    <div className="min-h-screen p-8 bg-black education-tab-container">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center section-title">
           Education & <span className="text-purple-500">Experience</span>
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6">
+            <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 section-subtitle">
               Education
             </h3>
             <div className="space-y-6">
               {education.map((edu) => (
-                <GlowCard key={edu.id} gradientClass={edu.gradientClass}>
+                <GlowCard
+                  key={edu.id}
+                  gradientClass={edu.gradientClass}
+                  className="education-card"
+                >
                   <div className="flex items-start gap-4">
                     <img
                       src={edu.icon}
                       alt={`${edu.institution} logo`}
-                      className="w-8 h-8 mt-1"
+                      className="w-8 h-8 mt-1 education-icon"
                     />
-                    <div>
-                      <h3 className="text-xl font-bold text-white">
+                    <div className="education-content">
+                      <h3 className="text-xl font-bold text-white education-title">
                         {edu.degree}
                       </h3>
-                      <p className="text-blue-400 font-medium">
+                      <p className="text-blue-400 font-medium education-institution">
                         {edu.institution}
                       </p>
-                      <p className="text-gray-400 text-sm">{edu.year}</p>
+                      <p className="text-gray-400 text-sm education-year">
+                        {edu.year}
+                      </p>
                     </div>
                   </div>
                 </GlowCard>
@@ -1003,20 +1522,30 @@ const Portfolio2x3 = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-purple-400 mb-6">
+            <h3 className="text-2xl md:text-3xl font-semibold text-purple-400 mb-6 section-subtitle">
               Experience
             </h3>
             <div className="space-y-6">
               {experiences.map((exp) => (
-                <GlowCard key={exp.id} gradientClass={exp.gradientClass}>
-                  <div>
-                    <h3 className="text-xl font-bold text-white">
+                <GlowCard
+                  key={exp.id}
+                  gradientClass={exp.gradientClass}
+                  className="experience-card"
+                >
+                  <div className="experience-header">
+                    <h3 className="text-xl font-bold text-white experience-title">
                       {exp.title}
                     </h3>
-                    <p className="text-purple-400 font-medium">{exp.company}</p>
-                    <p className="text-gray-400 text-sm">{exp.year}</p>
+                    <p className="text-purple-400 font-medium experience-company">
+                      {exp.company}
+                    </p>
+                    <p className="text-gray-400 text-sm experience-year">
+                      {exp.year}
+                    </p>
                   </div>
-                  <p className="text-gray-300">{exp.description}</p>
+                  <p className="text-gray-300 experience-description">
+                    {exp.description}
+                  </p>
                 </GlowCard>
               ))}
             </div>
@@ -1033,13 +1562,13 @@ const Portfolio2x3 = () => {
       <div id="contact-stars2"></div>
       <div id="contact-stars3"></div>
       <div className="max-w-4xl w-full relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center section-title">
           Get In <span className="text-purple-500">Touch</span>
         </h2>
-        <p className="text-gray-300 text-center mb-12 text-lg">
+        <p className="text-gray-300 text-center mb-12 text-lg section-subtitle">
           Feel free to reach out through any of these platforms.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 contact-cards-grid">
           {contacts.map((contact) => {
             const Icon = contact.icon;
             return (
@@ -1048,10 +1577,12 @@ const Portfolio2x3 = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${contact.color} p-6 rounded-xl transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group`}
+                className={`${contact.color} p-6 rounded-xl transition-transform duration-300 flex flex-col items-center justify-center space-y-3 group contact-card`}
               >
-                <Icon className="w-12 h-12 text-white group-hover:animate-bounce" />
-                <span className="text-white font-semibold">{contact.name}</span>
+                <Icon className="w-12 h-12 text-white group-hover:animate-bounce contact-icon" />
+                <span className="text-white font-semibold contact-name">
+                  {contact.name}
+                </span>
               </a>
             );
           })}
@@ -1129,12 +1660,35 @@ const Portfolio2x3 = () => {
                   {" }"}
                 </span>
               </span>
-              {/* Abbreviation version: ≤189px */}
-              <span className="landing-title-abbr">
-                <span className="text-purple-400">import</span>
-                <span className="text-[#D4D4D4]">{" {"}</span>
-                <span className="text-[#D4D4D4]"> my...</span>
-                <span className="text-[#D4D4D4]">{" }"}</span>
+              {/* Vertical character version: 116-189px */}
+              <span className="landing-title-vertical">
+                <span className="text-purple-400 landing-title-vertical-import">
+                  {splitToChars("import", "landing-char")}
+                </span>
+                <span className="text-[#D4D4D4] landing-title-vertical-brace">
+                  {splitToChars(" {", "landing-char")}
+                </span>
+                <span className="text-[#D4D4D4] landing-title-vertical-portfolio">
+                  {splitToChars(" myPortfolio ", "landing-char")}
+                </span>
+                <span className="text-[#D4D4D4] landing-title-vertical-brace">
+                  {splitToChars(" }", "landing-char")}
+                </span>
+              </span>
+              {/* Very vertical character version: ≤115px */}
+              <span className="landing-title-vvertical">
+                <span className="text-purple-400 landing-title-vvertical-import">
+                  {splitToChars("import", "landing-char")}
+                </span>
+                <span className="text-[#D4D4D4] landing-title-vvertical-brace">
+                  {splitToChars(" {", "landing-char")}
+                </span>
+                <span className="text-[#D4D4D4] landing-title-vvertical-portfolio">
+                  {splitToChars(" myPortfolio ", "landing-char")}
+                </span>
+                <span className="text-[#D4D4D4] landing-title-vvertical-brace">
+                  {splitToChars(" }", "landing-char")}
+                </span>
               </span>
             </h1>
             <p className="text-xl text-gray-300 landing-subtitle">
@@ -1166,23 +1720,18 @@ const Portfolio2x3 = () => {
                 <br />
                 Ekko
               </span>
-              {/* Abbreviation version: ≤89px */}
-              <span className="landing-subtitle-abbr">
-                I..
-                <br />
-                h..
-                <br />
-                b..
-                <br />
-                r..
-                <br />
-                -..
-                <br />
-                E..
+              {/* Vertical character version: ≤89px */}
+              <span className="landing-subtitle-vertical">
+                <span className="landing-subtitle-vertical-text">
+                  {splitToChars(
+                    "I hate being responsible-Ekko",
+                    "landing-char"
+                  )}
+                </span>
               </span>
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto landing-cards-grid">
             {cubeData.map((item) => (
               <CubeCard
                 key={item.id}

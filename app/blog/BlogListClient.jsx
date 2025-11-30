@@ -157,7 +157,7 @@ export default function BlogListClient({
           {/* Header with Title and Search Bar */}
           <div className="relative mb-12">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-4 relative">
-              <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-white text-center section-title">
                 Blog <span className="text-purple-500">Posts</span>
               </h1>
               {/* Search Bar - Sejajar dengan judul di desktop, absolute di kanan */}

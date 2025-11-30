@@ -281,6 +281,9 @@ html {
   /* Optimasi performa untuk desktop */
   contain: layout style paint;
   will-change: scroll-position;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Optimasi untuk mobile - disable animasi background yang berat */
@@ -300,6 +303,334 @@ html {
   /* Disable transform animations di mobile untuk performa lebih baik */
   .prose img {
     will-change: auto;
+  }
+}
+
+/* Blog Article Responsive Font Sizes */
+/* Date and Title - Responsive for screens ≤245px */
+@media (max-width: 245px) {
+  .blog-article-date {
+    font-size: 0.625rem !important; /* 10px */
+    text-align: center !important;
+    justify-content: center !important;
+    flex-wrap: wrap;
+    gap: 0.25rem !important;
+    width: 100%;
+    display: flex !important;
+  }
+
+  .blog-article-title {
+    font-size: 1rem !important; /* 16px */
+    text-align: center !important;
+    line-height: 1.3 !important;
+    word-break: break-word;
+    width: 100%;
+  }
+
+  .blog-article-excerpt {
+    font-size: 0.75rem !important; /* 12px */
+    text-align: center !important;
+    line-height: 1.4 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100%;
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Article Content - Responsive font sizes for screens ≤125px - Very small screens */
+@media (max-width: 125px) {
+  .blog-content {
+    padding: 0 0.5rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .blog-content article {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .blog-article-excerpt {
+    font-size: 0.5rem !important; /* 8px */
+    text-align: center !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100% !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .blog-article-content {
+    font-size: 0.5rem !important; /* 8px - base font size */
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  .blog-article-content * {
+    font-size: inherit !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .blog-article-content p {
+    font-size: 0.5rem !important; /* 8px */
+    line-height: 1.3 !important;
+    margin-bottom: 0.375rem !important;
+    text-align: left !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .blog-article-content h1,
+  .blog-article-content h2,
+  .blog-article-content h3,
+  .blog-article-content h4,
+  .blog-article-content h5,
+  .blog-article-content h6 {
+    font-size: 0.625rem !important; /* 10px */
+    line-height: 1.2 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+
+  .blog-article-content code {
+    font-size: 0.4375rem !important; /* 7px */
+    padding: 0.125rem 0.25rem !important;
+    word-break: break-all !important;
+  }
+
+  .blog-article-content pre {
+    font-size: 0.4375rem !important; /* 7px */
+    padding: 0.375rem !important;
+    overflow-x: auto !important;
+    word-break: break-all !important;
+  }
+
+  .blog-article-content blockquote {
+    font-size: 0.5rem !important; /* 8px */
+    padding-left: 0.5rem !important;
+    padding-right: 0.375rem !important;
+    padding-top: 0.375rem !important;
+    padding-bottom: 0.375rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  .blog-article-content ul,
+  .blog-article-content ol {
+    font-size: 0.5rem !important; /* 8px */
+    padding-left: 0.75rem !important;
+    word-break: break-word !important;
+  }
+
+  .blog-article-content li {
+    font-size: 0.5rem !important; /* 8px */
+    margin-bottom: 0.25rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .blog-article-content a {
+    font-size: 0.5rem !important; /* 8px */
+    word-break: break-all !important;
+  }
+
+  .blog-article-content strong {
+    font-size: 0.5rem !important; /* 8px */
+  }
+
+  .blog-article-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0.5rem auto !important;
+  }
+
+  .blog-article-content table {
+    font-size: 0.4375rem !important; /* 7px */
+    width: 100% !important;
+    display: block !important;
+    overflow-x: auto !important;
+  }
+
+  .blog-article-content td,
+  .blog-article-content th {
+    font-size: 0.4375rem !important;
+    padding: 0.25rem !important;
+    word-break: break-word !important;
+  }
+}
+
+/* Article Content - Responsive font sizes for screens 126px-150px */
+@media (min-width: 126px) and (max-width: 150px) {
+  .blog-article-excerpt {
+    font-size: 0.5625rem !important; /* 9px */
+    text-align: center !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100% !important;
+    margin-bottom: 0.875rem !important;
+  }
+
+  .blog-article-content {
+    font-size: 0.5625rem !important; /* 9px - base font size */
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .blog-article-content * {
+    font-size: inherit;
+  }
+
+  .blog-article-content p {
+    font-size: 0.5625rem !important; /* 9px */
+    line-height: 1.35 !important;
+    margin-bottom: 0.5rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .blog-article-content h1,
+  .blog-article-content h2,
+  .blog-article-content h3,
+  .blog-article-content h4,
+  .blog-article-content h5,
+  .blog-article-content h6 {
+    font-size: 0.6875rem !important; /* 11px */
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+
+  .blog-article-content code {
+    font-size: 0.5rem !important; /* 8px */
+    padding: 0.125rem 0.25rem !important;
+  }
+
+  .blog-article-content pre {
+    font-size: 0.5rem !important; /* 8px */
+    padding: 0.5rem !important;
+  }
+
+  .blog-article-content blockquote {
+    font-size: 0.5625rem !important; /* 9px */
+    padding-left: 0.625rem !important;
+    padding-right: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .blog-article-content ul,
+  .blog-article-content ol {
+    font-size: 0.5625rem !important; /* 9px */
+    padding-left: 0.875rem !important;
+  }
+
+  .blog-article-content li {
+    font-size: 0.5625rem !important; /* 9px */
+    margin-bottom: 0.25rem !important;
+  }
+
+  .blog-article-content a {
+    font-size: 0.5625rem !important; /* 9px */
+  }
+
+  .blog-article-content strong {
+    font-size: 0.5625rem !important; /* 9px */
+  }
+
+  .blog-article-content img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Progressive font scaling for article content between 151px-300px */
+@media (min-width: 151px) and (max-width: 200px) {
+  .blog-article-excerpt {
+    font-size: 0.75rem !important; /* 12px */
+    text-align: center !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .blog-article-content {
+    font-size: 0.75rem !important; /* 12px */
+  }
+
+  .blog-article-content p {
+    font-size: 0.75rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+@media (min-width: 201px) and (max-width: 250px) {
+  .blog-article-excerpt {
+    font-size: 0.875rem !important; /* 14px */
+    text-align: center !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .blog-article-content {
+    font-size: 0.875rem !important; /* 14px */
+  }
+
+  .blog-article-content p {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Progressive font scaling for title between 246px-350px */
+@media (min-width: 246px) and (max-width: 350px) {
+  .blog-article-title {
+    font-size: 1.5rem !important; /* 24px */
+    text-align: center;
+  }
+
+  .blog-article-date {
+    font-size: 0.75rem !important; /* 12px */
+    text-align: center;
+  }
+
+  .blog-article-excerpt {
+    font-size: 1rem !important; /* 16px */
+    text-align: center !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (min-width: 351px) and (max-width: 500px) {
+  .blog-article-title {
+    font-size: 2rem !important; /* 32px */
+  }
+
+  .blog-article-excerpt {
+    font-size: 1.125rem !important; /* 18px */
+    text-align: center !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.5rem !important;
   }
 }
 
@@ -876,17 +1207,52 @@ html {
   display: none;
 }
 
-/* Landing Page Title: ≤189px - Show abbreviation */
-@media (max-width: 189px) {
-  .landing-title-abbr {
+/* Vertical character styling - each character on new line */
+.landing-char {
+  display: block;
+  line-height: 1.2;
+}
+
+/* Landing Page Title: ≤115px - Show very vertical character version */
+@media (max-width: 115px) {
+  .landing-title-vvertical {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  .landing-title-vvertical > span {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .landing-title-full,
+  .landing-title-break,
+  .landing-title-vertical {
+    display: none !important;
+  }
+}
+
+/* Landing Page Title: 116-189px - Show vertical character version */
+@media (min-width: 116px) and (max-width: 189px) {
+  .landing-title-vertical {
     display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
   }
+  .landing-title-vertical > span {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .landing-title-full,
-  .landing-title-break {
+  .landing-title-break,
+  .landing-title-vvertical {
     display: none !important;
   }
 }
@@ -901,7 +1267,8 @@ html {
     gap: 0.5rem;
   }
   .landing-title-full,
-  .landing-title-abbr {
+  .landing-title-vertical,
+  .landing-title-vvertical {
     display: none !important;
   }
 }
@@ -921,7 +1288,8 @@ html {
     }
   }
   .landing-title-break,
-  .landing-title-abbr {
+  .landing-title-vertical,
+  .landing-title-vvertical {
     display: none !important;
   }
 }
@@ -931,11 +1299,17 @@ html {
   display: none;
 }
 
-/* Landing Page Subtitle: ≤89px - Show abbreviation */
+/* Landing Page Subtitle: ≤89px - Show vertical character version */
 @media (max-width: 89px) {
-  .landing-subtitle-abbr {
+  .landing-subtitle-vertical {
     display: block !important;
     text-align: center;
+  }
+  .landing-subtitle-vertical-text {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .landing-subtitle-full,
   .landing-subtitle-break-100-140,
@@ -952,7 +1326,7 @@ html {
   }
   .landing-subtitle-full,
   .landing-subtitle-break-100-140,
-  .landing-subtitle-abbr {
+  .landing-subtitle-vertical {
     display: none !important;
   }
 }
@@ -978,8 +1352,1791 @@ html {
   }
   .landing-subtitle-break-100-140,
   .landing-subtitle-break-90-99,
-  .landing-subtitle-abbr {
+  .landing-subtitle-vertical {
     display: none !important;
+  }
+}
+
+/* Cube Card Responsive Breakpoints */
+.cube-card-title > span,
+.cube-card-subtitle > span {
+  display: none;
+}
+
+/* Cube Card: Default - Show full version */
+.cube-title-full,
+.cube-subtitle-full {
+  display: block !important;
+}
+
+/* Cube Card: ≤150px - Show abbreviated version */
+@media (max-width: 150px) {
+  .cube-title-abbr,
+  .cube-subtitle-abbr {
+    display: block !important;
+  }
+  .cube-title-full,
+  .cube-subtitle-full {
+    display: none !important;
+  }
+}
+
+/* Landing Page Cards Grid - Center alignment for small screens */
+.landing-cards-grid {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Progressive shrinking for landing page cards at 120-260px */
+@media (min-width: 120px) and (max-width: 260px) {
+  .landing-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    padding: 0 0.5rem !important;
+    justify-items: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .landing-cards-grid > div {
+    width: 100% !important;
+    max-width: calc(100vw - 1rem) !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .landing-cards-grid .cube-card {
+    width: 100% !important;
+    max-width: calc(100vw - 1rem) !important;
+    padding: 1rem !important;
+    height: auto !important;
+    min-height: 180px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  .landing-cards-grid .cube-card > div {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .landing-cards-grid .cube-card h2 {
+    font-size: 1.125rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .landing-cards-grid .cube-card p {
+    font-size: 0.9375rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .landing-cards-grid .cube-card .text-lg {
+    font-size: 0.875rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-2xl {
+    font-size: 1.125rem !important;
+  }
+
+  .landing-cards-grid .cube-card .absolute {
+    width: calc(100% - 2rem) !important;
+  }
+}
+
+/* Further shrinking at 200-230px */
+@media (min-width: 200px) and (max-width: 230px) {
+  .landing-cards-grid .cube-card {
+    padding: 0.875rem !important;
+    min-height: 170px !important;
+  }
+
+  .landing-cards-grid .cube-card h2 {
+    font-size: 1rem !important;
+  }
+
+  .landing-cards-grid .cube-card p {
+    font-size: 0.875rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-lg {
+    font-size: 0.8125rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-2xl {
+    font-size: 1rem !important;
+  }
+}
+
+/* Further shrinking at 151-199px */
+@media (min-width: 151px) and (max-width: 199px) {
+  .landing-cards-grid .cube-card {
+    padding: 0.75rem !important;
+    min-height: 160px !important;
+  }
+
+  .landing-cards-grid .cube-card h2 {
+    font-size: 0.9375rem !important;
+  }
+
+  .landing-cards-grid .cube-card p {
+    font-size: 0.8125rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-lg {
+    font-size: 0.75rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-2xl {
+    font-size: 0.9375rem !important;
+  }
+}
+
+/* Adjust grid layout and card size for screens ≤119px */
+@media (max-width: 119px) {
+  .landing-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    max-width: 100% !important;
+    padding: 0 0.5rem;
+    justify-items: center;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .landing-cards-grid > div {
+    max-width: calc(100vw - 1rem);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .landing-cards-grid .cube-card {
+    padding: 0.75rem !important;
+    height: auto !important;
+    min-height: 160px;
+    max-width: calc(100vw - 1rem) !important;
+    width: calc(100vw - 1rem) !important;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .landing-cards-grid .cube-card > div {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .landing-cards-grid .cube-card h2 {
+    font-size: 1rem !important;
+    word-break: break-word;
+  }
+
+  .landing-cards-grid .cube-card p {
+    font-size: 0.875rem !important;
+    word-break: break-word;
+  }
+
+  .landing-cards-grid .cube-card .text-lg {
+    font-size: 0.75rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-2xl {
+    font-size: 1rem !important;
+  }
+
+  .landing-cards-grid .cube-card .absolute {
+    width: calc(100% - 1.5rem);
+  }
+}
+
+/* Adjust grid layout and card size for screens ≤75px - Extra small screens */
+@media (max-width: 75px) {
+  .landing-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    padding: 0 0.25rem !important;
+    justify-items: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    place-items: center !important;
+  }
+
+  .landing-cards-grid > div {
+    max-width: calc(100vw - 0.5rem) !important;
+    width: calc(100vw - 0.5rem) !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .landing-cards-grid .cube-card {
+    padding: 0.5rem !important;
+    height: auto !important;
+    min-height: 140px !important;
+    max-width: calc(100vw - 0.5rem) !important;
+    width: calc(100vw - 0.5rem) !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  .landing-cards-grid .cube-card > div {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0.5rem !important;
+  }
+
+  .landing-cards-grid .cube-card h2 {
+    font-size: 0.75rem !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+
+  .landing-cards-grid .cube-card p {
+    font-size: 0.625rem !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+
+  .landing-cards-grid .cube-card .text-lg {
+    font-size: 0.5625rem !important;
+  }
+
+  .landing-cards-grid .cube-card .text-2xl {
+    font-size: 0.75rem !important;
+  }
+
+  .landing-cards-grid .cube-card .absolute {
+    width: calc(100% - 1rem) !important;
+  }
+
+  /* Ensure parent container is also centered */
+  .min-h-screen.p-8 {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Ensure the grid container wrapper is centered */
+  .landing-cards-grid {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: calc(100vw - 0.5rem) !important;
+  }
+}
+
+/* Section Titles and Subtitles Responsive - Vertical Character Layout */
+/* Apply vertical character layout for small screens */
+@media (max-width: 150px) {
+  .section-title,
+  .section-subtitle {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+  }
+
+  .section-title {
+    font-size: 1rem !important;
+  }
+
+  .section-subtitle {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Progressive font scaling for section titles */
+@media (min-width: 151px) and (max-width: 250px) {
+  .section-title {
+    font-size: 1.5rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 251px) and (max-width: 400px) {
+  .section-title {
+    font-size: 2rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .section-subtitle {
+    font-size: 1.5rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+/* Home Tab Responsive - Title, Subtitle, Description, and Buttons */
+/* Home character styling - each character on new line */
+.home-char {
+  display: block;
+  line-height: 1.2;
+}
+
+/* Home Title Responsive */
+.home-title > span {
+  display: none;
+}
+
+/* Home Title: Default - Show full version (≥281px) */
+.home-title-full {
+  display: block !important;
+}
+
+/* Home Title: 271-280px - 4 words per line */
+@media (min-width: 271px) and (max-width: 280px) {
+  .home-title-break-271-280 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 1.5rem !important;
+  }
+
+  .home-title-full {
+    display: none !important;
+  }
+}
+
+/* Home Title: 221-270px - 3 words per line */
+@media (min-width: 221px) and (max-width: 270px) {
+  .home-title-break-221-270 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 1.25rem !important;
+  }
+
+  .home-title-full,
+  .home-title-break-271-280 {
+    display: none !important;
+  }
+}
+
+/* Home Title: 151-220px - 2 words per line */
+@media (min-width: 151px) and (max-width: 220px) {
+  .home-title-break-151-220 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 1rem !important;
+  }
+
+  .home-title-full,
+  .home-title-break-271-280,
+  .home-title-break-221-270 {
+    display: none !important;
+  }
+}
+
+/* Home Title: 101-150px - 1 word per line */
+@media (min-width: 101px) and (max-width: 150px) {
+  .home-title-break-101-150 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.875rem !important;
+  }
+
+  .home-title-full,
+  .home-title-break-271-280,
+  .home-title-break-221-270,
+  .home-title-break-151-220 {
+    display: none !important;
+  }
+}
+
+/* Home Title: 91-100px - Max 3 chars per line */
+@media (min-width: 91px) and (max-width: 100px) {
+  .home-title-break-91-100 {
+    display: block !important;
+    text-align: center;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.75rem !important;
+  }
+
+  .home-title-full,
+  .home-title-break-271-280,
+  .home-title-break-221-270,
+  .home-title-break-151-220,
+  .home-title-break-101-150 {
+    display: none !important;
+  }
+}
+
+/* Home Title: ≤90px - 1 char per line */
+@media (max-width: 90px) {
+  .home-title-break-90 {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-size: 0.625rem !important;
+  }
+
+  .home-title-break-90 > span {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-title-break-90 .home-char {
+    font-size: 0.625rem !important;
+  }
+
+  .home-title-full,
+  .home-title-break-271-280,
+  .home-title-break-221-270,
+  .home-title-break-151-220,
+  .home-title-break-101-150,
+  .home-title-break-91-100 {
+    display: none !important;
+  }
+}
+
+/* Progressive font scaling for home title */
+@media (min-width: 281px) and (max-width: 400px) {
+  .home-title-full {
+    font-size: 2rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+  .home-title-full {
+    font-size: 3rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+/* Home Subtitle Responsive */
+.home-subtitle > span {
+  display: none;
+}
+
+/* Home Subtitle: Default - Show full version (≥281px) */
+.home-subtitle-full {
+  display: block !important;
+}
+
+/* Home Subtitle: 271-280px - 4 words per line */
+@media (min-width: 271px) and (max-width: 280px) {
+  .home-subtitle-break-271-280 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 1.125rem !important;
+  }
+
+  .home-subtitle-full {
+    display: none !important;
+  }
+}
+
+/* Home Subtitle: 221-270px - 3 words per line */
+@media (min-width: 221px) and (max-width: 270px) {
+  .home-subtitle-break-221-270 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 1rem !important;
+  }
+
+  .home-subtitle-full,
+  .home-subtitle-break-271-280 {
+    display: none !important;
+  }
+}
+
+/* Home Subtitle: 151-220px - 2 words per line */
+@media (min-width: 151px) and (max-width: 220px) {
+  .home-subtitle-break-151-220 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.875rem !important;
+  }
+
+  .home-subtitle-full,
+  .home-subtitle-break-271-280,
+  .home-subtitle-break-221-270 {
+    display: none !important;
+  }
+}
+
+/* Home Subtitle: 101-150px - 1 word per line */
+@media (min-width: 101px) and (max-width: 150px) {
+  .home-subtitle-break-101-150 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.75rem !important;
+  }
+
+  .home-subtitle-full,
+  .home-subtitle-break-271-280,
+  .home-subtitle-break-221-270,
+  .home-subtitle-break-151-220 {
+    display: none !important;
+  }
+}
+
+/* Home Subtitle: 91-100px - Max 3 chars per line */
+@media (min-width: 91px) and (max-width: 100px) {
+  .home-subtitle-break-91-100 {
+    display: block !important;
+    text-align: center;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.625rem !important;
+  }
+
+  .home-subtitle-full,
+  .home-subtitle-break-271-280,
+  .home-subtitle-break-221-270,
+  .home-subtitle-break-151-220,
+  .home-subtitle-break-101-150 {
+    display: none !important;
+  }
+}
+
+/* Home Subtitle: ≤90px - 1 char per line */
+@media (max-width: 90px) {
+  .home-subtitle-break-90 {
+    display: block !important;
+    text-align: center;
+    font-size: 0.5625rem !important;
+  }
+
+  .home-subtitle-break-90-text {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-subtitle-break-90 .home-char {
+    font-size: 0.5625rem !important;
+  }
+
+  .home-subtitle-full,
+  .home-subtitle-break-271-280,
+  .home-subtitle-break-221-270,
+  .home-subtitle-break-151-220,
+  .home-subtitle-break-101-150,
+  .home-subtitle-break-91-100 {
+    display: none !important;
+  }
+}
+
+/* Progressive font scaling for home subtitle */
+@media (min-width: 281px) and (max-width: 400px) {
+  .home-subtitle-full {
+    font-size: 1.5rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+  .home-subtitle-full {
+    font-size: 2rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+/* Home Description Responsive */
+.home-description > span {
+  display: none;
+}
+
+/* Home Description: Default - Show full version (≥281px) */
+.home-description-full {
+  display: block !important;
+}
+
+/* Home Description: 271-280px - 4 words per line */
+@media (min-width: 271px) and (max-width: 280px) {
+  .home-description-break-271-280 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.875rem !important;
+  }
+
+  .home-description-full {
+    display: none !important;
+  }
+}
+
+/* Home Description: 221-270px - 3 words per line */
+@media (min-width: 221px) and (max-width: 270px) {
+  .home-description-break-221-270 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.75rem !important;
+  }
+
+  .home-description-full,
+  .home-description-break-271-280 {
+    display: none !important;
+  }
+}
+
+/* Home Description: 151-220px - 2 words per line */
+@media (min-width: 151px) and (max-width: 220px) {
+  .home-description-break-151-220 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.6875rem !important;
+  }
+
+  .home-description-full,
+  .home-description-break-271-280,
+  .home-description-break-221-270 {
+    display: none !important;
+  }
+}
+
+/* Home Description: 101-150px - 1 word per line */
+@media (min-width: 101px) and (max-width: 150px) {
+  .home-description-break-101-150 {
+    display: block !important;
+    text-align: center;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.625rem !important;
+  }
+
+  .home-description-full,
+  .home-description-break-271-280,
+  .home-description-break-221-270,
+  .home-description-break-151-220 {
+    display: none !important;
+  }
+}
+
+/* Home Description: 91-100px - Max 3 chars per line */
+@media (min-width: 91px) and (max-width: 100px) {
+  .home-description-break-91-100 {
+    display: block !important;
+    text-align: center;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    font-size: 0.5625rem !important;
+  }
+
+  .home-description-full,
+  .home-description-break-271-280,
+  .home-description-break-221-270,
+  .home-description-break-151-220,
+  .home-description-break-101-150 {
+    display: none !important;
+  }
+}
+
+/* Home Description: ≤90px - 1 char per line */
+@media (max-width: 90px) {
+  .home-description-break-90 {
+    display: block !important;
+    text-align: center;
+    font-size: 0.5rem !important;
+  }
+
+  .home-description-break-90-text {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-description-break-90 .home-char {
+    font-size: 0.5rem !important;
+  }
+
+  .home-description-full,
+  .home-description-break-271-280,
+  .home-description-break-221-270,
+  .home-description-break-151-220,
+  .home-description-break-101-150,
+  .home-description-break-91-100 {
+    display: none !important;
+  }
+}
+
+/* Progressive font scaling for home description */
+@media (min-width: 281px) and (max-width: 400px) {
+  .home-description-full {
+    font-size: 1rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+  .home-description-full {
+    font-size: 1.125rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+/* Home Buttons Responsive - Shrink first, then wrap to one per row */
+/* Progressive shrinking for buttons */
+@media (min-width: 501px) and (max-width: 700px) {
+  .home-buttons-container {
+    gap: 0.875rem !important;
+  }
+
+  .home-button {
+    font-size: 0.9375rem !important;
+    padding: 0.5rem 0.875rem !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 500px) {
+  .home-buttons-container {
+    gap: 0.75rem !important;
+  }
+
+  .home-button {
+    font-size: 0.875rem !important;
+    padding: 0.5rem 0.75rem !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 400px) {
+  .home-buttons-container {
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  .home-button {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.625rem !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Force one button per row on very small screens */
+@media (min-width: 201px) and (max-width: 300px) {
+  .home-buttons-container {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .home-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.875rem !important;
+    justify-content: center !important;
+  }
+}
+
+/* Continue shrinking buttons below 200px */
+@media (min-width: 151px) and (max-width: 200px) {
+  .home-buttons-container {
+    flex-direction: column !important;
+    gap: 0.625rem !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .home-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 0.6875rem !important;
+    padding: 0.5rem 0.75rem !important;
+    justify-content: center !important;
+  }
+}
+
+/* Continue shrinking buttons below 150px */
+@media (min-width: 126px) and (max-width: 150px) {
+  .home-buttons-container {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .home-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 0.625rem !important;
+    padding: 0.4375rem 0.625rem !important;
+    justify-content: center !important;
+  }
+}
+
+/* Continue shrinking buttons below 125px */
+@media (max-width: 125px) {
+  .home-buttons-container {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .home-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 0.5625rem !important;
+    padding: 0.375rem 0.5rem !important;
+    justify-content: center !important;
+  }
+}
+
+/* Cards and Thumbnails Responsive - Shrink and Wrap */
+/* Skills Tab - Skill Cards */
+@media (max-width: 300px) {
+  .skills-tab-container .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .skills-tab-container .section-subtitle {
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+
+  /* Make skill cards smaller before wrapping */
+  .skills-tab-container .grid.grid-cols-2 > div {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Progressive shrinking for skill cards */
+@media (min-width: 301px) and (max-width: 500px) {
+  .skills-tab-container .grid.grid-cols-2 {
+    gap: 0.5rem !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-2 > div {
+    min-width: 0 !important;
+  }
+}
+
+/* Skills Tab - Unified layout for 75-125px */
+@media (min-width: 75px) and (max-width: 125px) {
+  .skills-tab-container {
+    padding: 1rem 0.5rem !important;
+  }
+
+  .skills-tab-container .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-1.lg\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-1.lg\\:grid-cols-2 > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    padding: 0 !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-2 > div {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .skills-tab-container .section-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .skills-tab-container .section-subtitle {
+    font-size: 0.875rem !important;
+    text-align: center !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Skill card adjustments */
+  .skills-tab-container .relative.group {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .skills-tab-container .relative.group > div.relative {
+    padding: 0.375rem 0.5rem !important;
+    min-height: 60px !important;
+    height: auto !important;
+  }
+
+  .skills-tab-container .relative.group img {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .skills-tab-container .skill-name-text {
+    font-size: 0.625rem !important;
+  }
+}
+
+/* Skills Tab - Hide description text at ≤74px, show icon only */
+@media (max-width: 74px) {
+  .skills-tab-container {
+    padding: 0.75rem 0.25rem !important;
+  }
+
+  .skills-tab-container .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-1.lg\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-1.lg\\:grid-cols-2 > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    padding: 0 !important;
+  }
+
+  .skills-tab-container .grid.grid-cols-2 > div {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .skills-tab-container .section-title {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .skills-tab-container .section-subtitle {
+    font-size: 0.75rem !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Hide skill name text completely */
+  .skills-tab-container .skill-name-text {
+    display: none !important;
+  }
+
+  /* Skill card adjustments - icon only */
+  .skills-tab-container .relative.group {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .skills-tab-container .relative.group > div.relative {
+    padding: 0.5rem !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+  .skills-tab-container .relative.group img {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Portfolio Tab - Image Cards */
+@media (max-width: 400px) {
+  .portfolio-grid-container {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .portfolio-grid-container > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* Portfolio Tab - Video Cards - Force single column on small screens */
+@media (max-width: 500px) {
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-2"] {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Portfolio Tab - Video Cards - Progressive shrinking below 230px */
+.video-card-title > span {
+  display: none;
+}
+
+.video-title-full {
+  display: block !important;
+}
+
+/* 201-230px: Show first word + "..", card starts shrinking */
+@media (min-width: 201px) and (max-width: 230px) {
+  .video-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .video-card-content {
+    padding: 1rem !important;
+    min-width: 0 !important;
+  }
+
+  .video-thumbnail {
+    min-height: 0 !important;
+  }
+
+  .video-card-title {
+    font-size: 1rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .video-title-full {
+    display: none !important;
+  }
+
+  .video-title-first-word {
+    display: block !important;
+  }
+}
+
+/* 151-200px: Show first word + "..", card continues shrinking */
+@media (min-width: 151px) and (max-width: 200px) {
+  .video-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .video-card-content {
+    padding: 0.75rem !important;
+    min-width: 0 !important;
+  }
+
+  .video-thumbnail {
+    min-height: 0 !important;
+  }
+
+  .video-card-title {
+    font-size: 0.875rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .video-title-full {
+    display: none !important;
+  }
+
+  .video-title-first-word {
+    display: block !important;
+  }
+}
+
+/* 126-150px: Show first word + "..", card further shrinking */
+@media (min-width: 126px) and (max-width: 150px) {
+  .video-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .video-card-content {
+    padding: 0.625rem !important;
+    min-width: 0 !important;
+  }
+
+  .video-thumbnail {
+    min-height: 0 !important;
+  }
+
+  .video-card-title {
+    font-size: 0.8125rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .video-title-full {
+    display: none !important;
+  }
+
+  .video-title-first-word {
+    display: block !important;
+  }
+}
+
+/* ≤125px: Show first letter + "..", card maximum shrinking */
+@media (max-width: 125px) {
+  .video-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .video-card-content {
+    padding: 0.5rem !important;
+    min-width: 0 !important;
+  }
+
+  .video-thumbnail {
+    min-height: 0 !important;
+  }
+
+  .video-card-title {
+    font-size: 0.75rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .video-title-full,
+  .video-title-first-word {
+    display: none !important;
+  }
+
+  .video-title-first-letter {
+    display: block !important;
+  }
+}
+
+/* Education Tab - Glow Cards - Force single column on small screens */
+@media (max-width: 500px) {
+  .min-h-screen.p-8 .grid[class*="lg:grid-cols-2"] {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .min-h-screen.p-8 .grid[class*="lg:grid-cols-2"] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Education Tab - Progressive shrinking for cards below 235px */
+@media (max-width: 235px) {
+  .education-tab-container .grid[class*="lg:grid-cols-2"] {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .education-tab-container .grid[class*="lg:grid-cols-2"] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Glow Card adjustments - allow vertical expansion */
+  .education-tab-container .education-card,
+  .education-tab-container .experience-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .education-tab-container .education-card > div.relative,
+  .education-tab-container .experience-card > div.relative {
+    padding: 0.75rem !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* Icon size reduction */
+  .education-tab-container .education-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Text sizing and wrapping - allow vertical expansion */
+  .education-tab-container .education-title,
+  .education-tab-container .experience-title {
+    font-size: 0.875rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .education-tab-container .education-institution,
+  .education-tab-container .experience-company {
+    font-size: 0.75rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .education-tab-container .education-year,
+  .education-tab-container .experience-year {
+    font-size: 0.625rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Description text - smaller and wrap, allow vertical expansion */
+  .education-tab-container .experience-description {
+    font-size: 0.6875rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    line-height: 1.4 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Flex container adjustments - allow wrapping */
+  .education-tab-container .education-card .flex {
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+  }
+
+  .education-tab-container .education-content {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+}
+
+/* Education Tab - Very small screens - Further reduction */
+@media (max-width: 180px) {
+  .education-tab-container .education-card > div.relative,
+  .education-tab-container .experience-card > div.relative {
+    padding: 0.5rem !important;
+  }
+
+  .education-tab-container .education-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .education-tab-container .education-title,
+  .education-tab-container .experience-title {
+    font-size: 0.75rem !important;
+  }
+
+  .education-tab-container .education-institution,
+  .education-tab-container .experience-company {
+    font-size: 0.6875rem !important;
+  }
+
+  .education-tab-container .education-year,
+  .education-tab-container .experience-year {
+    font-size: 0.5625rem !important;
+  }
+
+  .education-tab-container .experience-description {
+    font-size: 0.625rem !important;
+  }
+}
+
+/* Education Tab - Extra small screens - Maximum reduction */
+@media (max-width: 150px) {
+  .education-tab-container .education-card > div.relative,
+  .education-tab-container .experience-card > div.relative {
+    padding: 0.375rem !important;
+  }
+
+  .education-tab-container .education-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  .education-tab-container .education-title,
+  .education-tab-container .experience-title {
+    font-size: 0.6875rem !important;
+  }
+
+  .education-tab-container .education-institution,
+  .education-tab-container .experience-company {
+    font-size: 0.625rem !important;
+  }
+
+  .education-tab-container .education-year,
+  .education-tab-container .experience-year {
+    font-size: 0.5rem !important;
+  }
+
+  .education-tab-container .experience-description {
+    font-size: 0.5625rem !important;
+  }
+}
+
+/* Contact Tab - Contact Cards - 2 columns with gradual shrinking */
+/* 601-767px: 2 columns, normal padding */
+@media (min-width: 601px) and (max-width: 767px) {
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contact-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.25rem !important;
+    min-width: 0 !important;
+  }
+
+  .contact-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+
+  .contact-name {
+    font-size: 1rem !important;
+  }
+
+  /* Legacy support for old selector */
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] > a {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.25rem !important;
+  }
+}
+
+/* 501-600px: 2 columns, maintain same as 601-767px to prevent sudden change */
+@media (min-width: 501px) and (max-width: 600px) {
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contact-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.25rem !important;
+    min-width: 0 !important;
+  }
+
+  .contact-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+
+  .contact-name {
+    font-size: 1rem !important;
+  }
+
+  /* Legacy support for old selector - override general rule */
+  .contact-stars-background .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .contact-stars-background
+    .min-h-screen.p-8
+    .grid[class*="md:grid-cols-3"]
+    > a.contact-card,
+  .contact-stars-background
+    .min-h-screen.p-8
+    .grid[class*="md:grid-cols-3"]
+    > a {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.25rem !important;
+  }
+}
+
+/* 451-500px: 2 columns, smaller */
+@media (min-width: 451px) and (max-width: 500px) {
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contact-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.875rem !important;
+    min-width: 0 !important;
+  }
+
+  .contact-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .contact-name {
+    font-size: 0.875rem !important;
+  }
+
+  /* Legacy support for old selector */
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] > a {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.875rem !important;
+  }
+}
+
+/* 401-450px: 2 columns, even smaller */
+@media (min-width: 401px) and (max-width: 450px) {
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.625rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contact-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.75rem !important;
+    min-width: 0 !important;
+  }
+
+  .contact-icon {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  .contact-name {
+    font-size: 0.8125rem !important;
+  }
+
+  /* Legacy support for old selector */
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.625rem !important;
+  }
+
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] > a {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.75rem !important;
+  }
+}
+
+/* Contact Tab - Contact Cards - Force single column at ≤400px */
+@media (max-width: 400px) {
+  .contact-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contact-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Legacy support for old selector */
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] > a {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Contact Tab - Progressive shrinking for cards below 175px */
+@media (max-width: 175px) {
+  .contact-stars-background .max-w-4xl {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    justify-items: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    place-items: center !important;
+  }
+
+  .contact-card {
+    width: 100% !important;
+    max-width: calc(100vw - 2rem) !important;
+    padding: 0.75rem !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .contact-name {
+    font-size: 0.75rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+}
+
+/* Contact Tab - Very small screens - Further reduction */
+@media (max-width: 150px) {
+  .contact-card {
+    padding: 0.625rem !important;
+    max-width: calc(100vw - 1.5rem) !important;
+  }
+
+  .contact-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+
+  .contact-name {
+    font-size: 0.6875rem !important;
+  }
+}
+
+/* Contact Tab - Hide name, show icon only at ≤74px */
+@media (max-width: 74px) {
+  .contact-stars-background .max-w-4xl {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.25rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    justify-items: center !important;
+    align-items: center !important;
+    place-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .contact-card {
+    padding: 0.5rem !important;
+    width: auto !important;
+    min-width: 50px !important;
+    max-width: calc(100vw - 0.5rem) !important;
+    height: auto !important;
+    min-height: 50px !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-card .space-y-3 {
+    gap: 0 !important;
+  }
+
+  .contact-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .contact-name {
+    display: none !important;
+  }
+}
+
+/* Contact Tab - Further shrinking at ≤80px */
+@media (max-width: 80px) {
+  .contact-card {
+    padding: 0.375rem !important;
+    min-width: 45px !important;
+    max-width: calc(100vw - 0.5rem) !important;
+    min-height: 45px !important;
+  }
+
+  .contact-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+}
+
+/* Contact Tab - Maximum shrinking at ≤60px */
+@media (max-width: 60px) {
+  .contact-card {
+    padding: 0.25rem !important;
+    min-width: 40px !important;
+    max-width: calc(100vw - 0.5rem) !important;
+    min-height: 40px !important;
+  }
+
+  .contact-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+/* Buttons - Keep icon only at ≤120px, same as ≤767px */
+@media (max-width: 120px) {
+  .close-btn,
+  .back-to-home-btn {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+    max-width: 2.5rem !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  .close-btn span,
+  .back-to-home-btn span {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .close-btn svg,
+  .back-to-home-btn svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Ensure text stays hidden */
+  .close-btn .hidden,
+  .back-to-home-btn .hidden {
+    display: none !important;
+  }
+
+  .close-btn .md\\:inline,
+  .back-to-home-btn .md\\:inline {
+    display: none !important;
+  }
+
+  /* Ensure buttons don't stack */
+  .close-btn {
+    position: fixed !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    z-index: 50 !important;
+  }
+
+  .back-to-home-btn {
+    position: fixed !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    z-index: 50 !important;
+  }
+}
+
+/* Blog Tab - Blog Cards - Responsive sizing */
+@media (max-width: 400px) {
+  .parallax-card {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .parallax-card > div > div[class*="w-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Progressive shrinking for cards on medium screens */
+@media (min-width: 401px) and (max-width: 600px) {
+  /* Exclude contact cards from this rule */
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-3"] > a:not(.contact-card) {
+    max-width: calc(50% - 0.5rem) !important;
   }
 }
 
@@ -993,9 +3150,91 @@ html {
   display: none;
 }
 
-/* ≤250px: Show abbreviation for ALL skills */
-@media (max-width: 250px) {
+/* ≤159px: Show abbreviation for ALL skills */
+@media (max-width: 159px) {
   .skill-abbreviation {
+    display: block !important;
+  }
+}
+
+/* 160-249px: Show break text or full text like 250-360px */
+@media (min-width: 160px) and (max-width: 249px) {
+  /* Hide abbreviation */
+  .skill-abbreviation {
+    display: none !important;
+  }
+
+  /* Photoshop: Show Photo- / shop (same as 250-285px) */
+  .skill-photoshop .skill-photoshop-break-250-285 {
+    display: block !important;
+  }
+  .skill-photoshop .skill-full-text {
+    display: none !important;
+  }
+
+  /* PowerPoint: Show Power- / Point (same as 250-286px) */
+  .skill-powerpoint .skill-powerpoint-break-250-286 {
+    display: block !important;
+  }
+  .skill-powerpoint .skill-full-text {
+    display: none !important;
+  }
+
+  /* Communication: Show Comm- / uni- / cation (same as 250-274px) */
+  .skill-communication .skill-communication-break-250-274 {
+    display: block !important;
+  }
+  .skill-communication .skill-communication-break-275-360,
+  .skill-communication .skill-full-text {
+    display: none !important;
+  }
+
+  /* Time Management: Show Time / Manage- / ment (same as 250-339px) */
+  .skill-time-management .skill-timemanagement-break-250-339 {
+    display: block !important;
+  }
+  .skill-time-management .skill-timemanagement-break-340-470,
+  .skill-time-management .skill-full-text {
+    display: none !important;
+  }
+
+  /* Premiere Pro: Show Premiere / Pro (same as 250-320px) */
+  .skill-premiere-pro .skill-premiere-pro-break-250-320 {
+    display: block !important;
+  }
+  .skill-premiere-pro .skill-full-text {
+    display: none !important;
+  }
+
+  /* Problem Solving: Show Problem / Solving (same as 250-339px) */
+  .skill-problem-solving .skill-problem-solving-break-250-339 {
+    display: block !important;
+  }
+  .skill-problem-solving .skill-full-text {
+    display: none !important;
+  }
+
+  /* Team Work: Show Team / Work (same as 250-305px) */
+  .skill-team-work .skill-team-work-break-250-305 {
+    display: block !important;
+  }
+  .skill-team-work .skill-full-text {
+    display: none !important;
+  }
+
+  /* Other skills: Show default line break or full text */
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(
+      .skill-powerpoint
+    ):not(.skill-time-management):not(.skill-premiere-pro):not(
+      .skill-problem-solving
+    ):not(.skill-team-work)
+    .skill-default-line-break,
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(
+      .skill-powerpoint
+    ):not(.skill-time-management):not(.skill-premiere-pro):not(
+      .skill-problem-solving
+    ):not(.skill-team-work)
+    .skill-full-text {
     display: block !important;
   }
 }

@@ -33,8 +33,8 @@ export default function BlogPostClient({ post }) {
   const { isMobileDevice, isDesktopDevice, viewportWidth } = useDeviceType();
   
   // Tentukan margin berdasarkan device type - memoized untuk performa
-  // Desktop asli: margin normal (290px)
-  // Mobile di desktop mode: margin lebih kecil (100px)
+  // Desktop asli: margin normal (290px) dengan centering
+  // Mobile di desktop mode: margin lebih kecil (100px) dengan centering
   // Mobile: margin kecil (16px)
   const articleMargin = useMemo(() => {
     // Fallback jika viewportWidth belum terdeteksi (0 atau undefined)
@@ -45,9 +45,9 @@ export default function BlogPostClient({ post }) {
     }
     // Viewport >= 768px (desktop mode)
     if (isMobileDevice) {
-      return "mx-4 md:mx-[100px]"; // Mobile device di desktop mode
+      return "mx-auto max-w-[calc(100vw-200px)] px-[100px]"; // Mobile device di desktop mode dengan centering
     }
-    return "mx-4 md:mx-[290px]"; // Desktop asli
+    return "mx-auto max-w-[calc(100vw-580px)] px-[290px]"; // Desktop asli dengan centering
   }, [viewportWidth, isMobileDevice]);
 
   const scrollToTop = () => {
@@ -246,13 +246,13 @@ export default function BlogPostClient({ post }) {
       </Link>
       <div className={`${articleMargin || 'mx-4'} blog-content mt-[40px] mb-[85px]`}>
         <article className="space-y-6">
-          <div className="flex items-center gap-2 text-sm text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-400 blog-article-date">
             <span>{post.date}</span>
             <span>•</span>
             <span>{post.readTime}</span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white font-merriweather">
+          <h1 className="text-4xl md:text-5xl font-bold text-white font-merriweather blog-article-title">
             {post.title}
           </h1>
 
@@ -272,10 +272,10 @@ export default function BlogPostClient({ post }) {
           )}
 
           <div className="pt-6">
-            <p className="text-xl text-gray-300 leading-relaxed mb-6 font-pt-sans">
+            <p className="text-xl text-gray-300 leading-relaxed mb-6 font-pt-sans blog-article-excerpt">
               {post.excerpt}
             </p>
-            <div className="text-gray-300 leading-relaxed space-y-4 prose prose-invert prose-p:text-gray-300 prose-headings:text-white prose-a:text-purple-400 prose-strong:text-white prose-code:text-pink-400 prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-4 prose-blockquote:my-6 prose-blockquote:bg-gray-800/50 prose-blockquote:rounded-r-lg prose-blockquote:text-gray-200 prose-blockquote:italic max-w-none">
+            <div className="text-gray-300 leading-relaxed space-y-4 prose prose-invert prose-p:text-gray-300 prose-headings:text-white prose-a:text-purple-400 prose-strong:text-white prose-code:text-pink-400 prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-4 prose-blockquote:my-6 prose-blockquote:bg-gray-800/50 prose-blockquote:rounded-r-lg prose-blockquote:text-gray-200 prose-blockquote:italic max-w-none blog-article-content">
               <MemoizedMarkdown content={post.content} />
             </div>
           </div>
