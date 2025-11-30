@@ -35,13 +35,13 @@ export default function BlogPostClient({ post }) {
   // Tentukan margin berdasarkan device type - memoized untuk performa
   // Desktop asli: margin normal (290px) dengan centering
   // Mobile di desktop mode: margin lebih kecil (100px) dengan centering
-  // Mobile: margin kecil (16px)
+  // Mobile: margin kecil dengan centering yang tepat
   const articleMargin = useMemo(() => {
     // Fallback jika viewportWidth belum terdeteksi (0 atau undefined)
     const width = viewportWidth || (typeof window !== 'undefined' ? window.innerWidth : 768);
     
     if (width < 768) {
-      return "mx-4"; // Mobile viewport (< 768px)
+      return "mx-auto max-w-full px-[38px]"; // Mobile viewport (< 768px) - centered dengan padding
     }
     // Viewport >= 768px (desktop mode)
     if (isMobileDevice) {

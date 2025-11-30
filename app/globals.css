@@ -294,10 +294,29 @@ html {
     opacity: 0.5;
   }
 
+  /* Fix padding untuk blog tab container di mobile */
+  .blog-tab-container.min-h-screen.p-8 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
   .blog-content {
     /* Hapus contain di mobile untuk mencegah konten hilang */
     contain: none;
     will-change: auto;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 2.375rem !important;
+    padding-right: 2.375rem !important;
+    box-sizing: border-box !important;
   }
 
   /* Disable transform animations di mobile untuk performa lebih baik */
