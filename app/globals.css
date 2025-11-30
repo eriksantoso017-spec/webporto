@@ -77,7 +77,7 @@ html {
 }
 
 #blog-hill:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 7.1em;
   height: 7.1em;
@@ -290,13 +290,13 @@ html {
     animation: none !important;
     opacity: 0.5;
   }
-  
+
   .blog-content {
     /* Hapus contain di mobile untuk mencegah konten hilang */
     contain: none;
     will-change: auto;
   }
-  
+
   /* Disable transform animations di mobile untuk performa lebih baik */
   .prose img {
     will-change: auto;
@@ -643,7 +643,6 @@ html {
   }
 }
 
-
 /* Fix Portfolio Card Responsive Layout */
 .portfolio-card-parallax {
   width: 100%;
@@ -724,7 +723,7 @@ html {
     min-height: fit-content;
     height: auto;
   }
-  
+
   .soft-skill-glow {
     position: absolute !important;
     top: -2px !important;
@@ -736,7 +735,7 @@ html {
     margin: 0 !important;
     inset: -2px !important;
   }
-  
+
   .soft-skill-card > .relative {
     position: relative;
     z-index: 1;
@@ -756,34 +755,15 @@ html {
   width: 1px;
   height: 1px;
   background: transparent;
-  box-shadow: 
-    200px 300px #a855f7,
-    400px 100px #a855f7,
-    600px 500px #a855f7,
-    800px 200px #a855f7,
-    1000px 400px #a855f7,
-    1200px 600px #a855f7,
-    1400px 300px #a855f7,
-    1600px 800px #a855f7,
-    1800px 100px #a855f7,
-    200px 900px #a855f7,
-    400px 700px #a855f7,
-    600px 300px #a855f7,
-    800px 900px #a855f7,
-    1000px 100px #a855f7,
-    1200px 500px #a855f7,
-    1400px 800px #a855f7,
-    1600px 200px #a855f7,
-    1800px 600px #a855f7,
-    200px 500px #a855f7,
-    400px 900px #a855f7,
-    600px 100px #a855f7,
-    800px 700px #a855f7,
-    1000px 300px #a855f7,
-    1200px 800px #a855f7,
-    1400px 400px #a855f7,
-    1600px 600px #a855f7,
-    1800px 200px #a855f7;
+  box-shadow: 200px 300px #a855f7, 400px 100px #a855f7, 600px 500px #a855f7,
+    800px 200px #a855f7, 1000px 400px #a855f7, 1200px 600px #a855f7,
+    1400px 300px #a855f7, 1600px 800px #a855f7, 1800px 100px #a855f7,
+    200px 900px #a855f7, 400px 700px #a855f7, 600px 300px #a855f7,
+    800px 900px #a855f7, 1000px 100px #a855f7, 1200px 500px #a855f7,
+    1400px 800px #a855f7, 1600px 200px #a855f7, 1800px 600px #a855f7,
+    200px 500px #a855f7, 400px 900px #a855f7, 600px 100px #a855f7,
+    800px 700px #a855f7, 1000px 300px #a855f7, 1200px 800px #a855f7,
+    1400px 400px #a855f7, 1600px 600px #a855f7, 1800px 200px #a855f7;
   animation: contact-animStar 50s linear infinite;
   position: absolute;
   top: 0;
@@ -797,68 +777,30 @@ html {
   width: 1px;
   height: 1px;
   background: transparent;
-  box-shadow: 
-    200px 300px #a855f7,
-    400px 100px #a855f7,
-    600px 500px #a855f7,
-    800px 200px #a855f7,
-    1000px 400px #a855f7,
-    1200px 600px #a855f7,
-    1400px 300px #a855f7,
-    1600px 800px #a855f7,
-    1800px 100px #a855f7,
-    200px 900px #a855f7,
-    400px 700px #a855f7,
-    600px 300px #a855f7,
-    800px 900px #a855f7,
-    1000px 100px #a855f7,
-    1200px 500px #a855f7,
-    1400px 800px #a855f7,
-    1600px 200px #a855f7,
-    1800px 600px #a855f7,
-    200px 500px #a855f7,
-    400px 900px #a855f7,
-    600px 100px #a855f7,
-    800px 700px #a855f7,
-    1000px 300px #a855f7,
-    1200px 800px #a855f7,
-    1400px 400px #a855f7,
-    1600px 600px #a855f7,
-    1800px 200px #a855f7;
+  box-shadow: 200px 300px #a855f7, 400px 100px #a855f7, 600px 500px #a855f7,
+    800px 200px #a855f7, 1000px 400px #a855f7, 1200px 600px #a855f7,
+    1400px 300px #a855f7, 1600px 800px #a855f7, 1800px 100px #a855f7,
+    200px 900px #a855f7, 400px 700px #a855f7, 600px 300px #a855f7,
+    800px 900px #a855f7, 1000px 100px #a855f7, 1200px 500px #a855f7,
+    1400px 800px #a855f7, 1600px 200px #a855f7, 1800px 600px #a855f7,
+    200px 500px #a855f7, 400px 900px #a855f7, 600px 100px #a855f7,
+    800px 700px #a855f7, 1000px 300px #a855f7, 1200px 800px #a855f7,
+    1400px 400px #a855f7, 1600px 600px #a855f7, 1800px 200px #a855f7;
 }
 
 #contact-stars2 {
   width: 2px;
   height: 2px;
   background: transparent;
-  box-shadow: 
-    300px 200px #9333ea,
-    500px 400px #9333ea,
-    700px 600px #9333ea,
-    900px 300px #9333ea,
-    1100px 500px #9333ea,
-    1300px 700px #9333ea,
-    1500px 200px #9333ea,
-    1700px 400px #9333ea,
-    1900px 600px #9333ea,
-    300px 800px #9333ea,
-    500px 100px #9333ea,
-    700px 300px #9333ea,
-    900px 700px #9333ea,
-    1100px 200px #9333ea,
-    1300px 600px #9333ea,
-    1500px 400px #9333ea,
-    1700px 800px #9333ea,
-    1900px 200px #9333ea,
-    300px 500px #9333ea,
-    500px 900px #9333ea,
-    700px 100px #9333ea,
-    900px 500px #9333ea,
-    1100px 800px #9333ea,
-    1300px 300px #9333ea,
-    1500px 700px #9333ea,
-    1700px 100px #9333ea,
-    1900px 400px #9333ea;
+  box-shadow: 300px 200px #9333ea, 500px 400px #9333ea, 700px 600px #9333ea,
+    900px 300px #9333ea, 1100px 500px #9333ea, 1300px 700px #9333ea,
+    1500px 200px #9333ea, 1700px 400px #9333ea, 1900px 600px #9333ea,
+    300px 800px #9333ea, 500px 100px #9333ea, 700px 300px #9333ea,
+    900px 700px #9333ea, 1100px 200px #9333ea, 1300px 600px #9333ea,
+    1500px 400px #9333ea, 1700px 800px #9333ea, 1900px 200px #9333ea,
+    300px 500px #9333ea, 500px 900px #9333ea, 700px 100px #9333ea,
+    900px 500px #9333ea, 1100px 800px #9333ea, 1300px 300px #9333ea,
+    1500px 700px #9333ea, 1700px 100px #9333ea, 1900px 400px #9333ea;
   animation: contact-animStar 100s linear infinite;
   position: absolute;
   top: 0;
@@ -872,68 +814,30 @@ html {
   width: 2px;
   height: 2px;
   background: transparent;
-  box-shadow: 
-    300px 200px #9333ea,
-    500px 400px #9333ea,
-    700px 600px #9333ea,
-    900px 300px #9333ea,
-    1100px 500px #9333ea,
-    1300px 700px #9333ea,
-    1500px 200px #9333ea,
-    1700px 400px #9333ea,
-    1900px 600px #9333ea,
-    300px 800px #9333ea,
-    500px 100px #9333ea,
-    700px 300px #9333ea,
-    900px 700px #9333ea,
-    1100px 200px #9333ea,
-    1300px 600px #9333ea,
-    1500px 400px #9333ea,
-    1700px 800px #9333ea,
-    1900px 200px #9333ea,
-    300px 500px #9333ea,
-    500px 900px #9333ea,
-    700px 100px #9333ea,
-    900px 500px #9333ea,
-    1100px 800px #9333ea,
-    1300px 300px #9333ea,
-    1500px 700px #9333ea,
-    1700px 100px #9333ea,
-    1900px 400px #9333ea;
+  box-shadow: 300px 200px #9333ea, 500px 400px #9333ea, 700px 600px #9333ea,
+    900px 300px #9333ea, 1100px 500px #9333ea, 1300px 700px #9333ea,
+    1500px 200px #9333ea, 1700px 400px #9333ea, 1900px 600px #9333ea,
+    300px 800px #9333ea, 500px 100px #9333ea, 700px 300px #9333ea,
+    900px 700px #9333ea, 1100px 200px #9333ea, 1300px 600px #9333ea,
+    1500px 400px #9333ea, 1700px 800px #9333ea, 1900px 200px #9333ea,
+    300px 500px #9333ea, 500px 900px #9333ea, 700px 100px #9333ea,
+    900px 500px #9333ea, 1100px 800px #9333ea, 1300px 300px #9333ea,
+    1500px 700px #9333ea, 1700px 100px #9333ea, 1900px 400px #9333ea;
 }
 
 #contact-stars3 {
   width: 3px;
   height: 3px;
   background: transparent;
-  box-shadow: 
-    250px 150px #7c3aed,
-    450px 350px #7c3aed,
-    650px 550px #7c3aed,
-    850px 250px #7c3aed,
-    1050px 450px #7c3aed,
-    1250px 650px #7c3aed,
-    1450px 150px #7c3aed,
-    1650px 350px #7c3aed,
-    1850px 550px #7c3aed,
-    250px 750px #7c3aed,
-    450px 50px #7c3aed,
-    650px 250px #7c3aed,
-    850px 750px #7c3aed,
-    1050px 150px #7c3aed,
-    1250px 550px #7c3aed,
-    1450px 350px #7c3aed,
-    1650px 750px #7c3aed,
-    1850px 50px #7c3aed,
-    250px 450px #7c3aed,
-    450px 850px #7c3aed,
-    650px 50px #7c3aed,
-    850px 450px #7c3aed,
-    1050px 750px #7c3aed,
-    1250px 250px #7c3aed,
-    1450px 650px #7c3aed,
-    1650px 50px #7c3aed,
-    1850px 350px #7c3aed;
+  box-shadow: 250px 150px #7c3aed, 450px 350px #7c3aed, 650px 550px #7c3aed,
+    850px 250px #7c3aed, 1050px 450px #7c3aed, 1250px 650px #7c3aed,
+    1450px 150px #7c3aed, 1650px 350px #7c3aed, 1850px 550px #7c3aed,
+    250px 750px #7c3aed, 450px 50px #7c3aed, 650px 250px #7c3aed,
+    850px 750px #7c3aed, 1050px 150px #7c3aed, 1250px 550px #7c3aed,
+    1450px 350px #7c3aed, 1650px 750px #7c3aed, 1850px 50px #7c3aed,
+    250px 450px #7c3aed, 450px 850px #7c3aed, 650px 50px #7c3aed,
+    850px 450px #7c3aed, 1050px 750px #7c3aed, 1250px 250px #7c3aed,
+    1450px 650px #7c3aed, 1650px 50px #7c3aed, 1850px 350px #7c3aed;
   animation: contact-animStar 150s linear infinite;
   position: absolute;
   top: 0;
@@ -947,34 +851,15 @@ html {
   width: 3px;
   height: 3px;
   background: transparent;
-  box-shadow: 
-    250px 150px #7c3aed,
-    450px 350px #7c3aed,
-    650px 550px #7c3aed,
-    850px 250px #7c3aed,
-    1050px 450px #7c3aed,
-    1250px 650px #7c3aed,
-    1450px 150px #7c3aed,
-    1650px 350px #7c3aed,
-    1850px 550px #7c3aed,
-    250px 750px #7c3aed,
-    450px 50px #7c3aed,
-    650px 250px #7c3aed,
-    850px 750px #7c3aed,
-    1050px 150px #7c3aed,
-    1250px 550px #7c3aed,
-    1450px 350px #7c3aed,
-    1650px 750px #7c3aed,
-    1850px 50px #7c3aed,
-    250px 450px #7c3aed,
-    450px 850px #7c3aed,
-    650px 50px #7c3aed,
-    850px 450px #7c3aed,
-    1050px 750px #7c3aed,
-    1250px 250px #7c3aed,
-    1450px 650px #7c3aed,
-    1650px 50px #7c3aed,
-    1850px 350px #7c3aed;
+  box-shadow: 250px 150px #7c3aed, 450px 350px #7c3aed, 650px 550px #7c3aed,
+    850px 250px #7c3aed, 1050px 450px #7c3aed, 1250px 650px #7c3aed,
+    1450px 150px #7c3aed, 1650px 350px #7c3aed, 1850px 550px #7c3aed,
+    250px 750px #7c3aed, 450px 50px #7c3aed, 650px 250px #7c3aed,
+    850px 750px #7c3aed, 1050px 150px #7c3aed, 1250px 550px #7c3aed,
+    1450px 350px #7c3aed, 1650px 750px #7c3aed, 1850px 50px #7c3aed,
+    250px 450px #7c3aed, 450px 850px #7c3aed, 650px 50px #7c3aed,
+    850px 450px #7c3aed, 1050px 750px #7c3aed, 1250px 250px #7c3aed,
+    1450px 650px #7c3aed, 1650px 50px #7c3aed, 1850px 350px #7c3aed;
 }
 
 @keyframes contact-animStar {
@@ -983,6 +868,118 @@ html {
   }
   to {
     transform: translateY(-2000px);
+  }
+}
+
+/* Landing Page Title Responsive Breakpoints */
+.landing-page-title > span {
+  display: none;
+}
+
+/* Landing Page Title: ≤189px - Show abbreviation */
+@media (max-width: 189px) {
+  .landing-title-abbr {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .landing-title-full,
+  .landing-title-break {
+    display: none !important;
+  }
+}
+
+/* Landing Page Title: 190-259px - Show break */
+@media (min-width: 190px) and (max-width: 259px) {
+  .landing-title-break {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .landing-title-full,
+  .landing-title-abbr {
+    display: none !important;
+  }
+}
+
+/* Landing Page Title: ≥260px - Show full */
+@media (min-width: 260px) {
+  .landing-title-full {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  @media (min-width: 768px) {
+    .landing-title-full {
+      flex-direction: row;
+    }
+  }
+  .landing-title-break,
+  .landing-title-abbr {
+    display: none !important;
+  }
+}
+
+/* Landing Page Subtitle Responsive Breakpoints */
+.landing-subtitle > span {
+  display: none;
+}
+
+/* Landing Page Subtitle: ≤89px - Show abbreviation */
+@media (max-width: 89px) {
+  .landing-subtitle-abbr {
+    display: block !important;
+    text-align: center;
+  }
+  .landing-subtitle-full,
+  .landing-subtitle-break-100-140,
+  .landing-subtitle-break-90-99 {
+    display: none !important;
+  }
+}
+
+/* Landing Page Subtitle: 90-99px - Show break version 2 */
+@media (min-width: 90px) and (max-width: 99px) {
+  .landing-subtitle-break-90-99 {
+    display: block !important;
+    text-align: center;
+  }
+  .landing-subtitle-full,
+  .landing-subtitle-break-100-140,
+  .landing-subtitle-abbr {
+    display: none !important;
+  }
+}
+
+/* Landing Page Subtitle: 100-140px - Show break version 1 */
+@media (min-width: 100px) and (max-width: 140px) {
+  .landing-subtitle-break-100-140 {
+    display: block !important;
+    text-align: center;
+  }
+  .landing-subtitle-full,
+  .landing-subtitle-break-90-99,
+  .landing-subtitle-abbr {
+    display: none !important;
+  }
+}
+
+/* Landing Page Subtitle: ≥141px - Show full */
+@media (min-width: 141px) {
+  .landing-subtitle-full {
+    display: block !important;
+    text-align: center;
+  }
+  .landing-subtitle-break-100-140,
+  .landing-subtitle-break-90-99,
+  .landing-subtitle-abbr {
+    display: none !important;
   }
 }
 
@@ -1188,11 +1185,26 @@ html {
 
 /* Other skills (not specified): 250-639px show default line breaks or full text */
 @media (min-width: 250px) and (max-width: 639px) {
-  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(.skill-powerpoint):not(.skill-time-management):not(.skill-premiere-pro):not(.skill-problem-solving):not(.skill-team-work) .skill-default-line-break {
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(
+      .skill-powerpoint
+    ):not(.skill-time-management):not(.skill-premiere-pro):not(
+      .skill-problem-solving
+    ):not(.skill-team-work)
+    .skill-default-line-break {
     display: block !important;
   }
-  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(.skill-powerpoint):not(.skill-time-management):not(.skill-premiere-pro):not(.skill-problem-solving):not(.skill-team-work) .skill-abbreviation,
-  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(.skill-powerpoint):not(.skill-time-management):not(.skill-premiere-pro):not(.skill-problem-solving):not(.skill-team-work) .skill-full-text {
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(
+      .skill-powerpoint
+    ):not(.skill-time-management):not(.skill-premiere-pro):not(
+      .skill-problem-solving
+    ):not(.skill-team-work)
+    .skill-abbreviation,
+  .skill-name-text:not(.skill-photoshop):not(.skill-communication):not(
+      .skill-powerpoint
+    ):not(.skill-time-management):not(.skill-premiere-pro):not(
+      .skill-problem-solving
+    ):not(.skill-team-work)
+    .skill-full-text {
     display: none !important;
   }
 }

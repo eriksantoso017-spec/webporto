@@ -1110,12 +1110,76 @@ const Portfolio2x3 = () => {
       {!expandedSection ? (
         <div className="min-h-screen p-8">
           <div className="text-center mb-12 pt-8">
-            <h1 className="text-[2.16rem] md:text-[3.375rem] font-semibold mb-4 font-jetbrains-mono flex flex-col md:flex-row md:justify-center md:items-center md:gap-2">
-              <span className="text-purple-400">import</span>
-              <span className="text-[#D4D4D4]">{"{ myPortfolio }"}</span>
+            <h1 className="text-[2.16rem] md:text-[3.375rem] font-semibold mb-4 font-jetbrains-mono flex flex-col md:flex-row md:justify-center md:items-center md:gap-2 landing-page-title">
+              {/* Full version: ≥260px */}
+              <span className="landing-title-full">
+                <span className="text-purple-400">import</span>
+                <span className="text-[#D4D4D4]">{" { myPortfolio }"}</span>
+              </span>
+              {/* Break version: 190-259px */}
+              <span className="landing-title-break">
+                <span className="text-purple-400">import</span>
+                <span className="text-[#D4D4D4]">
+                  {" {"}
+                  <br />
+                  myPort-
+                  <br />
+                  folio
+                  <br />
+                  {" }"}
+                </span>
+              </span>
+              {/* Abbreviation version: ≤189px */}
+              <span className="landing-title-abbr">
+                <span className="text-purple-400">import</span>
+                <span className="text-[#D4D4D4]">{" {"}</span>
+                <span className="text-[#D4D4D4]"> my...</span>
+                <span className="text-[#D4D4D4]">{" }"}</span>
+              </span>
             </h1>
-            <p className="text-xl text-gray-300">
-              I hate being responsible-Ekko
+            <p className="text-xl text-gray-300 landing-subtitle">
+              {/* Full version: ≥141px */}
+              <span className="landing-subtitle-full">
+                I hate being responsible-Ekko
+              </span>
+              {/* Break version: 100-140px */}
+              <span className="landing-subtitle-break-100-140">
+                I hate being respon-
+                <br />
+                sible-
+                <br />
+                Ekko
+              </span>
+              {/* Break version: 90-99px */}
+              <span className="landing-subtitle-break-90-99">
+                I
+                <br />
+                hate
+                <br />
+                being
+                <br />
+                res-
+                <br />
+                pon-
+                <br />
+                sible-
+                <br />
+                Ekko
+              </span>
+              {/* Abbreviation version: ≤89px */}
+              <span className="landing-subtitle-abbr">
+                I..
+                <br />
+                h..
+                <br />
+                b..
+                <br />
+                r..
+                <br />
+                -..
+                <br />
+                E..
+              </span>
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
