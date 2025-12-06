@@ -233,14 +233,14 @@ export default function BlogPostClient({ post }) {
       )}
       <Button
         onClick={() => router.push("/")}
-        className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow transition-all duration-300 group"
+        className="action-btn action-btn-close bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 rounded-lg animate-pulse-slow transition-all duration-300 group"
       >
-        <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
+        <X className="action-btn-icon w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
         <span className="hidden md:inline">Close</span>
       </Button>
       <Link href="/blog" className="hidden md:block">
-        <Button className="back-to-blog-btn fixed top-4 right-4 md:right-[9px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 hidden md:flex items-center justify-center animate-pulse-slow transition-all duration-300 group">
-          <ArrowLeft className="w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
+        <Button className="action-btn action-btn-back-to-blog bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-auto md:h-auto md:px-3 md:py-1.5 p-0 hidden md:flex rounded-lg animate-pulse-slow transition-all duration-300 group">
+          <ArrowLeft className="action-btn-icon w-6 h-6 md:w-4 md:h-4 md:mr-1.5 group-hover:-translate-x-1 transition-transform duration-300" />
           <span className="hidden md:inline">To Blog</span>
         </Button>
       </Link>
@@ -285,15 +285,15 @@ export default function BlogPostClient({ post }) {
         onClick={scrollToTop}
         onMouseEnter={() => !isMobileDevice && setIsHovered(true)}
         onMouseLeave={() => !isMobileDevice && setIsHovered(false)}
-        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg transition-all duration-300 group animate-float"
+        className="action-btn action-btn-back-to-top bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 rounded-lg transition-all duration-300 group animate-float"
       >
         {isMobileDevice ? (
           // Mobile: hanya tampilkan icon arrow up
-          <ArrowUp className="w-5 h-5 transition-transform duration-300" />
+          <ArrowUp className="action-btn-icon w-6 h-6 transition-transform duration-300" />
         ) : (
           // Desktop: pertahankan behavior hover (scroll percentage atau arrow up)
           isHovered ? (
-            <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] transition-transform duration-300" />
+            <ArrowUp className="action-btn-icon w-6 h-6 transition-transform duration-300" />
           ) : (
             <span className="text-[10px] md:text-[10.8px] font-semibold transition-opacity duration-300">
               {scrollPercentage}%

@@ -148,9 +148,9 @@ export default function BlogListClient({
       <div className="min-h-screen p-8 bg-black blog-background font-open-sans blog-tab-container">
         <Button
           onClick={() => router.push("/")}
-          className="close-btn fixed top-4 left-4 z-[100] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 flex items-center justify-center rounded-lg animate-pulse-slow transition-all duration-300 group"
+          className="action-btn action-btn-close bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 rounded-lg animate-pulse-slow transition-all duration-300 group"
         >
-          <X className="w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
+          <X className="action-btn-icon w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
           <span className="hidden md:inline">Close</span>
         </Button>
         <div className="max-w-7xl mx-auto blog-content">
@@ -204,34 +204,39 @@ export default function BlogListClient({
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredPosts.map((post, index) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.id}`}
-                  ref={(el) => (cardRefs.current[index] = el)}
-                  className="group cursor-pointer parallax-card"
-                  style={{
-                    transitionDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  {/* Thumbnail - 289x289px */}
-                  <div className="w-[289px] h-[289px] mx-auto mb-4 overflow-hidden rounded-lg">
-                    {post.thumbnail ? (
-                      <Image
-                        src={post.thumbnail}
-                        alt={post.title}
-                        width={289}
-                        height={289}
-                        className="w-full h-full object-cover transition-transform duration-500"
-                        loading="lazy"
-                        quality={85}
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                        <span className="text-gray-500 text-sm">No Image</span>
-                      </div>
-                    )}
-                  </div>
+              {filteredPosts.map((post, index) => {
+                // Priority untuk image pertama di halaman pertama (LCP optimization)
+                const isFirstPostOnFirstPage = index === 0 && currentPage === 1 && !searchQuery;
+                
+                return (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.id}`}
+                    ref={(el) => (cardRefs.current[index] = el)}
+                    className="group cursor-pointer parallax-card"
+                    style={{
+                      transitionDelay: `${index * 0.1}s`,
+                    }}
+                  >
+                    {/* Thumbnail - 289x289px */}
+                    <div className="w-[289px] h-[289px] mx-auto mb-4 overflow-hidden rounded-lg">
+                      {post.thumbnail ? (
+                        <Image
+                          src={post.thumbnail}
+                          alt={post.title}
+                          width={289}
+                          height={289}
+                          className="w-full h-full object-cover transition-transform duration-500"
+                          loading={isFirstPostOnFirstPage ? undefined : "lazy"}
+                          priority={isFirstPostOnFirstPage}
+                          quality={85}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                          <span className="text-gray-500 text-sm">No Image</span>
+                        </div>
+                      )}
+                    </div>
 
                   {/* Title and Date Container - Centered for mobile */}
                   <div className="w-[289px] mx-auto sm:w-auto">
@@ -246,7 +251,8 @@ export default function BlogListClient({
                     </p>
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           )}
 
@@ -278,9 +284,9 @@ export default function BlogListClient({
       </div>
       <Button
         onClick={scrollToTop}
-        className="back-to-top-btn fixed bottom-4 right-4 md:right-[28px] z-50 bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 md:w-[48.02px] md:h-[48.02px] p-0 flex items-center justify-center rounded-lg animate-float transition-all duration-300 group"
+        className="action-btn action-btn-back-to-top bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-purple-500 w-10 h-10 p-0 rounded-lg animate-float transition-all duration-300 group"
       >
-        <ArrowUp className="w-5 h-5 md:w-[20.08px] md:h-[20.08px] animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
+        <ArrowUp className="action-btn-icon w-6 h-6 animate-icon-bounce group-hover:animate-none transition-transform duration-300" />
       </Button>
     </>
   );

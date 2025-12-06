@@ -2,11 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Open Sans font is loaded via next/font/google in layout.js */
-
-/* Force dark mode for mobile browser navbar */
+/* ============================================
+   CSS CUSTOM PROPERTIES - BREAKPOINTS
+   ============================================ */
 :root {
   color-scheme: dark;
+
+  /* Breakpoint values for responsive design */
+  --bp-mobile: 768px;
+  --bp-tablet: 1024px;
+  --bp-desktop: 1280px;
+
+  /* Landing page breakpoints */
+  --bp-landing-title-full: 260px;
+  --bp-landing-title-break: 190px;
+  --bp-landing-title-vertical: 116px;
+  --bp-landing-title-vvertical: 115px;
+  --bp-landing-subtitle-full: 141px;
+  --bp-landing-subtitle-break-100-140: 100px;
+  --bp-landing-subtitle-break-90-99: 90px;
+  --bp-landing-subtitle-vertical: 89px;
+
+  /* Home section breakpoints */
+  --bp-home-title-full: 281px;
+  --bp-home-title-break-271-280: 271px;
+  --bp-home-title-break-221-270: 221px;
+  --bp-home-title-break-151-220: 151px;
+  --bp-home-title-break-101-150: 101px;
+  --bp-home-title-break-91-100: 91px;
+  --bp-home-title-break-90: 90px;
+
+  /* Skills breakpoints */
+  --bp-skills-hide-text: 74px;
+  --bp-skills-unified-layout: 75px;
+  --bp-skills-unified-layout-max: 125px;
+
+  /* Contact breakpoints */
+  --bp-contact-single-column: 400px;
+  --bp-contact-hide-name: 74px;
+  --bp-contact-button-icon-only: 120px;
+
+  /* Education breakpoints */
+  --bp-education-single-column: 500px;
+  --bp-education-progressive-shrink: 235px;
+
+  /* Video breakpoints */
+  --bp-video-first-word: 201px;
+  --bp-video-first-word-max: 230px;
+  --bp-video-first-letter: 125px;
+
+  /* Blog breakpoints */
+  --bp-blog-article-date-title: 245px;
+  --bp-blog-content-small: 125px;
+  --bp-blog-content-medium: 150px;
+
+  /* Cube card breakpoints */
+  --bp-cube-abbreviated: 150px;
+
+  /* Landing cards breakpoints */
+  --bp-landing-cards-progressive-start: 120px;
+  --bp-landing-cards-progressive-end: 260px;
+  --bp-landing-cards-extra-small: 75px;
+  --bp-landing-cards-small: 119px;
 }
 
 html {
@@ -56,6 +113,10 @@ html {
 .animate-icon-bounce {
   animation: icon-bounce 2s ease-in-out infinite;
 }
+
+/* ============================================
+   ANIMATIONS & KEYFRAMES
+   ============================================ */
 
 /* Blog Loading Animation - Box on Hill */
 #blog-loader {
@@ -177,6 +238,10 @@ html {
 }
 
 /* Hover effect untuk back to top button - glow effect removed */
+
+/* ============================================
+   BLOG SECTION STYLES
+   ============================================ */
 
 /* Background animations for Blog tab */
 @keyframes gradient-shift {
@@ -326,6 +391,7 @@ html {
 }
 
 /* Blog Article Responsive Font Sizes */
+/* Note: Font sizes are progressively scaled based on viewport width */
 /* Date and Title - Responsive for screens ≤245px */
 @media (max-width: 245px) {
   .blog-article-date {
@@ -652,6 +718,10 @@ html {
     margin-bottom: 1.5rem !important;
   }
 }
+
+/* ============================================
+   HOME SECTION STYLES
+   ============================================ */
 
 /* Particle dots animation for Home tab */
 @keyframes particle-float {
@@ -1220,6 +1290,10 @@ html {
     transform: translateY(-2000px);
   }
 }
+
+/* ============================================
+   LANDING PAGE STYLES
+   ============================================ */
 
 /* Landing Page Title Responsive Breakpoints */
 .landing-page-title > span {
@@ -2257,6 +2331,10 @@ html {
 }
 
 /* Cards and Thumbnails Responsive - Shrink and Wrap */
+/* ============================================
+   SKILLS SECTION STYLES
+   ============================================ */
+
 /* Skills Tab - Skill Cards */
 @media (max-width: 300px) {
   .skills-tab-container .grid.grid-cols-2 {
@@ -2424,6 +2502,10 @@ html {
   }
 }
 
+/* ============================================
+   PORTFOLIO SECTION STYLES
+   ============================================ */
+
 /* Portfolio Tab - Image Cards */
 @media (max-width: 400px) {
   .portfolio-grid-container {
@@ -2579,6 +2661,10 @@ html {
     display: block !important;
   }
 }
+
+/* ============================================
+   EDUCATION SECTION STYLES
+   ============================================ */
 
 /* Education Tab - Glow Cards - Force single column on small screens */
 @media (max-width: 500px) {
@@ -2740,6 +2826,10 @@ html {
     font-size: 0.5625rem !important;
   }
 }
+
+/* ============================================
+   CONTACT SECTION STYLES
+   ============================================ */
 
 /* Contact Tab - Contact Cards - 2 columns with gradual shrinking */
 /* 601-767px: 2 columns, normal padding */
@@ -3077,10 +3167,71 @@ html {
   }
 }
 
-/* Buttons - Keep icon only at ≤120px, same as ≤767px */
+/* ============================================
+   ACTION BUTTONS - UNIFIED STYLING
+   ============================================ */
+/* Base styles untuk semua action buttons (close, back-to-home, back-to-top) */
+.action-btn {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+
+.action-btn-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+/* Close button - top left */
+.action-btn-close {
+  top: 1rem;
+  left: 1rem;
+}
+
+/* Back to home button - top right */
+.action-btn-back-to-home {
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Back to top button - bottom right */
+.action-btn-back-to-top {
+  bottom: 1rem;
+  right: 1rem;
+}
+
+/* Back to blog button - top right (untuk blog post page) */
+.action-btn-back-to-blog {
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Minimized state - hanya icon, ukuran konsisten */
+.action-btn-minimized {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  min-width: 2.5rem !important;
+  max-width: 2.5rem !important;
+  padding: 0 !important;
+}
+
+.action-btn-minimized span {
+  display: none !important;
+}
+
+.action-btn-minimized .action-btn-icon {
+  width: 1.2rem !important; /* 20% lebih kecil dari 1.5rem (24px -> 19.2px) */
+  height: 1.2rem !important;
+  margin: 0 !important;
+}
+
+/* Responsive: Icon only at ≤120px - ukuran konsisten untuk semua tombol */
 @media (max-width: 120px) {
-  .close-btn,
-  .back-to-home-btn {
+  .action-btn {
     width: 2.5rem !important;
     height: 2.5rem !important;
     min-width: 2.5rem !important;
@@ -3093,8 +3244,7 @@ html {
     overflow: hidden !important;
   }
 
-  .close-btn span,
-  .back-to-home-btn span {
+  .action-btn span {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -3103,38 +3253,45 @@ html {
     overflow: hidden !important;
   }
 
-  .close-btn svg,
-  .back-to-home-btn svg {
-    width: 1.5rem !important;
-    height: 1.5rem !important;
+  .action-btn-icon {
+    width: 1.2rem !important; /* 20% lebih kecil dari 1.5rem (24px -> 19.2px) */
+    height: 1.2rem !important;
     margin: 0 !important;
     flex-shrink: 0 !important;
   }
 
   /* Ensure text stays hidden */
-  .close-btn .hidden,
-  .back-to-home-btn .hidden {
+  .action-btn .hidden,
+  .action-btn .md\\:inline {
     display: none !important;
   }
 
-  .close-btn .md\\:inline,
-  .back-to-home-btn .md\\:inline {
-    display: none !important;
-  }
-
-  /* Ensure buttons don't stack */
-  .close-btn {
+  /* Positioning untuk setiap tombol */
+  .action-btn-close {
     position: fixed !important;
     top: 1rem !important;
     left: 1rem !important;
     z-index: 50 !important;
   }
 
-  .back-to-home-btn {
+  .action-btn-back-to-home,
+  .action-btn-back-to-blog {
     position: fixed !important;
     top: 1rem !important;
     right: 1rem !important;
     z-index: 50 !important;
+  }
+
+  .action-btn-back-to-top {
+    position: fixed !important;
+    bottom: 1rem !important;
+    right: 1rem !important;
+    z-index: 50 !important;
+  }
+
+  /* Hide scroll percentage text saat minimize */
+  .action-btn-back-to-top span {
+    display: none !important;
   }
 }
 
@@ -3158,6 +3315,10 @@ html {
     max-width: calc(50% - 0.5rem) !important;
   }
 }
+
+/* ============================================
+   SKILL TEXT RESPONSIVE BREAKPOINTS
+   ============================================ */
 
 /* Skill Name Text Responsive Breakpoints */
 .skill-name-text {
