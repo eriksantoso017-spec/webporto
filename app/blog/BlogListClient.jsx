@@ -206,8 +206,9 @@ export default function BlogListClient({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {filteredPosts.map((post, index) => {
                 // Priority untuk image pertama di halaman pertama (LCP optimization)
-                const isFirstPostOnFirstPage = index === 0 && currentPage === 1 && !searchQuery;
-                
+                const isFirstPostOnFirstPage =
+                  index === 0 && currentPage === 1 && !searchQuery;
+
                 return (
                   <Link
                     key={post.id}
@@ -233,24 +234,26 @@ export default function BlogListClient({
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                          <span className="text-gray-500 text-sm">No Image</span>
+                          <span className="text-gray-500 text-sm">
+                            No Image
+                          </span>
                         </div>
                       )}
                     </div>
 
-                  {/* Title and Date Container - Centered for mobile */}
-                  <div className="w-[289px] mx-auto sm:w-auto">
-                    {/* Title */}
-                    <h2 className="text-lg font-bold text-white mb-2 font-merriweather line-clamp-2 group-hover:text-purple-400 transition-colors text-center sm:text-left">
-                      {post.title}
-                    </h2>
+                    {/* Title and Date Container - Centered for mobile */}
+                    <div className="w-[289px] mx-auto sm:w-auto">
+                      {/* Title */}
+                      <h2 className="text-lg font-bold text-white mb-2 font-merriweather line-clamp-2 group-hover:text-purple-400 transition-colors text-center sm:text-left">
+                        {post.title}
+                      </h2>
 
-                    {/* Date */}
-                    <p className="text-sm text-gray-400 font-pt-sans text-center sm:text-left">
-                      {post.date}
-                    </p>
-                  </div>
-                </Link>
+                      {/* Date */}
+                      <p className="text-sm text-gray-400 font-pt-sans text-center sm:text-left">
+                        {post.date}
+                      </p>
+                    </div>
+                  </Link>
                 );
               })}
             </div>

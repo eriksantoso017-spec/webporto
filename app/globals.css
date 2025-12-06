@@ -3204,6 +3204,20 @@ html {
   right: 1rem;
 }
 
+/* Responsive sizing untuk back-to-top button di desktop */
+/* Hanya berlaku untuk desktop (≥768px) dan tidak konflik dengan mobile (≤120px) */
+@media (min-width: 768px) {
+  .action-btn-back-to-top {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .action-btn-back-to-top .action-btn-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
 /* Back to blog button - top right (untuk blog post page) */
 .action-btn-back-to-blog {
   top: 1rem;
