@@ -150,7 +150,7 @@ const contacts = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    link: "https://www.linkedin.com/in/eriksant//",
+    link: "https://www.linkedin.com/in/eriksant/",
     color: "bg-blue-600",
   },
   {
