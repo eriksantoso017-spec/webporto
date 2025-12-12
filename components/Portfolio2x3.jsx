@@ -150,7 +150,7 @@ const contacts = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    link: "https://www.linkedin.com/in/eriksant//",
+    link: "https://www.linkedin.com/in/eriksant/",
     color: "bg-blue-600",
   },
   {
@@ -247,8 +247,6 @@ const SkillCard = ({ skill, gradientFrom, gradientTo, className = "" }) => {
   );
 };
 
-// Reusable Button Components dengan ukuran icon konsisten
-// Semua tombol menggunakan class action-btn dan action-btn-icon untuk styling yang konsisten
 const BackToTopButton = () => (
   <Button
     onClick={scrollToTop}

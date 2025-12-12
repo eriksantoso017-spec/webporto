@@ -2510,13 +2510,16 @@ html {
 @media (max-width: 400px) {
   .portfolio-grid-container {
     grid-template-columns: 1fr !important;
-    gap: 1rem !important;
+    gap: 2.5rem !important; /* Increased from 1rem to 2.5rem for better spacing */
+    row-gap: 2.5rem !important; /* Ensure consistent vertical spacing */
+    column-gap: 0 !important; /* Single column, no horizontal gap needed */
   }
 
   .portfolio-grid-container > div {
     max-width: 100% !important;
     width: 100% !important;
     min-width: 0 !important;
+    margin-bottom: 0 !important; /* Remove any additional margin that might cause inconsistency */
   }
 }
 
@@ -2525,6 +2528,14 @@ html {
   .min-h-screen.p-8 .grid[class*="md:grid-cols-2"] {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
+  }
+}
+
+/* Portfolio Tab - Video Cards - Add vertical gap at ≤767px */
+@media (max-width: 767px) {
+  .min-h-screen.p-8 .grid[class*="md:grid-cols-2"] {
+    row-gap: 2.5rem !important; /* Add consistent vertical spacing between cards */
+    column-gap: 1.5rem !important; /* Maintain horizontal gap if 2 columns */
   }
 }
 
@@ -3315,6 +3326,198 @@ html {
     max-width: 100% !important;
     width: 100% !important;
   }
+}
+
+/* Blog Posts - Responsive thumbnail, title, and date at ≤380px */
+@media (max-width: 380px) {
+  /* Reduce padding on blog-content to ensure proper centering */
+  .blog-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Ensure grid and cards are centered */
+  .blog-content .grid {
+    justify-items: center !important;
+    align-items: center !important;
+    place-items: center !important;
+    width: 100% !important;
+  }
+
+  /* Ensure parallax card is centered */
+  .parallax-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Thumbnail container - shrink progressively and centered */
+  .parallax-card > div:first-child {
+    width: calc(100vw - 4rem) !important;
+    max-width: calc(100vw - 4rem) !important;
+    height: calc(100vw - 4rem) !important;
+    max-height: calc(100vw - 4rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Title and Date container - shrink to match thumbnail */
+  .parallax-card > div:last-child {
+    width: calc(100vw - 4rem) !important;
+    max-width: calc(100vw - 4rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Title - smaller font size */
+  .parallax-card h2 {
+    font-size: 0.875rem !important; /* 14px */
+    line-height: 1.4 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+
+  /* Date - smaller font size */
+  .parallax-card p.text-sm {
+    font-size: 0.75rem !important; /* 12px */
+    text-align: center !important;
+  }
+}
+
+/* Blog Posts - Further shrinking at ≤300px */
+@media (max-width: 300px) {
+  /* Reduce padding on blog-content */
+  .blog-content {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Ensure grid and cards are centered */
+  .blog-content .grid {
+    justify-items: center !important;
+    align-items: center !important;
+    place-items: center !important;
+    width: 100% !important;
+  }
+
+  /* Ensure parallax card is centered */
+  .parallax-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Thumbnail container - smaller and centered */
+  .parallax-card > div:first-child {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    height: calc(100vw - 2rem) !important;
+    max-height: calc(100vw - 2rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Title and Date container - match thumbnail */
+  .parallax-card > div:last-child {
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Title - even smaller */
+  .parallax-card h2 {
+    font-size: 0.75rem !important; /* 12px */
+    text-align: center !important;
+  }
+
+  /* Date - even smaller */
+  .parallax-card p.text-sm {
+    font-size: 0.625rem !important; /* 10px */
+    text-align: center !important;
+  }
+}
+
+/* Blog Posts - Further shrinking at ≤200px */
+@media (max-width: 200px) {
+  /* Reduce padding on blog-content even more */
+  .blog-content {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Ensure grid and cards are centered */
+  .blog-content .grid {
+    justify-items: center !important;
+    align-items: center !important;
+    place-items: center !important;
+    width: 100% !important;
+  }
+
+  /* Ensure parallax card is centered */
+  .parallax-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Thumbnail container - minimal size and centered */
+  .parallax-card > div:first-child {
+    width: calc(100vw - 1rem) !important;
+    max-width: calc(100vw - 1rem) !important;
+    height: calc(100vw - 1rem) !important;
+    max-height: calc(100vw - 1rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Title and Date container - match thumbnail */
+  .parallax-card > div:last-child {
+    width: calc(100vw - 1rem) !important;
+    max-width: calc(100vw - 1rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Title - minimal size */
+  .parallax-card h2 {
+    font-size: 0.625rem !important; /* 10px */
+    text-align: center !important;
+  }
+
+  /* Date - minimal size */
+  .parallax-card p.text-sm {
+    font-size: 0.5rem !important; /* 8px */
+    text-align: center !important;
+  }
 
   .parallax-card > div > div[class*="w-"] {
     width: 100% !important;
@@ -3545,6 +3748,56 @@ html {
   }
   .skill-premiere-pro .skill-abbreviation,
   .skill-premiere-pro .skill-full-text {
+    display: none !important;
+  }
+}
+
+/* 260-300px: Show full text for specific skills (override break variants) */
+@media (min-width: 260px) and (max-width: 300px) {
+  /* Premiere Pro: Show full text */
+  .skill-premiere-pro .skill-full-text {
+    display: block !important;
+  }
+  .skill-premiere-pro .skill-premiere-pro-break-250-320,
+  .skill-premiere-pro .skill-abbreviation {
+    display: none !important;
+  }
+
+  /* Communication: Show full text */
+  .skill-communication .skill-full-text {
+    display: block !important;
+  }
+  .skill-communication .skill-communication-break-250-274,
+  .skill-communication .skill-communication-break-275-360,
+  .skill-communication .skill-abbreviation {
+    display: none !important;
+  }
+
+  /* Problem Solving: Show full text */
+  .skill-problem-solving .skill-full-text {
+    display: block !important;
+  }
+  .skill-problem-solving .skill-problem-solving-break-250-339,
+  .skill-problem-solving .skill-abbreviation {
+    display: none !important;
+  }
+
+  /* Team Work: Show full text */
+  .skill-team-work .skill-full-text {
+    display: block !important;
+  }
+  .skill-team-work .skill-team-work-break-250-305,
+  .skill-team-work .skill-abbreviation {
+    display: none !important;
+  }
+
+  /* Time Management: Show full text */
+  .skill-time-management .skill-full-text {
+    display: block !important;
+  }
+  .skill-time-management .skill-timemanagement-break-250-339,
+  .skill-time-management .skill-timemanagement-break-340-470,
+  .skill-time-management .skill-abbreviation {
     display: none !important;
   }
 }
