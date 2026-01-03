@@ -1393,6 +1393,21 @@ html {
   }
 }
 
+/* Mobile responsive - smaller circles for mobile devices */
+@media (max-width: 768px) {
+  .skills-tab-container::before {
+    width: 250px;
+    height: 250px;
+    filter: blur(40px);
+  }
+
+  .skills-tab-container::after {
+    width: 300px;
+    height: 300px;
+    filter: blur(50px);
+  }
+}
+
 
 .skills-tab-container > * {
   position: relative;
