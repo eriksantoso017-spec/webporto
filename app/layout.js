@@ -107,6 +107,20 @@ export const metadata = {
   verification: {
     google: "voTjcKXM8nz1boHa-HVwu1lMaxixB8BrFYYxYPKotEo", // Kode verifikasi dari Google Search Console
   },
+  themeColor: "#000000",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    themeColor: "#000000",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Erik Santoso",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -130,12 +144,19 @@ export default function RootLayout({ children }) {
       <head>
         {/* Theme color for mobile browser navbar - dark mode */}
         <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#000000" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
         <meta name="color-scheme" content="dark" />
+        {/* Apple-specific */}
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
         {/* Resource hints for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Web App Manifest */}
+        <link rel="manifest" href="/manifest.json" />
         {/* Structured Data */}
         <script
           type="application/ld+json"

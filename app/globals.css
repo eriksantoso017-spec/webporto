@@ -68,6 +68,13 @@
 
 html {
   color-scheme: dark;
+  background-color: #000000;
+}
+
+body {
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
 }
 
 /* ============================================
