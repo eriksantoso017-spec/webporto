@@ -107,20 +107,12 @@ export const metadata = {
   verification: {
     google: "voTjcKXM8nz1boHa-HVwu1lMaxixB8BrFYYxYPKotEo", // Kode verifikasi dari Google Search Console
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
   themeColor: "#000000",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    themeColor: "#000000",
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Erik Santoso",
-  },
-  formatDetection: {
-    telephone: false,
-  },
 };
 
 export default function RootLayout({ children }) {
