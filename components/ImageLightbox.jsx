@@ -267,70 +267,17 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      {/* Close Button */}
+      {/* Close Button - Exactly matching CloseButton from Portfolio2x3 */}
       <button
-        id="lightbox-close-btn"
         onClick={onClose}
-        className="fixed top-4 right-4 z-[10000] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 rounded-lg transition-all duration-300 group"
+        className="fixed top-4 right-4 z-[10000] action-btn action-btn-close bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 w-10 h-10 md:w-auto md:h-auto md:px-2 md:py-1.5 p-0 rounded-lg animate-pulse-slow transition-all duration-300 group"
+        style={{ boxShadow: 'none' }}
       >
-        <X className="lightbox-close-icon group-hover:rotate-90 transition-transform duration-300" />
-        <span className="lightbox-close-text">Close</span>
+        <X className="action-btn-icon w-6 h-6 md:w-4 md:h-4 md:mr-2.5 group-hover:rotate-90 transition-transform duration-300" />
+        <span className="hidden md:inline transition-opacity duration-300">
+          Close
+        </span>
       </button>
-      
-      <style jsx>{`
-        #lightbox-close-btn {
-          width: 40px;
-          height: 40px;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: none !important;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        #lightbox-close-btn:hover {
-          box-shadow: none !important;
-          animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.8;
-          }
-        }
-        
-        .lightbox-close-icon {
-          width: 24px;
-          height: 24px;
-        }
-        
-        .lightbox-close-text {
-          display: none;
-        }
-        
-        @media (min-width: 768px) {
-          #lightbox-close-btn {
-            width: auto !important;
-            height: auto !important;
-            padding: 0.375rem 0.5rem !important;
-          }
-          
-          .lightbox-close-icon {
-            width: 16px !important;
-            height: 16px !important;
-            margin-right: 0.625rem;
-          }
-          
-          .lightbox-close-text {
-            display: inline !important;
-            font-size: 16px;
-          }
-        }
-      `}</style>
 
       {/* Image Container */}
       <div
