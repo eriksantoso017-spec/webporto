@@ -271,9 +271,9 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
       <button
         id="lightbox-close-btn"
         onClick={onClose}
-        className="fixed top-4 right-4 z-[10000] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 rounded-lg transition-all duration-300 animate-pulse-slow group"
+        className="fixed top-4 right-4 z-[10000] bg-gray-900 text-white hover:bg-gray-800 border border-gray-700 hover:border-red-500 rounded-lg transition-all duration-300 group"
       >
-        <X className="lightbox-close-icon" />
+        <X className="lightbox-close-icon group-hover:rotate-90 transition-transform duration-300" />
         <span className="lightbox-close-text">Close</span>
       </button>
       
@@ -286,10 +286,21 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
           align-items: center;
           justify-content: center;
           box-shadow: none !important;
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         
         #lightbox-close-btn:hover {
           box-shadow: none !important;
+          animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.8;
+          }
         }
         
         .lightbox-close-icon {
@@ -305,18 +316,18 @@ const ImageLightbox = ({ images, isOpen, onClose, initialIndex }) => {
           #lightbox-close-btn {
             width: auto !important;
             height: auto !important;
-            padding: 0.34rem 0.45rem !important;
+            padding: 0.375rem 0.5rem !important;
           }
           
           .lightbox-close-icon {
-            width: 14px !important;
-            height: 14px !important;
-            margin-right: 0.5rem;
+            width: 16px !important;
+            height: 16px !important;
+            margin-right: 0.625rem;
           }
           
           .lightbox-close-text {
             display: inline !important;
-            font-size: 14px;
+            font-size: 16px;
           }
         }
       `}</style>
